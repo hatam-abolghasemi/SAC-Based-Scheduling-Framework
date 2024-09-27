@@ -1,28 +1,33 @@
+# https://keras.io/examples/vision/cct/
 # IMPORTS --------------------------------------------------------------
 from keras import layers
 import keras
 
 import matplotlib.pyplot as plt
 import numpy as np
+import configparser
+
+# Parse config.ini --------------------------------------------------------------
+config = configparser.ConfigParser()
+config.read('config.ini')
 
 # Hyperparameters and constants --------------------------------------------------------------
-positional_emb = True
-conv_layers = 2
-projection_dim = 128
+positional_emb = config.getboolean('HYPERPARAMETERS', 'positional_emb')
+conv_layers = config.getint('HYPERPARAMETERS', 'conv_layers')
+projection_dim = config.getint('HYPERPARAMETERS', 'projection_dim')
+num_heads = config.getint('HYPERPARAMETERS', 'num_heads')
+transformer_units = list(map(int, config.get('HYPERPARAMETERS', 'transformer_units').split(',')))
+transformer_layers = config.getint('HYPERPARAMETERS', 'transformer_layers')
+stochastic_depth_rate = config.getfloat('HYPERPARAMETERS', 'stochastic_depth_rate')
 
-num_heads = 2
-transformer_units = [
-    projection_dim,
-    projection_dim,
-]
-transformer_layers = 2
-stochastic_depth_rate = 0.1
+learning_rate = config.getfloat('TRAINING', 'learning_rate')
+weight_decay = config.getfloat('TRAINING', 'weight_decay')
+batch_size = config.getint('TRAINING', 'batch_size')
+num_epochs = config.getint('TRAINING', 'num_epochs')
+image_size = config.getint('TRAINING', 'image_size')
 
-learning_rate = 0.001
-weight_decay = 0.0001
-batch_size = 128
-num_epochs = 30
-image_size = 32
+num_classes = config.getint('DATA', 'num_classes')
+input_shape = tuple(map(int, config.get('DATA', 'input_shape').split(',')))
 
 # Load CIFAR-10 dataset --------------------------------------------------------------
 num_classes = 10

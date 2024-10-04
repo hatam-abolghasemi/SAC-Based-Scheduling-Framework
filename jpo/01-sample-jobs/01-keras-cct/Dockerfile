@@ -10,4 +10,8 @@ RUN apt-get update && \
     curl -O https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz
 RUN tar -xzf cifar-10-python.tar.gz
 
+LABEL framework="keras" \
+      dataset="cifar10" \
+      model="cct"
+
 CMD ["python", "app.py"]

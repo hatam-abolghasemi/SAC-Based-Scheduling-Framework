@@ -2,10 +2,10 @@ import requests
 import time
 from flask import Flask, Response
 
-PROMETHEUS_URL = 'http://127.0.0.1:9090'
-NODE_CPU_UTILIZATION_QUERY = 'avg(100 - (avg by(instance) (irate(node_cpu_seconds_total{job="local_node_exporter", mode="idle"}[5m])) * 100))'
-NODE_MEMORY_UTILIZATION_QUERY = 'avg((1 - (node_memory_MemAvailable_bytes{job="local_node_exporter"} / node_memory_MemTotal_bytes{job="local_node_exporter"})) * 100)'
-CONTAINER_CPU_UTILIZATION_QUERY = 'sum(rate(container_cpu_usage_seconds_total{image!=""}[1m])) by (name, image)'
+PROMETHEUS_URL = 'http://0.0.0.0:9090'
+NODE_CPU_UTILIZATION_QUERY = 'avg(100 - (avg by(instance) (irate(node_cpu_seconds_total{job="node-exporter", mode="idle"}[5m])) * 100))'
+NODE_MEMORY_UTILIZATION_QUERY = 'avg((1 - (node_memory_MemAvailable_bytes{job="node-exporter"} / node_memory_MemTotal_bytes{job="node-exporter"})) * 100)'
+CONTAINER_CPU_UTILIZATION_QUERY = 'sum(rate(container_cpu_usage_seconds_total{job="cadvisor",image!=""}[1m])) by (name, image, container_label_dataset, container_label_framework, container_label_model)'
 
 app = Flask(__name__)
 
@@ -44,10 +44,15 @@ def fetch_container_cpu_utilization():
             results = data['data']['result']
             unix_time = int(time.time())
             for result in results:
-                name = result['metric'].get('name', 'unknown_container')
-                image_name = result['metric'].get('image', 'unknown_image')
-                value = float(result['value'][1])
-                metrics_data += f'{unix_time} container_cpu_utilization(image:{image_name},container:{name}) {value:.2f}%\n'
+                # Check if the necessary container labels exist
+                if all(label in result['metric'] for label in ['container_label_dataset', 'container_label_framework', 'container_label_model']):
+                    name = result['metric'].get('name', 'unknown_container')
+                    image_name = result['metric'].get('image', 'unknown_image')
+                    container_label_dataset = result['metric'].get('container_label_dataset', 'unknown_dataset')
+                    container_label_framework = result['metric'].get('container_label_framework', 'unknown_framework')
+                    container_label_model = result['metric'].get('container_label_model', 'unknown_model')
+                    value = float(result['value'][1])
+                    metrics_data += f'{unix_time} container_cpu_utilization(image:{image_name},container:{name},dataset:{container_label_dataset},framework:{container_label_framework},model:{container_label_model}) {value:.2f}%\n'
 
 @app.route('/metrics', methods=['GET'])
 def get_metrics():
@@ -62,7 +67,7 @@ if __name__ == "__main__":
             fetch_node_cpu_utilization()
             fetch_node_memory_utilization()
             fetch_container_cpu_utilization()
-            time.sleep(3)
+            time.sleep(15)
 
     import threading
     threading.Thread(target=fetch_metrics, daemon=True).start()

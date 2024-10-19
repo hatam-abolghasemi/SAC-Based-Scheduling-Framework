@@ -13,7 +13,10 @@ def extract_workload_from_config(config_file):
     return (
         config.get('WORKLOAD', 'framework', fallback=None),
         config.get('WORKLOAD', 'dataset', fallback=None),
-        config.get('WORKLOAD', 'model', fallback=None)
+        config.get('WORKLOAD', 'model', fallback=None),
+        config.getint('TRAINING', 'batch_size', fallback=None),
+        config.getfloat('TRAINING', 'learning_rate', fallback=None),
+        config.getint('TRAINING', 'num_epochs', fallback=None)
     )
 
 def find_config_file(directory):
@@ -26,15 +29,18 @@ def find_dockerfile(directory):
     dockerfile_path = os.path.join(directory, DOCKERFILE)
     return dockerfile_path if os.path.exists(dockerfile_path) else None
 
-def check_and_update_dockerfile(dockerfile_path, framework, dataset, model):
-    """Check if Dockerfile contains framework, dataset, and model labels, and update if missing."""
+def check_and_update_dockerfile(dockerfile_path, framework, dataset, model, batch_size, learning_rate, num_epochs):
+    """Check if Dockerfile contains framework, dataset, model, batch_size, learning_rate, and num_epochs labels, and update if missing."""
     with open(dockerfile_path, 'r') as file:
         dockerfile_lines = file.readlines()
 
-    # Check if LABELs for framework, dataset, and model exist
+    # Check if LABELs for framework, dataset, model, batch_size, learning_rate, and num_epochs exist
     has_framework_label = any('LABEL framework=' in line for line in dockerfile_lines)
     has_dataset_label = any('LABEL dataset=' in line for line in dockerfile_lines)
     has_model_label = any('LABEL model=' in line for line in dockerfile_lines)
+    has_batch_size_label = any('LABEL batch_size=' in line for line in dockerfile_lines)
+    has_learning_rate_label = any('LABEL learning_rate=' in line for line in dockerfile_lines)
+    has_num_epochs_label = any('LABEL num_epochs=' in line for line in dockerfile_lines)
 
     # Append missing labels before the last instruction (CMD or ENTRYPOINT)
     labels_to_add = []
@@ -44,10 +50,16 @@ def check_and_update_dockerfile(dockerfile_path, framework, dataset, model):
         labels_to_add.append(f'LABEL dataset="{dataset}"\n')
     if not has_model_label:
         labels_to_add.append(f'LABEL model="{model}"\n')
+    if not has_batch_size_label:
+        labels_to_add.append(f'LABEL batch_size={batch_size}\n')
+    if not has_learning_rate_label:
+        labels_to_add.append(f'LABEL learning_rate={learning_rate}\n')
+    if not has_num_epochs_label:
+        labels_to_add.append(f'LABEL num_epochs={num_epochs}\n')
 
     if labels_to_add:
         # Insert the labels before the last command
-        for i in range(len(dockerfile_lines)-1, -1, -1):
+        for i in range(len(dockerfile_lines) - 1, -1, -1):
             if dockerfile_lines[i].startswith(('CMD', 'ENTRYPOINT')):
                 dockerfile_lines = dockerfile_lines[:i] + labels_to_add + dockerfile_lines[i:]
                 break
@@ -72,18 +84,21 @@ config_file = find_config_file(directory)
 dockerfile = find_dockerfile(directory)
 
 if config_file:
-    framework, dataset, model = extract_workload_from_config(config_file)
-    if framework and dataset and model:
+    framework, dataset, model, batch_size, learning_rate, num_epochs = extract_workload_from_config(config_file)
+    if framework and dataset and model and batch_size is not None and learning_rate is not None and num_epochs is not None:
         print(f"framework: {framework}")
         print(f"dataset: {dataset}")
         print(f"model: {model}")
+        print(f"batch_size: {batch_size}")
+        print(f"learning_rate: {learning_rate}")
+        print(f"num_epochs: {num_epochs}")
 
         if dockerfile:
-            check_and_update_dockerfile(dockerfile, framework, dataset, model)
+            check_and_update_dockerfile(dockerfile, framework, dataset, model, batch_size, learning_rate, num_epochs)
         else:
             print(f"Dockerfile not found in directory: {directory}")
     else:
-        print("One or more fields (framework, dataset, model) not found in the config.ini")
+        print("One or more fields (framework, dataset, model, batch_size, learning_rate, num_epochs) not found in the config.ini")
 else:
     print(f"config.ini not found in directory: {directory}")
 

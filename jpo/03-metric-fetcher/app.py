@@ -2,10 +2,11 @@ import requests
 import time
 from flask import Flask, Response
 
-PROMETHEUS_URL = 'http://0.0.0.0:9090'
+# PROMETHEUS_URL = 'http://0.0.0.0:9090'
+PROMETHEUS_URL = 'http://192.168.91.128:9090'
 NODE_CPU_UTILIZATION_QUERY = 'avg(100 - (avg by(instance) (irate(node_cpu_seconds_total{job="node-exporter", mode="idle"}[5m])) * 100))'
 NODE_MEMORY_UTILIZATION_QUERY = 'avg((1 - (node_memory_MemAvailable_bytes{job="node-exporter"} / node_memory_MemTotal_bytes{job="node-exporter"})) * 100)'
-CONTAINER_CPU_UTILIZATION_QUERY = 'sum(rate(container_cpu_usage_seconds_total{job="cadvisor",image!=""}[1m])) by (name, image, container_label_dataset, container_label_framework, container_label_model)'
+CONTAINER_CPU_UTILIZATION_QUERY = 'sum(rate(container_cpu_usage_seconds_total{job="cadvisor",image!=""}[1m])) by (name, image, container_label_dataset, container_label_framework, container_label_model, container_label_batch_size, container_label_learning_rate, container_label_num_epochs)'
 
 app = Flask(__name__)
 
@@ -45,14 +46,17 @@ def fetch_container_cpu_utilization():
             unix_time = int(time.time())
             for result in results:
                 # Check if the necessary container labels exist
-                if all(label in result['metric'] for label in ['container_label_dataset', 'container_label_framework', 'container_label_model']):
+                if all(label in result['metric'] for label in ['container_label_dataset', 'container_label_framework', 'container_label_model', 'container_label_batch_size', 'container_label_learning_rate', 'container_label_num_epochs']):
                     name = result['metric'].get('name', 'unknown_container')
                     image_name = result['metric'].get('image', 'unknown_image')
                     container_label_dataset = result['metric'].get('container_label_dataset', 'unknown_dataset')
                     container_label_framework = result['metric'].get('container_label_framework', 'unknown_framework')
                     container_label_model = result['metric'].get('container_label_model', 'unknown_model')
+                    container_label_batch_size = result['metric'].get('container_label_batch_size', 'unknown_batch_size')
+                    container_label_learning_rate = result['metric'].get('container_label_learning_rate', 'unknown_learning_rate')
+                    container_label_num_epochs = result['metric'].get('container_label_num_epochs', 'unknown_num_epochs')
                     value = float(result['value'][1])
-                    metrics_data += f'{unix_time} container_cpu_utilization(image:{image_name},container:{name},dataset:{container_label_dataset},framework:{container_label_framework},model:{container_label_model}) {value:.2f}%\n'
+                    metrics_data += f'{unix_time} container_cpu_utilization(image:{image_name},container:{name},dataset:{container_label_dataset},framework:{container_label_framework},model:{container_label_model},batch_size:{container_label_batch_size},learning_rate:{container_label_learning_rate},num_epochs:{container_label_num_epochs}) {value:.2f}%\n'
 
 @app.route('/metrics', methods=['GET'])
 def get_metrics():

@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  dcgan:
+    image: dcgan:1.0.0
+    restart: always
+
+  cct:
+    image: cct:1.0.7
+    restart: always
+

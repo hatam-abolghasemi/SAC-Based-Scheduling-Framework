@@ -1,6 +1,29 @@
 import requests
 import time
 import configparser
+from gym import Env
+
+url = "http://0.0.0.0:4223/metrics"
+
+class K8sEnv(Env):
+    def __init__(self):
+        # Actions we can take?
+        self.action_space = None
+        # Set start state
+        self.state = None
+        self.current_metrics_text = fetch_metrics(url)
+
+    def step(self, action):
+        
+        write_suggestions_to_config(action.suggestions, action.metadata)
+        
+        self.state = extract_metadata(self.current_metrics_text)
+        
+        # reward?
+        # done?
+
+        return self.state#, reward, done, info
+
 
 def fetch_metrics(url):
     try:
@@ -69,7 +92,6 @@ def write_suggestions_to_config(suggestions, metadata, config_file='config.ini')
         config.write(configfile)
 
 def main():
-    url = "http://0.0.0.0:4223/metrics"
     last_metrics = {}
 
     while True:

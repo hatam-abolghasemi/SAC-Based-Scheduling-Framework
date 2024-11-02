@@ -12,22 +12,34 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 # Hyperparameters and constants --------------------------------------------------------------
-positional_emb = config.getboolean('HYPERPARAMETERS', 'positional_emb')
-conv_layers = config.getint('HYPERPARAMETERS', 'conv_layers')
-projection_dim = config.getint('HYPERPARAMETERS', 'projection_dim')
-num_heads = config.getint('HYPERPARAMETERS', 'num_heads')
-transformer_units = list(map(int, config.get('HYPERPARAMETERS', 'transformer_units').split(',')))
-transformer_layers = config.getint('HYPERPARAMETERS', 'transformer_layers')
-stochastic_depth_rate = config.getfloat('HYPERPARAMETERS', 'stochastic_depth_rate')
+# METADATA Section
+framework = config.get('METADATA', 'framework')
+model = config.get('METADATA', 'model')
+dataset = config.get('METADATA', 'dataset')
+field = config.get('METADATA', 'field')
+subfield = config.get('METADATA', 'subfield')
 
-learning_rate = config.getfloat('TRAINING', 'learning_rate')
-weight_decay = config.getfloat('TRAINING', 'weight_decay')
-batch_size = config.getint('TRAINING', 'batch_size')
-num_epochs = config.getint('TRAINING', 'num_epochs')
-image_size = config.getint('TRAINING', 'image_size')
+# GENERAL Section
+learning_rate = config.getfloat('GENERAL', 'learning_rate')
+weight_decay = config.getfloat('GENERAL', 'weight_decay')
+batch_size = config.getint('GENERAL', 'batch_size')
+num_epochs = config.getint('GENERAL', 'num_epochs')
+units = list(map(int, config.get('GENERAL', 'units').split(',')))
+layers = config.getint('GENERAL', 'layers')
 
-num_classes = config.getint('DATA', 'num_classes')
-input_shape = tuple(map(int, config.get('DATA', 'input_shape').split(',')))
+# COMPUTER_VISION Section
+input_shape = tuple(map(int, config.get('COMPUTER_VISION', 'input_shape').split(',')))
+image_size = config.getint('COMPUTER_VISION', 'image_size')
+conv_layers = config.getint('COMPUTER_VISION', 'conv_layers')
+projection_dim = config.getint('COMPUTER_VISION', 'projection_dim')
+num_heads = config.getint('COMPUTER_VISION', 'num_heads')
+positional_emb = config.getboolean('COMPUTER_VISION', 'positional_emb')
+stochastic_depth_rate = config.getfloat('COMPUTER_VISION', 'stochastic_depth_rate')
+
+# IMAGE_CLASSIFICATION Section
+num_classes = config.getint('IMAGE_CLASSIFICATION', 'num_classes')
+transformer_units = list(map(int, config.get('IMAGE_CLASSIFICATION', 'transformer_units').split(',')))
+transformer_layers = config.getint('IMAGE_CLASSIFICATION', 'transformer_layers')
 
 # Load CIFAR-10 dataset --------------------------------------------------------------
 num_classes = 10

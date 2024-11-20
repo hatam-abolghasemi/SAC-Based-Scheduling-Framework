@@ -25,7 +25,7 @@ weight_decay = config.getfloat('GENERAL', 'weight_decay')
 batch_size = config.getint('GENERAL', 'batch_size')
 num_epochs = config.getint('GENERAL', 'num_epochs')
 units = list(map(int, config.get('GENERAL', 'units').split(',')))
-layers = config.getint('GENERAL', 'layers')
+num_layers = config.getint('GENERAL', 'layers')
 
 # COMPUTER_VISION Section
 input_shape = tuple(map(int, config.get('COMPUTER_VISION', 'input_shape').split(',')))

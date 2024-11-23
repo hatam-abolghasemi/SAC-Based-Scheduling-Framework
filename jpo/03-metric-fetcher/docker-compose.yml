@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   metric-fetcher:
-    image: metric-fetcher:1.0.2
+    image: metric-fetcher:0.0.0
     restart: always
     ports:
       - "4223:4223"

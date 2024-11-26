@@ -87,8 +87,10 @@ class RLSchedulerEnv(gym.Env):
         # Fetch metrics from the metric-fetcher
         try:
             response = requests.get(self.metric_fetcher_url)
+            print(f"the response from metric fetcher is : {response}")
             if response.status_code == 200:
                 metrics = response.text.split("\n")
+                print(f"The metrics are : {metrics}")
                 parsed_metrics = {}
                 for metric in metrics:
                     if metric.strip():  # Skip empty lines
@@ -100,6 +102,7 @@ class RLSchedulerEnv(gym.Env):
                 return parsed_metrics
         except Exception as e:
             print(f"Error fetching metrics: {e}")
+        print("EMPTY!!!!")
         return {}
 
     def render(self, mode="human"):
@@ -109,7 +112,7 @@ class RLSchedulerEnv(gym.Env):
 
 # Initializing and Random Testing
 
-env = RLSchedulerEnv(num_nodes=3, num_jobs=1)
+env = RLSchedulerEnv(num_nodes=3, num_jobs=3)
 state = env.reset()
 done = False
 

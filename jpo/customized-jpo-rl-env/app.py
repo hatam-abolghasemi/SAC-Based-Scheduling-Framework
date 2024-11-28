@@ -49,53 +49,83 @@ def parse_metrics(metrics_text):
     return state
 
 def extract_metadata(metrics_text):
-    metadata = {}
+    all_metadata = []
     lines = metrics_text.strip().split('\n')
     for line in lines:
         if 'container_cpu_utilization' in line:
             metadata_line = line.split('(')[1].split(')')[0]
             meta_parts = metadata_line.split(',')
+            metadata = {}
             for part in meta_parts:
                 key_value = part.split(':', 1)
                 if len(key_value) == 2:
                     key, value = key_value
                     metadata[key.strip()] = value.strip()
-    return metadata
+            all_metadata.append(metadata)
+    return all_metadata
 
-def suggest_new_values(current_metrics, last_metrics):
-    suggestions = {}
-    for key, value in current_metrics.items():
-        if 'node_cpu_utilization' in key or 'container_cpu_utilization' in key:
-            if last_metrics and value > last_metrics.get(key, 0):
-                suggestions['batch_size'] = suggestions.get('batch_size', 128) + 32
-                suggestions['learning_rate'] = suggestions.get('learning_rate', 0.001) * 1.1
-                suggestions['num_epochs'] = suggestions.get('num_epochs', 30) + 5
-            else:
-                suggestions['batch_size'] = max(32, suggestions.get('batch_size', 128) - 32)
-                suggestions['learning_rate'] = suggestions.get('learning_rate', 0.001) * 0.9
-                suggestions['num_epochs'] = max(1, suggestions.get('num_epochs', 30) - 5)
-    return suggestions
+def suggest_new_values(job_specific_metrics, last_job_metrics):
+    """
+    Generate new hyperparameter suggestions based on job-specific metrics.
+    """
+    # Extract container CPU utilization if available
+    # Extract the container CPU utilization for the current job
+    job_cpu_utilization = next(
+        (value for key, value in job_specific_metrics.items() if "container_cpu_utilization" in key),
+        0  # Default to 0 if no matching key is found
+        )
+
+    print(f"Suggesting based on CPU utilization: {job_cpu_utilization}")
+
+    # Adjust hyperparameters based on utilization
+    new_batch_size = int(128 + 32 * (1 - job_cpu_utilization / 100))
+    new_learning_rate = 0.001 * (1 + job_cpu_utilization / 1000)
+    new_num_epochs = 30 + int(job_cpu_utilization / 20)
+
+    # Ensure reasonable ranges
+    new_batch_size = max(32, min(512, new_batch_size))
+    new_learning_rate = max(0.0001, min(0.01, new_learning_rate))
+    new_num_epochs = max(10, min(100, new_num_epochs))
+
+    return {
+        "batch_size": new_batch_size,
+        "learning_rate": new_learning_rate,
+        "num_epochs": new_num_epochs,
+    }
+
 
 def write_suggestions_to_config(suggestions, metadata, config_file='config.ini'):
     config = configparser.ConfigParser()
-
-    # Create section name based on metadata
+    print(f"the metadata in `write_` is: {metadata}")
+    # Use dataset, model, and framework to create a unique section name
     section_name = f"{metadata.get('dataset', 'default')}_{metadata.get('model', 'default')}_{metadata.get('framework', 'default')}"
+    
+    # Read the existing config file (if it exists)
+    try:
+        config.read(config_file)
+    except Exception as e:
+        print(f"Error reading config file: {e}")
+
+    # Ensure the section exists
     if section_name not in config:
         config[section_name] = {}
-
-    # Update parameters
+    
+    # Update the section with new suggestions
     config[section_name].update({
         'batch_size': str(suggestions.get('batch_size', 128)),
         'learning_rate': str(suggestions.get('learning_rate', 0.001)),
         'num_epochs': str(suggestions.get('num_epochs', 30)),
-        'dataset': metadata.get('dataset', 'unknown'),
-        'model': metadata.get('model', 'unknown'),
-        'framework': metadata.get('framework', 'unknown')
+        'dataset': metadata['dataset'],
+        'model': metadata['model'],
+        'framework': metadata['framework']
     })
 
-    with open(config_file, 'w') as configfile:
-        config.write(configfile)
+    # Write changes back to the config file
+    try:
+        with open(config_file, 'w') as configfile:
+            config.write(configfile)
+    except Exception as e:
+        print(f"Error writing to config file: {e}")
 
 def calculate_reward(state):
     # Define logic for reward calculation
@@ -113,21 +143,34 @@ def main():
     while True:
         # Fetch current metrics
         current_metrics_text = fetch_metrics(url)
-        print(f"The current metrics text are: {current_metrics_text}")
         if current_metrics_text:
             current_metrics = parse_metrics(current_metrics_text)
-            metadata = extract_metadata(current_metrics_text)
-            print(f"Extracted metadata: {metadata}")
+            all_metadata = extract_metadata(current_metrics_text)
+            print(f"Extracted metadata: {all_metadata}")
 
-            # Generate suggestions based on metrics
-            suggestions = suggest_new_values(current_metrics, last_metrics)
+            for metadata in all_metadata:
+                job_key = metadata['container']  # Unique identifier for the job
 
-            # Update configuration file with new suggestions
-            write_suggestions_to_config(suggestions, metadata)
+                # Filter the current metrics to only include the current job's container
+                job_specific_metrics = {
+                    key: value
+                    for key, value in current_metrics.items()
+                    if job_key in key  # Match container name in metrics key
+                }
 
-            # Update last metrics
-            last_metrics = current_metrics
-        
+                print(f"Processing job: {job_key}")
+                print(f"Job-specific metrics: {job_specific_metrics}")
+
+                # Generate suggestions based on job-specific metrics
+                suggestions = suggest_new_values(job_specific_metrics, last_metrics.get(job_key, {}))
+
+                # Update configuration file with suggestions for this job
+                write_suggestions_to_config(suggestions, metadata)
+
+                # Save current metrics for this job
+                last_metrics[job_key] = job_specific_metrics
+
+
         # Sleep before the next iteration
         time.sleep(15)
 

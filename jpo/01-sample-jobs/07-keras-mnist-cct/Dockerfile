@@ -8,10 +8,10 @@ COPY app.py .
 COPY config.ini .
 
 LABEL framework="keras"
-LABEL dataset="cifar10"
+LABEL dataset="mnist"
 LABEL model="cct"
 LABEL batch_size=128
 LABEL learning_rate=0.001
-LABEL num_epochs=30
+LABEL num_epochs=15
 
 CMD ["python", "app.py"]

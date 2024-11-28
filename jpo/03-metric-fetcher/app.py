@@ -3,7 +3,7 @@ import time
 from flask import Flask, Response
 
 # PROMETHEUS_URL = 'http://0.0.0.0:9090'
-PROMETHEUS_URL = 'http://192.168.80.131:9090'
+PROMETHEUS_URL = 'http://192.168.80.132:9090'
 NODE_CPU_UTILIZATION_QUERY = 'avg(100 - (avg by(instance) (irate(node_cpu_seconds_total{job="node-exporter", mode="idle"}[5m])) * 100))'
 NODE_MEMORY_UTILIZATION_QUERY = 'avg((1 - (node_memory_MemAvailable_bytes{job="node-exporter"} / node_memory_MemTotal_bytes{job="node-exporter"})) * 100)'
 CONTAINER_CPU_UTILIZATION_QUERY = 'sum(rate(container_cpu_usage_seconds_total{job="cadvisor",image!=""}[1m])) by (name, image, container_label_dataset, container_label_framework, container_label_model, container_label_batch_size, container_label_learning_rate, container_label_num_epochs)'

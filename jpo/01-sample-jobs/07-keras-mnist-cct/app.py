@@ -1,5 +1,3 @@
-# https://keras.io/examples/vision/cct/
-# IMPORTS --------------------------------------------------------------
 from keras import layers
 import keras
 
@@ -25,7 +23,7 @@ weight_decay = config.getfloat('GENERAL', 'weight_decay')
 batch_size = config.getint('GENERAL', 'batch_size')
 num_epochs = config.getint('GENERAL', 'num_epochs')
 units = list(map(int, config.get('GENERAL', 'units').split(',')))
-layers = config.getint('GENERAL', 'layers')
+num_layers = config.getint('GENERAL', 'layers')
 
 # COMPUTER_VISION Section
 input_shape = tuple(map(int, config.get('COMPUTER_VISION', 'input_shape').split(',')))
@@ -41,11 +39,15 @@ num_classes = config.getint('IMAGE_CLASSIFICATION', 'num_classes')
 transformer_units = list(map(int, config.get('IMAGE_CLASSIFICATION', 'transformer_units').split(',')))
 transformer_layers = config.getint('IMAGE_CLASSIFICATION', 'transformer_layers')
 
-# Load CIFAR-10 dataset --------------------------------------------------------------
+# Load MNIST dataset --------------------------------------------------------------
 num_classes = 10
-input_shape = (32, 32, 3)
+input_shape = (28, 28, 1)
 
-(x_train, y_train), (x_test, y_test) = keras.datasets.cifar10.load_data()
+(x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
+
+# Reshape and normalize data for the model
+x_train = x_train.reshape(-1, 28, 28, 1).astype("float32") / 255
+x_test = x_test.reshape(-1, 28, 28, 1).astype("float32") / 255
 
 y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
@@ -114,7 +116,7 @@ class PositionEmbedding(keras.layers.Layer):
     ):
         super().__init__(**kwargs)
         if sequence_length is None:
-            raise ValueError("`sequence_length` must be an Integer, received `None`.")
+            raise ValueError("sequence_length must be an Integer, received None.")
         self.sequence_length = int(sequence_length)
         self.initializer = keras.initializers.get(initializer)
 
@@ -194,13 +196,11 @@ def mlp(x, hidden_units, dropout_rate):
         x = layers.Dropout(dropout_rate)(x)
     return x
 
-# Data augmentation --------------------------------------------------------------
-# Note the rescaling layer. These layers have pre-defined inference behavior.
+# Update the data augmentation pipeline
 data_augmentation = keras.Sequential(
     [
         layers.Rescaling(scale=1.0 / 255),
-        layers.RandomCrop(image_size, image_size),
-        layers.RandomFlip("horizontal"),
+        layers.RandomZoom(0.1),
     ],
     name="data_augmentation",
 )

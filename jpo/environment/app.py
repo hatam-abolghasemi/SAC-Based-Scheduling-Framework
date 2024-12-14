@@ -75,6 +75,8 @@ def suggest_new_values(current_metrics, last_metrics):
 
 def write_suggestions_to_config(suggestions, metadata, config_file='config.ini'):
     config = configparser.ConfigParser()
+    print(f"Extracted metadata: {metadata}")
+
     section_name = f"{metadata['dataset']}_{metadata['model']}_{metadata['framework']}"
     if section_name not in config:
         config[section_name] = {}
@@ -99,6 +101,8 @@ def main():
         if current_metrics_text:
             current_metrics = parse_metrics(current_metrics_text)
             metadata = extract_metadata(current_metrics_text)
+            print(f"Extracted metadata: {metadata}")
+
             suggestions = suggest_new_values(current_metrics, last_metrics)
             write_suggestions_to_config(suggestions, metadata)
             last_metrics = current_metrics

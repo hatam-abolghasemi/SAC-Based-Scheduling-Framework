@@ -225,7 +225,10 @@ optimizerG = optim.Adam(netG.parameters(), lr=opt.lr, betas=(opt.beta1, 0.999))
 if opt.dry_run:
     opt.niter = 1
 
-for epoch in range(opt.niter):
+epoch_count = 5
+# replaced with opt.niter => But it takes too long time on my local vm...
+
+for epoch in range(epoch_count):
     for i, data in enumerate(dataloader, 0):
         ############################
         # (1) Update D network: maximize log(D(x)) + log(1 - D(G(z)))

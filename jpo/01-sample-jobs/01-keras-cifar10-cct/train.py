@@ -2,8 +2,7 @@
 # IMPORTS --------------------------------------------------------------
 from keras import layers
 import keras
-
-import matplotlib.pyplot as plt
+import os
 import numpy as np
 import configparser
 
@@ -44,9 +43,17 @@ transformer_layers = config.getint('IMAGE_CLASSIFICATION', 'transformer_layers')
 # Load CIFAR-10 dataset --------------------------------------------------------------
 num_classes = 10
 input_shape = (32, 32, 3)
+# Dataset directory --------------------------------------------------------------
+data_dir = config.get('DATA', 'data_dir', fallback='/data')
 
-(x_train, y_train), (x_test, y_test) = keras.datasets.cifar10.load_data()
+# Load training and test data ----------------------------------------------------
+x_train = np.load(os.path.join(data_dir, 'x_train.npy'))
+y_train = np.load(os.path.join(data_dir, 'y_train.npy'))
+x_test = np.load(os.path.join(data_dir, 'x_test.npy'))
+y_test = np.load(os.path.join(data_dir, 'y_test.npy'))
 
+# One-hot encode the labels
+num_classes = 10
 y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
 
@@ -309,11 +316,3 @@ def run_experiment(model):
 cct_model = create_cct_model()
 history = run_experiment(cct_model)
 
-plt.plot(history.history["loss"], label="train_loss")
-plt.plot(history.history["val_loss"], label="val_loss")
-plt.xlabel("Epochs")
-plt.ylabel("Loss")
-plt.title("Train and Validation Losses Over Epochs", fontsize=14)
-plt.legend()
-plt.grid()
-plt.show()

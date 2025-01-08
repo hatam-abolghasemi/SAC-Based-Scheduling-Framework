@@ -13,8 +13,8 @@ from torch.distributions import Categorical
 # Cart Pole
 
 parser = argparse.ArgumentParser(description='PyTorch actor-critic example')
-parser.add_argument('--gamma', type=float, default=0.99, metavar='G',
-                    help='discount factor (default: 0.99)')
+parser.add_argument('--gamma', type=float, default=0.995, metavar='G',
+                    help='discount factor (default: 0.995)')
 parser.add_argument('--seed', type=int, default=543, metavar='N',
                     help='random seed (default: 543)')
 parser.add_argument('--render', action='store_true',
@@ -23,23 +23,23 @@ parser.add_argument('--log-interval', type=int, default=10, metavar='N',
                     help='interval between training status logs (default: 10)')
 args = parser.parse_args()
 
-
 env = gym.make('CartPole-v1')
-env.reset(args.seed)
+env.reset(seed=args.seed)  # Corrected reset method call
 torch.manual_seed(args.seed)
 
-state, _ = env.reset()
+state, _ = env.reset(seed=args.seed)  # Ensure reset is called with the proper arguments
 
 SavedAction = namedtuple('SavedAction', ['log_prob', 'value'])
 
 
 class Policy(nn.Module):
     """
-    implements both actor and critic in one model
+    Implements both actor and critic in one model
     """
     def __init__(self):
         super(Policy, self).__init__()
-        self.affine1 = nn.Linear(4, 128)
+        self.affine1 = nn.Linear(4, 256)  # Increased hidden layer size
+        self.affine2 = nn.Linear(256, 128)  # Added another hidden layer
 
         # actor's layer
         self.action_head = nn.Linear(128, 2)
@@ -53,25 +53,22 @@ class Policy(nn.Module):
 
     def forward(self, x):
         """
-        forward of both actor and critic
+        Forward of both actor and critic
         """
         x = F.relu(self.affine1(x))
+        x = F.relu(self.affine2(x))
 
-        # actor: choses action to take from state s_t
-        # by returning probability of each action
+        # actor: chooses action to take from state s_t
         action_prob = F.softmax(self.action_head(x), dim=-1)
 
         # critic: evaluates being in the state s_t
         state_values = self.value_head(x)
 
-        # return values for both actor and critic as a tuple of 2 values:
-        # 1. a list with the probability of each action over the action space
-        # 2. the value from state s_t
         return action_prob, state_values
 
 
 model = Policy()
-optimizer = optim.Adam(model.parameters(), lr=3e-2)
+optimizer = optim.AdamW(model.parameters(), lr=1e-4)  # Changed optimizer to AdamW with smaller LR
 eps = np.finfo(np.float32).eps.item()
 
 
@@ -98,13 +95,13 @@ def finish_episode():
     """
     R = 0
     saved_actions = model.saved_actions
-    policy_losses = [] # list to save actor (policy) loss
-    value_losses = [] # list to save critic (value) loss
-    returns = [] # list to save the true values
+    policy_losses = []  # list to save actor (policy) loss
+    value_losses = []  # list to save critic (value) loss
+    entropy_losses = []  # list to save entropy losses
+    returns = []  # list to save the true values
 
     # calculate the true value using rewards returned from the environment
     for r in model.rewards[::-1]:
-        # calculate the discounted value
         R = r + args.gamma * R
         returns.insert(0, R)
 
@@ -120,14 +117,23 @@ def finish_episode():
         # calculate critic (value) loss using L1 smooth loss
         value_losses.append(F.smooth_l1_loss(value, torch.tensor([R])))
 
+        # calculate entropy loss for better exploration
+        entropy_losses.append(-0.01 * log_prob.exp().log().mean())  # Entropy regularization
+
     # reset gradients
     optimizer.zero_grad()
 
-    # sum up all the values of policy_losses and value_losses
-    loss = torch.stack(policy_losses).sum() + torch.stack(value_losses).sum()
+    # sum up all the values of policy_losses, value_losses, and entropy_losses
+    loss = (torch.stack(policy_losses).sum() +
+            torch.stack(value_losses).sum() +
+            torch.stack(entropy_losses).sum())
 
     # perform backprop
     loss.backward()
+
+    # gradient clipping
+    torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=0.5)
+
     optimizer.step()
 
     # reset rewards and action buffer
@@ -142,12 +148,12 @@ def main():
     for i_episode in count(1):
 
         # reset environment and episode reward
-        state, _ = env.reset()
+        state, _ = env.reset(seed=args.seed)
         ep_reward = 0
 
         # for each episode, only run 9999 steps so that we don't
         # infinite loop while learning
-        for t in range(1, 10000):
+        for t in range(1, 20000):  # Increased episode step limit
 
             # select action from policy
             action = select_action(state)
@@ -183,3 +189,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

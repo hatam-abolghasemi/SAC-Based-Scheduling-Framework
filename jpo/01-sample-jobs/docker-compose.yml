@@ -1,11 +1,18 @@
 version: '3.8'
 
 services:
-  dcgan:
-    image: dcgan:1.0.0
+  actor_critic:
+    image: actor-critic:1.0.0
+    restart: always
+
+  convnet:
+    image: convnet:1.0.0
     restart: always
 
   cct:
-    image: cct:1.0.7
+    image: cct:1.0.0
     restart: always
 
+  dcgan:
+    image: dcgan:1.0.0
+    restart: always

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dcgan-deployment
+  namespace: dl
+  labels:
+    app: dcgan
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dcgan
+  template:
+    metadata:
+      labels:
+        app: dcgan
+    spec:
+      containers:
+      - name: dcgan
+        image: localhost:5001/dcgan:1.0.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+

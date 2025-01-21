@@ -9,7 +9,6 @@ containerdConfigPatches:
 # create a multi node cluster
 nodes:
 - role: control-plane
-  image: kindest/node:v1.16.4@sha256:b91a2c2317a000f3a783489dfb755064177dbc3a0b2f4147d50f04825d016f55
     # Extra mounts can be used to pass through storage on the host to a kind node for
     # # persisting data, mounting through code etc.
   extraMounts:
@@ -33,7 +32,6 @@ nodes:
     # optional: set the protocol to one of TCP, UDP, SCTP. TCP is the default.
     protocol: TCP
 - role: worker
-  image: kindest/node:v1.16.4@sha256:b91a2c2317a000f3a783489dfb755064177dbc3a0b2f4147d50f04825d016f55
 - role: worker
 - role: worker
 networking:

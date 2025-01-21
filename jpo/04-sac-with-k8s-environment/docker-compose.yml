@@ -1,7 +1,0 @@
-version: '3.8'
-
-services:
-  custom-sac:
-    image: custom-sac:1.0.1
-    restart: always
-

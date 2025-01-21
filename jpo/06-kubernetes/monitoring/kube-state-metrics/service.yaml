@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: exporter
+    app.kubernetes.io/name: kube-state-metrics-tuned
+    app.kubernetes.io/version: 2.13.0
+    app: kube-state-metrics-tuned
+    role: monitoring
+  name: kube-state-metrics-tuned
+  namespace: monitoring
+spec:
+  ports:
+  - name: http-metrics
+    port: 10101
+    targetPort: tuned-metrics
+  selector:
+    app.kubernetes.io/name: kube-state-metrics-tuned

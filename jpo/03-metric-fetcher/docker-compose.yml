@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   metric-fetcher:
     image: metric-fetcher:1.0.4

@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: node-exporter
+  namespace: monitoring
+  labels:
+    app: node-exporter
+    role: exporter
+spec:
+  selector:
+    matchLabels:
+      app: node-exporter
+      role: exporter
+  template:
+    metadata:
+      labels:
+        app: node-exporter
+        role: exporter
+    spec:
+      containers:
+      - image: prom/node-exporter:v1.8.2
+        imagePullPolicy: IfNotPresent
+        name: node-exporter        
+        args:
+        - --path.rootfs=/host
+        - --web.listen-address=0.0.0.0:9100
+        - --web.disable-exporter-metrics
+        - --collector.disable-defaults
+        - --collector.cpu
+        - --collector.meminfo
+        - --collector.netdev
+        - --collector.time
+        - --collector.loadavg
+        - --collector.stat
+        - --collector.mountstats
+        - --collector.diskstats
+        - --collector.filesystem
+        ports:
+        - containerPort: 9100
+          name: metrics
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 200m
+            memory: 30Mi
+          requests:
+            cpu: 100m
+            memory: 20Mi
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host
+          name: root
+          readOnly: true
+          mountPropagation: Bidirectional
+      - image: sleepmaps/scripts:node-exporter-tuned-1.0.3
+        name: node-exporter-tuned
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9101
+          hostPort: 9101
+          name: metrics-tuned
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 100m
+            memory: 60Mi
+          requests:
+            cpu: 50m
+            memory: 30Mi
+      hostNetwork: true
+      hostPID: true
+      restartPolicy: Always
+      volumes:
+      - hostPath:
+          path: /
+        name: root
+

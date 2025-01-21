@@ -1,0 +1,23 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: node-exporter
+  namespace: monitoring
+  labels:
+    app: node-exporter
+    role: exporter
+  annotations:
+      prometheus.io/scrape: 'true'
+      prometheus.io/port:   '80'
+spec:
+  selector:
+    app: node-exporter
+    role: exporter
+  ports:
+  - name: node-exporter
+    protocol: TCP
+    port: 80
+    targetPort: 9101
+  sessionAffinity: None
+  type: ClusterIP
+

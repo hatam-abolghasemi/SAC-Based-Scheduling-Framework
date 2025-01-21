@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cct
+  namespace: dl
+  labels:
+    app: cct        
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cct
+  template:
+    metadata:
+      labels:
+        app: cct
+    spec:
+      containers:
+      - name: cct
+        image: cct:1.0.0
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/config.ini
+          subPath: config.ini
+      volumes:
+      - name: config-volume
+        configMap:
+          name: cct-config

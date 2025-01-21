@@ -5,12 +5,6 @@ metadata:
   namespace: dl
   labels:
     app: dcgan        
-    framework: pytorch
-    dataset: cifar10
-    model: dcgan
-    batch_size: "64"
-    learning_rate: "0.0002"
-    num_epochs: "25"
 spec:
   replicas: 1
   selector:
@@ -25,4 +19,3 @@ spec:
       - name: pytorch-cifar10-dcgan-64-0002-25
         image: localhost:5001/dcgan:1.0.0
         imagePullPolicy: IfNotPresent
-

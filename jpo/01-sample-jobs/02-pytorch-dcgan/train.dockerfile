@@ -24,5 +24,5 @@ LABEL learning_rate=0.0002
 LABEL num_epochs=25
 
 # Set the entrypoint to run the training script
-CMD ["python", "train.py"]
+ENTRYPOINT ["python", "train.py"]
 

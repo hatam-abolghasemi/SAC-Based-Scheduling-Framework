@@ -26,7 +26,7 @@ job_samples = [
     (64, 0.0005, 7200, 8, '32Gi', 2, 'CIFAR-10', 'PyTorch', 'VGG16'),
     (128, 0.0001, 1800, 2, '8Gi', 1, 'MNIST', 'TensorFlow', 'LeNet'),
     (256, 0.002, 5400, 4, '16Gi', 2, 'CIFAR-100', 'PyTorch', 'ResNet34'),
-    (16, 0.001, 3600, 2, '8Gi', 0, 'Fashion-MNIST', 'TensorFlow', 'MLP'),
+    (16, 0.001, 3600, 4, '16Gi', 1, 'Fashion-MNIST', 'TensorFlow', 'MLP'),
     (32, 0.0015, 4200, 4, '12Gi', 1, 'COCO', 'PyTorch', 'FasterRCNN'),
     (64, 0.0003, 8000, 6, '24Gi', 2, 'VOC', 'TensorFlow', 'InceptionV3'),
     (128, 0.0002, 3000, 4, '16Gi', 1, 'ADE20K', 'PyTorch', 'UNet'),

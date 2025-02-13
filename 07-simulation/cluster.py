@@ -27,7 +27,7 @@ class Node:
 nodes = [
     Node('master', f'k8s-master-{i+1}', '8 core', '16GB', 'None') for i in range(5)
 ] + [
-    Node('worker', f'k8s-worker-{i+1}', '32 core', '96GB', 'NVIDIA DGX A100') for i in range(13)
+    Node('worker', f'k8s-worker-{i+1}', '32 core', '96GB', '2x NVIDIA Tesla T4') for i in range(13)
 ]
 
 node_dict = {node.name: node for node in nodes}

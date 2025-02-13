@@ -3,16 +3,16 @@ kind: Service
 metadata:
   labels:
     app.kubernetes.io/component: exporter
-    app.kubernetes.io/name: kube-state-metrics-tuned
+    app.kubernetes.io/name: kube-state-metrics
     app.kubernetes.io/version: 2.13.0
-    app: kube-state-metrics-tuned
+    app: kube-state-metrics
     role: monitoring
-  name: kube-state-metrics-tuned
+  name: kube-state-metrics
   namespace: monitoring
 spec:
   ports:
   - name: http-metrics
-    port: 10101
-    targetPort: tuned-metrics
+    port: 8080
+    targetPort: 8080
   selector:
-    app.kubernetes.io/name: kube-state-metrics-tuned
+    app.kubernetes.io/name: kube-state-metrics

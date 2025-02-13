@@ -1,15 +1,27 @@
 import sqlite3
 import random
 import time
-from flask import Flask, Response
+import logging
+from flask import Flask, Response, request, jsonify
+import threading
 
 app = Flask(__name__)
 
-# Global variable to store the generated jobs
+# Disable Flask's default logging (requests, etc.)
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
+
+# Setup logging to a file for generated jobs
+logging.basicConfig(filename='generated_jobs.log', level=logging.INFO, format='%(asctime)s - %(message)s')
+
+# Global variables
 generated_jobs = []
+generation_counter = 1  # Counter for generation_id
+start_time = time.time()  # Track the start time for elapsed seconds
 
 # Function to get a random selection of jobs from the database
 def generate_jobs():
+    global generation_counter
     # Connect to the SQLite database
     conn = sqlite3.connect('jobs.db')
     cursor = conn.cursor()
@@ -27,7 +39,13 @@ def generate_jobs():
         FROM jobs WHERE job_id = ?
         ''', (job_id,))
         job = cursor.fetchone()
+
+        # Calculate elapsed time in seconds
+        elapsed_time = int(time.time() - start_time)
+
         job_dict = {
+            'generation_id': generation_counter,  # Add generation_id
+            'elapsed_time': elapsed_time,  # Add elapsed time
             'job_id': job_id,
             'dl_batch_size': job[0],
             'dl_learning_rate': job[1],
@@ -40,6 +58,7 @@ def generate_jobs():
             'dl_model': job[8]
         }
         jobs.append(job_dict)
+        generation_counter += 1  # Increment the generation_id
 
     conn.close()
     return jobs
@@ -51,7 +70,7 @@ def introduce_jobs():
         jobs = generate_jobs()
         for job in jobs:
             generated_jobs.append(job)  # Append each new job to the list one at a time
-            print(f"Job introduced: {job}")  # Print the job on a new line
+            logging.info(f"Job introduced: {job}")  # Log the job to the file instead of printing to stdout
         time.sleep(random.randint(1, 40))  # Introduce jobs periodically every 1 to 40 seconds
 
 # API endpoint to serve the generated jobs in the desired format
@@ -60,11 +79,22 @@ def get_jobs():
     # Create the plain text response with jobs printed on separate lines
     job_text = ""
     for job in generated_jobs:
-        job_text += str(job) + "\n"  # Print each job in the dictionary-like format on a new line
+        job_text += f"Elapsed Time: {job['elapsed_time']}s | Generation ID: {job['generation_id']} | {str(job)}\n"
     return Response(job_text, mimetype='text/plain')
 
+# API endpoint to receive scheduling notification
+@app.route('/schedule', methods=['POST'])
+def schedule_job():
+    data = request.json
+    generation_id = data.get('generation_id')
+
+    # Remove the job with the provided generation_id from the list
+    global generated_jobs
+    generated_jobs = [job for job in generated_jobs if job['generation_id'] != generation_id]
+
+    return jsonify({"message": f"Job with generation_id {generation_id} is scheduled and removed from the list."}), 200
+
 # Start the job generation in a separate thread
-import threading
 thread = threading.Thread(target=introduce_jobs)
 thread.daemon = True
 thread.start()

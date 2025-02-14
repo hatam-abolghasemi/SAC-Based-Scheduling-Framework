@@ -1,4 +1,5 @@
 import time
+import requests
 
 class JobExporter:
     def __init__(self, epochs, node_resources):
@@ -7,6 +8,25 @@ class JobExporter:
         self.node_resources = node_resources
         self.passed_epochs = 0
         self.timer = 0
+
+    @staticmethod
+    def fetch_jobs():
+        try:
+            # Simulate a GET request to fetch jobs from an endpoint
+            print("Fetching jobs from 0.0.0.0:9901/jobs...")  # Debugging line
+            response = requests.get("http://0.0.0.0:9901/jobs")
+            print(f"API response status: {response.status_code}")  # Debugging line
+            
+            if response.status_code == 200:
+                jobs = response.json()
+                # Filter jobs where job_id is 9
+                return [job for job in jobs if job['job_id'] == 9]
+            else:
+                print(f"Error fetching jobs, status code: {response.status_code}")
+                return []
+        except Exception as e:
+            print(f"Error in fetching jobs: {e}")
+            return []
 
     def get_stage_requirements(self):
         if self.passed_epochs < 10:
@@ -99,20 +119,38 @@ class JobExporter:
                     return accuracy + 2.0
 
     def run(self):
-        while self.passed_epochs < self.epochs:
-            stage_requirements = self.get_stage_requirements()
-            for i, stage_name in enumerate(['data_loading', 'forward_pass', 'backward_pass', 'checkpoint_saving']):
-                self.run_stage(stage_requirements[i])
-                self.release_resources(stage_requirements[i])
-            
-            self.passed_epochs += 1
-            loss = self.get_training_loss()
-            accuracy = self.get_training_accuracy()
-            print(f"Epoch {self.passed_epochs}/{self.epochs} completed. Training Loss: {loss:.2f}, Training Accuracy: {accuracy:.2f}%")
-        print(f"\nJob completed in {self.timer} seconds.")
+        # Main loop to keep checking for jobs and process them
+        while True:
+            print("Checking for jobs with job_id == 9...")  # Debugging line
+            jobs = self.fetch_jobs()
+            if not jobs:
+                print("No jobs found with job_id == 9. Retrying in 5 seconds...")  # Debugging line
+                time.sleep(5)  # Retry after 5 seconds
+                continue
 
-# Sample Job with 14 epochs on a hardcoded node
+            for job in jobs:
+                generation_id = job['generation_id']
+                print(f"Processing job with job_id: {job['job_id']} and generation_id: {generation_id}")
+                self.epochs = job['required_epoch']
+                self.node_resources = job.get('node_resources', self.node_resources)  # Ensure node_resources are available in the job
+                self.passed_epochs = 0
+                self.timer = 0
+
+                while self.passed_epochs < self.epochs:
+                    stage_requirements = self.get_stage_requirements()
+                    for i, stage_name in enumerate(['data_loading', 'forward_pass', 'backward_pass', 'checkpoint_saving']):
+                        self.run_stage(stage_requirements[i])
+                        self.release_resources(stage_requirements[i])
+                    
+                    self.passed_epochs += 1
+                    loss = self.get_training_loss()
+                    accuracy = self.get_training_accuracy()
+                    print(f"Epoch {self.passed_epochs}/{self.epochs} completed. Training Loss: {loss:.2f}, Training Accuracy: {accuracy:.2f}%")
+                print(f"Job {job['job_id']} (Generation {generation_id}) completed in {self.timer} seconds.")
+
+# Sample usage (this part can be outside the class or in the main entry point of the program)
+# You can test by manually specifying a job or by simulating the API request for jobs.
 initial_resources = {'cpu': 32, 'memory': 96, 'gpu': 5120}
-job = JobExporter(epochs=140, node_resources=initial_resources)
-job.run()
+job_exporter = JobExporter(epochs=140, node_resources=initial_resources)
+job_exporter.run()
 

@@ -5,6 +5,7 @@ Memory: 96 GiB
 CPU: 32
 
 
+job_id:             9
 batch_size:         64
 learning_rate:      0.001
 requested_cpu:      4

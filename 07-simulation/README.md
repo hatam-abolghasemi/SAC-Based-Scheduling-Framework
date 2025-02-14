@@ -16,28 +16,28 @@ framework:          TensorFlow
 model:              SegNet
 
 Average Memory Usage Breakdown (GiB) (16 GiB node total)
-Epochs  Data Loading (GiB)  Forward Pass (GiB)  Backward Pass (GiB) Checkpoint Saving (GiB) Total Memory Usage (GiB)
-10      4.5 GiB             5.0 GiB             5.5 GiB             1.0 GiB                 ~12.0 GiB
-50      5.0 GiB             5.1 GiB             5.6 GiB             1.2 GiB                 ~12.5 GiB
-100     5.2 GiB             5.2 GiB             5.8 GiB             1.3 GiB                 ~13.0 GiB
-300     5.5 GiB             5.4 GiB             6.0 GiB             1.5 GiB                 ~13.5 GiB
-500     5.7 GiB             5.5 GiB             6.2 GiB             1.6 GiB                 ~14.0 GiB
+Epochs  Data Loading (GiB)  Forward Pass (GiB)  Backward Pass (GiB) Checkpoint Saving (GiB)
+10      4.5 GiB             5.0 GiB             5.5 GiB             1.0 GiB
+50      5.0 GiB             5.1 GiB             5.6 GiB             1.2 GiB
+100     5.2 GiB             5.2 GiB             5.8 GiB             1.3 GiB
+300     5.5 GiB             5.4 GiB             6.0 GiB             1.5 GiB
+500     5.7 GiB             5.5 GiB             6.2 GiB             1.6 GiB
 
 Average CPU Core Usage Breakdown (4 CPUs) (No change, included for completeness)
-Epochs  Data Loading (Cores)    Forward Pass (Cores)    Backward Pass (Cores)   Checkpoint Saving (Cores)   Total Core Usage
-10      2.5 cores               0.5 cores               0.7 cores               0.3 cores                   ~4 cores
-50      2.7 cores               0.5 cores               0.8 cores               0.4 cores                   ~4 cores
-100     2.8 cores               0.5 cores               0.9 cores               0.4 cores                   ~4 cores
-300     2.9 cores               0.6 cores               1.0 cores               0.5 cores                   ~4 cores
-500     3.0 cores               0.7 cores               1.1 cores               0.5 cores                   ~4 cores
+Epochs  Data Loading (Cores)    Forward Pass (Cores)    Backward Pass (Cores)   Checkpoint Saving (Cores)
+10      2.5 cores               0.5 cores               0.7 cores               0.3 cores
+50      2.7 cores               0.5 cores               0.8 cores               0.4 cores
+100     2.8 cores               0.5 cores               0.9 cores               0.4 cores
+300     2.9 cores               0.6 cores               1.0 cores               0.5 cores
+500     3.0 cores               0.7 cores               1.1 cores               0.5 cores
 
 Average GPU Core Usage Breakdown (2,560 CUDA Cores total)
-Epochs  Data Loading (GPU Cores)	Forward Pass (GPU Cores)    Backward Pass (GPU Cores)   Checkpoint Saving (GPU Cores)   Total GPU Cores Used
-10      ~200 cores	                ~1800 cores                 ~2200 cores                 ~100 cores                      ~2300 cores
-50      ~220 cores	                ~1820 cores                 ~2230 cores                 ~120 cores                      ~2330 cores
-100     ~230 cores	                ~1850 cores                 ~2250 cores                 ~150 cores                      ~2350 cores
-300     ~250 cores	                ~1880 cores                 ~2280 cores                 ~170 cores                      ~2380 cores
-500     ~270 cores	                ~1900 cores                 ~2300 cores                 ~180 cores                      ~2400 cores
+Epochs  Data Loading (GPU Cores)	Forward Pass (GPU Cores)    Backward Pass (GPU Cores)   Checkpoint Saving (GPU Cores)
+10      ~200 cores	                ~1800 cores                 ~2200 cores                 ~100 cores
+50      ~220 cores	                ~1820 cores                 ~2230 cores                 ~120 cores
+100     ~230 cores	                ~1850 cores                 ~2250 cores                 ~150 cores
+300     ~250 cores	                ~1880 cores                 ~2280 cores                 ~170 cores
+500     ~270 cores	                ~1900 cores                 ~2300 cores                 ~180 cores
 
 Training Loss Breakdown (Cross-Entropy Loss)
 Epochs  20% Progress (of Epochs)    40% Progress    60% Progress    80% Progress    100% Progress

@@ -7,7 +7,7 @@ import threading
 
 # Configuration constants
 JOB_INTRO_MIN_SECONDS = 1
-JOB_INTRO_MAX_SECONDS = 40
+JOB_INTRO_MAX_SECONDS = 60
 MIN_JOBS = 1
 MAX_JOBS = 4
 TOTAL_JOB_SAMPLES = 16

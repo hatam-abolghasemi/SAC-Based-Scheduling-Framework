@@ -7,16 +7,16 @@ import threading
 
 # Step 1: Initialization --------------------------------------------------------------------------------------------------
 # Step 1.1: Define Prometheus metrics globally, outside any functions so they are only initialized once
-cpu_usage = Gauge('job_used_cpu', 'CPU usage for the job', ['generation_id', 'job_id', 'node'])
-gpu_usage = Gauge('job_used_gpu', 'GPU usage for the job', ['generation_id', 'job_id', 'node'])
-mem_usage = Gauge('job_used_mem', 'Memory usage for the job', ['generation_id', 'job_id', 'node'])
-job_loss = Gauge('job_loss', 'Cross-entropy loss for the job', ['generation_id', 'job_id', 'node'])
-job_accuracy = Gauge('job_accuracy', 'Accuracy for the job', ['generation_id', 'job_id', 'node'])
-schedule_moment_counter = Gauge('schedule_moment', 'The moment the job was scheduled', ['generation_id', 'job_id', 'node'])
-generation_moment_counter = Gauge('generation_moment', 'The moment the job was generated', ['generation_id', 'job_id', 'node'])
-elapsed_time = Gauge('elapsed_time', 'Elapsed time since the schedule moment', ['generation_id', 'job_id', 'node'])
-required_epoch_counter = Gauge('required_epoch', 'The number of required epochs for the job', ['generation_id', 'job_id', 'node'])  # Static value
-passed_epoch_counter = Gauge('passed_epoch', 'The number of passed epochs for the job', ['generation_id', 'job_id', 'node'])  # Dynamic value
+container_cpu_usage = Gauge('container_used_cpu', 'CPU usage for the container', ['generation_id', 'job_id', 'node'])
+container_gpu_usage = Gauge('container_used_gpu', 'GPU usage for the container', ['generation_id', 'job_id', 'node'])
+container_mem_usage = Gauge('container_used_mem', 'Memory usage for the container', ['generation_id', 'job_id', 'node'])
+job_training_loss = Gauge('job_training_loss', 'Cross-entropy loss for the training job', ['generation_id', 'job_id', 'node'])
+job_training_accuracy = Gauge('job_training_accuracy', 'Accuracy for the training job', ['generation_id', 'job_id', 'node'])
+job_schedule_moment = Gauge('job_schedule_moment', 'The moment the job was scheduled', ['generation_id', 'job_id', 'node'])
+job_generation_moment = Gauge('job_generation_moment', 'The moment the job was generated', ['generation_id', 'job_id', 'node'])
+job_elapsed_time = Gauge('job_elapsed_time', 'Elapsed time since the schedule moment', ['generation_id', 'job_id', 'node'])
+job_required_epoch = Gauge('job_required_epoch', 'The number of required epochs for the job', ['generation_id', 'job_id', 'node'])  # Static value
+job_passed_epoch = Gauge('job_passed_epoch', 'The number of passed epochs for the job', ['generation_id', 'job_id', 'node'])  # Dynamic value
 
 
 # Step 1.2: Set up logging
@@ -39,16 +39,16 @@ def initialize_job(job_id, node, required_epochs, generation_moment, schedule_mo
     
     # Generate a generation ID based on timestamp
     generation_id = f"{int(time.time()) % 1000:03}"
-    required_epoch_counter.labels(generation_id=generation_id, job_id=job_id, node=node).set(required_epochs)
+    job_required_epoch.labels(generation_id=generation_id, job_id=job_id, node=node).set(required_epochs)
     
     return ENVIRONMENT_VARIABLES, generation_id
 
 
-# Step 1.4: Increment the schedule_moment_counter and generation_moment_counter every second
+# Step 1.4: Increment the job_schedule_moment and job_generation_moment every second
 def expose_moments(generation_id, job_id, node, schedule_moment_value, generation_moment_value):
     # Expose the schedule_moment and generation_moment as static values
-    schedule_moment_counter.labels(generation_id=generation_id, job_id=job_id, node=node).set(schedule_moment_value)
-    generation_moment_counter.labels(generation_id=generation_id, job_id=job_id, node=node).set(generation_moment_value)
+    job_schedule_moment.labels(generation_id=generation_id, job_id=job_id, node=node).set(schedule_moment_value)
+    job_generation_moment.labels(generation_id=generation_id, job_id=job_id, node=node).set(generation_moment_value)
 
 
 # Step 2: Resource usage simulation functions --------------------------------------------------------------------------------------------------
@@ -90,9 +90,9 @@ def calculate_resource_usage(stage):
 # Step 2.3: Send calculated resource usage metrics to Prometheus
 def send_resource_metrics(generation_id, job_id, node, resource_metrics):
     logger.info(f"Sending resource metrics for job {job_id}, node {node}, generation {generation_id}: {resource_metrics}")
-    cpu_usage.labels(generation_id, job_id, node).set(resource_metrics['cpu'])
-    gpu_usage.labels(generation_id, job_id, node).set(resource_metrics['gpu'])
-    mem_usage.labels(generation_id, job_id, node).set(resource_metrics['memory'])
+    container_cpu_usage.labels(generation_id, job_id, node).set(resource_metrics['cpu'])
+    container_gpu_usage.labels(generation_id, job_id, node).set(resource_metrics['gpu'])
+    container_mem_usage.labels(generation_id, job_id, node).set(resource_metrics['memory'])
 
 
 # Step 2.4: Simulate resource usage for each stage and proceed only when all resources are consumed
@@ -152,19 +152,20 @@ def get_training_accuracy(passed_epochs, progress_percentage):
 # Step 3.3: Send calculated training metrics to Prometheus
 def send_training_metrics(generation_id, job_id, node, training_loss, training_accuracy):
     logger.info(f"Sending training metrics for job {job_id}, node {node}, generation {generation_id}: Loss={training_loss}, Accuracy={training_accuracy}")
-    job_loss.labels(generation_id, job_id, node).set(training_loss)
-    job_accuracy.labels(generation_id, job_id, node).set(training_accuracy)
+    job_training_loss.labels(generation_id, job_id, node).set(training_loss)
+    job_training_accuracy.labels(generation_id, job_id, node).set(training_accuracy)
 
 
 # Step 4: Aggregate and expose all metrics for Prometheus --------------------------------------------------------------------------------------------------
 def start_elapsed_time_counter(generation_id, job_id, node, schedule_moment_value):
     # Set the initial value of elapsed_time to the value of schedule_moment
-    elapsed_time.labels(generation_id=generation_id, job_id=job_id, node=node).set(schedule_moment_value)
+    #job_elapsed_time.labels(generation_id=generation_id, job_id=job_id, node=node).set(schedule_moment_value)
+    job_elapsed_time.labels(generation_id=generation_id, job_id=job_id, node=node).set(0)
 
     # Increment the elapsed_time every second
     while True:
         time.sleep(1)
-        elapsed_time.labels(generation_id=generation_id, job_id=job_id, node=node).inc()
+        job_elapsed_time.labels(generation_id=generation_id, job_id=job_id, node=node).inc()
 
 
 def aggregate_metrics(generation_id, job_id, node, resource_metrics, training_loss, training_accuracy, schedule_moment, generation_moment, passed_epochs):
@@ -174,7 +175,7 @@ def aggregate_metrics(generation_id, job_id, node, resource_metrics, training_lo
     if training_loss is not None and training_accuracy is not None:
         send_training_metrics(generation_id, job_id, node, training_loss, training_accuracy)
 
-    passed_epoch_counter.labels(generation_id=generation_id, job_id=job_id, node=node).set(passed_epochs)
+    job_passed_epoch.labels(generation_id=generation_id, job_id=job_id, node=node).set(passed_epochs)
 
 
 def start_prometheus_server(port):
@@ -208,7 +209,7 @@ def simulate_epoch(passed_epochs, required_epochs, job_id, node, generation_id, 
             send_training_metrics(generation_id, job_id, node, training_loss, training_accuracy)
 
     # Update passed_epoch metric after each epoch
-    passed_epoch_counter.labels(generation_id=generation_id, job_id=job_id, node=node).set(passed_epochs)
+    job_passed_epoch.labels(generation_id=generation_id, job_id=job_id, node=node).set(passed_epochs)
             
 
 def main():

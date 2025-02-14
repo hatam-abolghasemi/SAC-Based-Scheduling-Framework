@@ -41,11 +41,18 @@ def get_job_info(job_id, generation_id, jobs_data):
     print(f"Job with job_id {job_id} and generation_id {generation_id} not found.")
     return {}
 
-def start_container_exporter(port, generation_id, job_info):
-    """Start the container exporter with job details"""
-    print(f"Starting container exporter for generation_id {generation_id} on port {port}")
+def start_container_exporter(port, generation_id, job_info, job_id):
+    """Start the container exporter for a specific job_id with job details"""
+    print(f"Starting container exporter for generation_id {generation_id} on port {port} for job_id {job_id}")
+    exporter_script = f'job-exporter-{job_id}.py'
+    
+    # Check if exporter script exists for the job_id
+    if not os.path.exists(exporter_script):
+        print(f"Exporter script {exporter_script} not found. Skipping...")
+        return
+    
     command = [
-        'python3', 'job-exporter.py',
+        'python3', exporter_script,
         '--port', str(port),
         '--generation_id', str(generation_id),
         '--node', job_info.get('node', 'default-node'),
@@ -66,21 +73,21 @@ def process_job(job, jobs):
     job_id = job.get("job_id")
     generation_id = int(job.get("generation_id", 0))
 
-    # Only process jobs with job_id=9 and not already processed
-    if job_id == 9 and generation_id not in processed_generation_ids:
+    # Only process jobs with job_id between 1 and 16, and not already processed
+    if 1 <= job_id <= 16 and generation_id not in processed_generation_ids:
         print(f"Processing job with job_id {job_id} and generation_id {generation_id}")
         port = calculate_port(generation_id)
         job_info = get_job_info(job_id, generation_id, jobs)
         if job_info:
-            start_container_exporter(port, generation_id, job_info)
+            start_container_exporter(port, generation_id, job_info, job_id)
             processed_generation_ids.add(generation_id)  # Mark this generation_id as processed
         else:
             print(f"Skipping job with job_id {job_id} and generation_id {generation_id} due to missing info.")
     else:
-        print(f"Skipping job with job_id {job_id} and generation_id {generation_id} (already processed or not job_id 9).")
+        print(f"Skipping job with job_id {job_id} and generation_id {generation_id} (already processed or not valid job_id).")
 
 def monitor_jobs():
-    """Monitor jobs and start container-exporter.py for job_id=9"""
+    """Monitor jobs and start appropriate job exporter based on job_id"""
     print("Starting job monitoring loop...")
     while True:
         jobs = get_jobs()

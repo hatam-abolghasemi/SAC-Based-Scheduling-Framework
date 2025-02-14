@@ -15,6 +15,8 @@ job_accuracy = Gauge('job_accuracy', 'Accuracy for the job', ['generation_id', '
 schedule_moment_counter = Gauge('schedule_moment', 'The moment the job was scheduled', ['generation_id', 'job_id', 'node'])
 generation_moment_counter = Gauge('generation_moment', 'The moment the job was generated', ['generation_id', 'job_id', 'node'])
 elapsed_time = Gauge('elapsed_time', 'Elapsed time since the schedule moment', ['generation_id', 'job_id', 'node'])
+required_epoch_counter = Gauge('required_epoch', 'The number of required epochs for the job', ['generation_id', 'job_id', 'node'])  # Static value
+passed_epoch_counter = Gauge('passed_epoch', 'The number of passed epochs for the job', ['generation_id', 'job_id', 'node'])  # Dynamic value
 
 
 # Step 1.2: Set up logging
@@ -37,6 +39,7 @@ def initialize_job(job_id, node, required_epochs, generation_moment, schedule_mo
     
     # Generate a generation ID based on timestamp
     generation_id = f"{int(time.time()) % 1000:03}"
+    required_epoch_counter.labels(generation_id=generation_id, job_id=job_id, node=node).set(required_epochs)
     
     return ENVIRONMENT_VARIABLES, generation_id
 
@@ -164,12 +167,14 @@ def start_elapsed_time_counter(generation_id, job_id, node, schedule_moment_valu
         elapsed_time.labels(generation_id=generation_id, job_id=job_id, node=node).inc()
 
 
-def aggregate_metrics(generation_id, job_id, node, resource_metrics, training_loss, training_accuracy, schedule_moment, generation_moment):
+def aggregate_metrics(generation_id, job_id, node, resource_metrics, training_loss, training_accuracy, schedule_moment, generation_moment, passed_epochs):
     if resource_metrics:
         send_resource_metrics(generation_id, job_id, node, resource_metrics)
 
     if training_loss is not None and training_accuracy is not None:
         send_training_metrics(generation_id, job_id, node, training_loss, training_accuracy)
+
+    passed_epoch_counter.labels(generation_id=generation_id, job_id=job_id, node=node).set(passed_epochs)
 
 
 def start_prometheus_server(port):
@@ -201,6 +206,9 @@ def simulate_epoch(passed_epochs, required_epochs, job_id, node, generation_id, 
             training_loss = get_training_loss(passed_epochs, progress_percentage)
             training_accuracy = get_training_accuracy(passed_epochs, progress_percentage)
             send_training_metrics(generation_id, job_id, node, training_loss, training_accuracy)
+
+    # Update passed_epoch metric after each epoch
+    passed_epoch_counter.labels(generation_id=generation_id, job_id=job_id, node=node).set(passed_epochs)
             
 
 def main():
@@ -236,6 +244,7 @@ def main():
     # Get the required epochs from the parsed arguments
     required_epochs = args.required_epochs
     passed_epochs = 0
+
 
     # Simulate the required number of epochs
     while passed_epochs < required_epochs:

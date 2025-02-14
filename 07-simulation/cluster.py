@@ -38,11 +38,19 @@ class ClusterHandler(BaseHTTPRequestHandler):
             self.send_header('Content-type', 'application/json')
             self.end_headers()
             self.wfile.write(nodes_list.encode())
-        elif self.path == '/pods':
-            if all_jobs:
-                pods_list = '\n'.join(json.dumps(job) for job in all_jobs)
+        elif self.path.startswith('/jobs/'):
+            node_name = self.path[len('/jobs/'):]
+            if node_name in node_dict:
+                jobs_list = json.dumps(node_dict[node_name].jobs, indent=2)
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                self.wfile.write(jobs_list.encode())
             else:
-                pods_list = ""
+                self.send_response(404)
+                self.end_headers()
+        elif self.path == '/pods':
+            pods_list = '\n'.join(json.dumps(job) for job in all_jobs) if all_jobs else ""
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
@@ -62,81 +70,21 @@ class ClusterHandler(BaseHTTPRequestHandler):
             content_length = int(self.headers['Content-Length'])
             post_data = self.rfile.read(content_length)
             job_data = json.loads(post_data.decode('utf-8'))
-            
-            # Extract job details from the request
-            generation_id = job_data.get('generation_id')
-            job_id = job_data.get('job_id')
             node_name = job_data.get('node')
-            required_epoch = job_data.get('required_epoch')
-            generation_moment = job_data.get('generation_moment')
-            schedule_moment = job_data.get('schedule_moment')
 
-            # Check if all required fields are present
-            if not all([generation_id, job_id, node_name, required_epoch, generation_moment, schedule_moment]):
-                self.send_response(400)
-                self.send_header('Content-type', 'application/json')
-                self.end_headers()
-                self.wfile.write(json.dumps({"status": "error", "message": "Missing required fields"}).encode())
-                return
-
-            # Find the corresponding node and assign the job
             if node_name in node_dict:
-                job = {
-                    "generation_id": generation_id,
-                    "job_id": job_id,
-                    "node": node_name,
-                    "required_epoch": required_epoch,
-                    "generation_moment": generation_moment,
-                    "schedule_moment": schedule_moment
-                }
-                all_jobs.append(job)
-                node_dict[node_name].deploy_job(job)
-
-                # Send success response
+                node_dict[node_name].deploy_job(job_data)
+                all_jobs.append(job_data)
                 self.send_response(200)
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
                 self.wfile.write(json.dumps({"status": "success", "message": "Job deployed successfully"}).encode())
             else:
-                self.send_response(400)
-                self.send_header('Content-type', 'application/json')
-                self.end_headers()
-                self.wfile.write(json.dumps({"status": "error", "message": "Invalid node"}).encode())
-
-        elif self.path == '/schedule':
-            # Notify that the job is scheduled (i.e., job generator has been informed)
-            content_length = int(self.headers['Content-Length'])
-            post_data = self.rfile.read(content_length)
-            schedule_data = json.loads(post_data.decode('utf-8'))
-            
-            generation_id = schedule_data.get('generation_id')
-
-            # Check if generation_id is provided
-            if not generation_id:
-                self.send_response(400)
-                self.send_header('Content-type', 'application/json')
-                self.end_headers()
-                self.wfile.write(json.dumps({"status": "error", "message": "Missing generation_id"}).encode())
-                return
-
-            # Mark job as scheduled by removing it from the job list
-            job_to_remove = None
-            for job in all_jobs:
-                if job['generation_id'] == generation_id:
-                    job_to_remove = job
-                    break
-
-            if job_to_remove:
-                all_jobs.remove(job_to_remove)
-                self.send_response(200)
-                self.send_header('Content-type', 'application/json')
-                self.end_headers()
-                self.wfile.write(json.dumps({"status": "success", "message": "Job scheduled and removed from list"}).encode())
-            else:
                 self.send_response(404)
-                self.send_header('Content-type', 'application/json')
                 self.end_headers()
-                self.wfile.write(json.dumps({"status": "error", "message": "Job not found"}).encode())
+        else:
+            self.send_response(501)
+            self.end_headers()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

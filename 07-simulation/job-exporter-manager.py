@@ -12,7 +12,7 @@ def get_jobs(worker_id):
         response = requests.get(url)
         response.raise_for_status()
         jobs = response.json()
-        print(f"Fetched {len(jobs)} jobs from worker {worker_id}.")
+        # print(f"Fetched {len(jobs)} jobs from worker {worker_id}.")
         return jobs
     except requests.RequestException as e:
         print(f"Error fetching jobs from worker {worker_id}: {e}")
@@ -81,8 +81,8 @@ def monitor_jobs():
                 thread.start()
         for thread in threads:
             thread.join()
-        print("Waiting before fetching jobs again...")
-        time.sleep(10)
+        # print("Waiting before fetching jobs again...")
+        time.sleep(1)
 
 
 if __name__ == '__main__':

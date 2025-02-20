@@ -65,7 +65,7 @@ def get_required_resource(stage):
     }
 
 
-def get_available_resources(worker_node):
+def get_available_resource(worker_node):
     url = "http://0.0.0.0:9904/metrics"
     try:
         response = requests.get(url)
@@ -85,30 +85,50 @@ def get_available_resources(worker_node):
             logging.info(f"Available resources for {worker_node}: CPU={free_cpu}, GPU={free_gpu}, Memory={free_mem}")
         return {'cpu': free_cpu, 'gpu': free_gpu, 'memory': free_mem}
     except requests.RequestException as e:
-        logging.error(f"Error fetching available resources: {e}")
+        logging.error(f"Error fetching available resource: {e}")
         return None
 
+def get_allowed_resource(worker_node, stage_index, stage):
+    available_resource = get_available_resource(worker_node)
+    if not available_resource:
+        logging.error("Failed to fetch available resource.")
+        return None, stage
+    required_resource = get_required_resource(stage)
+    allowed_resource = {'cpu': 0, 'gpu': 0, 'memory': 0}
+    insufficient = any(available_resource[res] < required_resource[res] for res in ['cpu', 'gpu', 'memory'])
+    if insufficient:
+        for res in allowed_resource:
+            allowed_resource[res] = 0
+        logging.warning(f"Insufficient resources: Required={required_resource}, Available={available_resource}. Repeating stage {stage_index}")
+        return allowed_resource, max(0, stage_index - 1)
+    allowed_resource = required_resource.copy()
+    return allowed_resource, stage_index
 
 # Step 2.2: Send calculated resource usage metrics to Prometheus
-def send_resource_metrics(generation_id, job_id, node, resource_metrics):
-    logger.info(f"Used resources for job {job_id} on node {node} with generation ID {generation_id}: {resource_metrics}")
-    container_cpu_usage.labels(generation_id, job_id, node).set(resource_metrics['cpu'])
-    container_gpu_usage.labels(generation_id, job_id, node).set(resource_metrics['gpu'])
-    container_mem_usage.labels(generation_id, job_id, node).set(resource_metrics['memory'])
+def expose_resource_usage_metrics(generation_id, job_id, node, allowed_resource):
+    logger.info(f"Used resource for job {job_id} on node {node} with generation ID {generation_id}: {allowed_resource}")
+    container_cpu_usage.labels(generation_id, job_id, node).set(allowed_resource['cpu'])
+    container_gpu_usage.labels(generation_id, job_id, node).set(allowed_resource['gpu'])
+    container_mem_usage.labels(generation_id, job_id, node).set(allowed_resource['memory'])
 
 
 # Step 2.3: Simulate resource usage for each stage and proceed only when all resources are consumed
 def simulate_resource_usage_for_stages(generation_id, job_id, node, passed_epochs):
     stages = get_stage_requirements(passed_epochs)
-    for stage_index, stage in enumerate(stages):
-        resource_metrics = get_required_resource(stage)
-        logger.info(f"Simulating resource usage for stage {stage_index + 1}, job {job_id}, node {node}, generation {generation_id}: {resource_metrics}")
-        available_resources = get_available_resources(node)
-        resource_metrics = get_required_resource(stage)
-        send_resource_metrics(generation_id, job_id, node, resource_metrics)
+    stage_index = 0
+    while stage_index < len(stages):
+        stage = stages[stage_index]
+        required_resource = get_required_resource(stage)
+        logger.info(f"Simulating resource usage for stage {stage_index + 1}, job {job_id} on node {node} with generation ID {generation_id}: {required_resource}")
+        required_resource = get_required_resource(stage)
+        allowed_resource, updated_stage = get_allowed_resource(node, stage_index, stage)
+        expose_resource_usage_metrics(generation_id, job_id, node, allowed_resource)
+        if updated_stage < stage_index:
+            logger.warning(f"Stage {stage_index + 1} failed. Repeating stage {stage_index + 1}.")
+        else:
+            stage_index = updated_stage + 1  
         time.sleep(1)
-        logger.info(f"Stage {stage_index + 1} of epoch {passed_epochs} completed.")
-
+        logger.info(f"Stage {stage_index} of epoch {passed_epochs} completed.")
 
 # Step 3: Training job simulation functions --------------------------------------------------------------------------------------------------
 # Step 3.1: Calculate training loss based on passed_epoch and progress_percentage

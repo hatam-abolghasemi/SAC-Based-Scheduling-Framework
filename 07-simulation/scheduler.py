@@ -66,7 +66,7 @@ def schedule_jobs():
                     else:
                         print(f"Failed to deploy job with generation_id {generation_id}. Response: {deploy_response.text}")
                 except requests.RequestException as e:
-                    print(f"Error accessing job deploy service. Retrying in 5 seconds...")
+                    print(f"Error accessing cluster. Retrying in 5 seconds...")
                 time.sleep(5)
         time.sleep(5)
 

@@ -3,9 +3,14 @@ import subprocess
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import time
 import re
+import sys
 
 
 class NodeExporterHandler(BaseHTTPRequestHandler):
+    def log_message(self, format, *args):
+        """Override to suppress standard logging of requests."""
+        return
+
     def do_GET(self):
         if self.path == '/metrics':
             metrics = []
@@ -36,7 +41,7 @@ class NodeExporterHandler(BaseHTTPRequestHandler):
                             for node_name, value in matches:
                                 usage[key][node_name] = usage[key].get(node_name, 0) + float(value)
                     except Exception as e:
-                        print(f"Error accessing metrics on port {port}: {e}")
+                        sys.stderr.write(f"Error accessing metrics on port {port}: {e}\n")
                 for node in nodes:
                     name = node['name']
                     used_cpu = usage["cpu"].get(name, 0)
@@ -55,7 +60,7 @@ class NodeExporterHandler(BaseHTTPRequestHandler):
                     metrics.append(f'node_free_gpu{{name="{name}"}} {free_gpu}')
                     metrics.append(f'node_free_mem{{name="{name}"}} {free_mem}')
             except Exception as e:
-                print(f"Error during exporter scan: {e}")
+                sys.stderr.write(f"Error during exporter scan: {e}\n")
             self.send_response(200)
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
@@ -67,12 +72,12 @@ class NodeExporterHandler(BaseHTTPRequestHandler):
 
 if __name__ == '__main__':
     server = HTTPServer(('0.0.0.0', 9904), NodeExporterHandler)
-    print("Node exporter is running on port 9904...")
+    sys.stderr.write("Node exporter is running on port 9904...\n")
     try:
         while True:
             server.handle_request()
             time.sleep(1)
     except KeyboardInterrupt:
-        print("\nShutting down Node exporter...")
+        sys.stderr.write("\nShutting down Node exporter...\n")
         server.server_close()
 

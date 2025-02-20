@@ -2,6 +2,7 @@ import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import argparse
 
+
 class Node:
     def __init__(self, node_type, name, cpu, memory, gpu):
         self.name = name
@@ -11,6 +12,7 @@ class Node:
         self.gpu = gpu
         self.jobs = []
 
+
     def to_dict(self):
         return {
             "name": self.name,
@@ -19,17 +21,16 @@ class Node:
             "gpu": int(self.gpu)
         }
 
+
     def deploy_job(self, job):
         self.jobs.append(job)
 
-# Worker nodes
+
 nodes = [
     Node('worker', f'k8s-worker-{i+1}', '32', '96', '5120') for i in range(13)
 ]
-
 node_dict = {node.name: node for node in nodes}
 all_jobs = []
-
 class ClusterHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/nodes':
@@ -65,13 +66,13 @@ class ClusterHandler(BaseHTTPRequestHandler):
             self.send_response(404)
             self.end_headers()
 
+
     def do_POST(self):
         if self.path == '/deploy_job':
             content_length = int(self.headers['Content-Length'])
             post_data = self.rfile.read(content_length)
             job_data = json.loads(post_data.decode('utf-8'))
             node_name = job_data.get('node')
-
             if node_name in node_dict:
                 node_dict[node_name].deploy_job(job_data)
                 all_jobs.append(job_data)
@@ -86,11 +87,11 @@ class ClusterHandler(BaseHTTPRequestHandler):
             self.send_response(501)
             self.end_headers()
 
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--port', type=int, default=9901, help='Port to expose cluster endpoints')
     args = parser.parse_args()
-
     server = HTTPServer(('0.0.0.0', args.port), ClusterHandler)
     print("Cluster is ready. Waiting for job deployments...")
     try:

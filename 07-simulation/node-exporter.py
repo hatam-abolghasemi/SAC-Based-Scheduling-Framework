@@ -4,12 +4,11 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import time
 import re
 
+
 class NodeExporterHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/metrics':
             metrics = []
-
-            # Step 1: Fetch node data from the cluster
             response = requests.get('http://0.0.0.0:9901/nodes')
             if response.status_code == 200:
                 nodes = response.json()
@@ -23,8 +22,6 @@ class NodeExporterHandler(BaseHTTPRequestHandler):
                 self.end_headers()
                 self.wfile.write(b'Failed to fetch node data')
                 return
-
-            # Step 2: Find exporters and sum container_used_cpu, container_used_gpu, container_used_mem by node
             usage = {'cpu': {}, 'gpu': {}, 'mem': {}}
             try:
                 result = subprocess.run(['ss', '-nlpt'], capture_output=True, text=True)
@@ -40,35 +37,25 @@ class NodeExporterHandler(BaseHTTPRequestHandler):
                                 usage[key][node_name] = usage[key].get(node_name, 0) + float(value)
                     except Exception as e:
                         print(f"Error accessing metrics on port {port}: {e}")
-
-                # Report usage and free metrics with default 0
                 for node in nodes:
                     name = node['name']
                     used_cpu = usage["cpu"].get(name, 0)
                     used_gpu = usage["gpu"].get(name, 0)
                     used_mem = usage["mem"].get(name, 0)
-
                     total_cpu = node["cpu"]
                     total_gpu = node["gpu"]
                     total_mem = node["memory"]
-
-                    # Calculate free resources
                     free_cpu = total_cpu - used_cpu
                     free_gpu = total_gpu - used_gpu
                     free_mem = total_mem - used_mem
-
-                    metrics.append(f'node_used_cpu{{name="{name}", node_epu_total="true"}} {used_cpu}')
-                    metrics.append(f'node_used_gpu{{name="{name}", node_epu_total="true"}} {used_gpu}')
-                    metrics.append(f'node_used_mem{{name="{name}", node_epu_total="true"}} {used_mem}')
-                    
-                    # Add free metrics
-                    metrics.append(f'node_free_cpu{{name="{name}", node_epu_total="true"}} {free_cpu}')
-                    metrics.append(f'node_free_gpu{{name="{name}", node_epu_total="true"}} {free_gpu}')
-                    metrics.append(f'node_free_mem{{name="{name}", node_epu_total="true"}} {free_mem}')
+                    metrics.append(f'node_used_cpu{{name="{name}"}} {used_cpu}')
+                    metrics.append(f'node_used_gpu{{name="{name}"}} {used_gpu}')
+                    metrics.append(f'node_used_mem{{name="{name}"}} {used_mem}')
+                    metrics.append(f'node_free_cpu{{name="{name}"}} {free_cpu}')
+                    metrics.append(f'node_free_gpu{{name="{name}"}} {free_gpu}')
+                    metrics.append(f'node_free_mem{{name="{name}"}} {free_mem}')
             except Exception as e:
                 print(f"Error during exporter scan: {e}")
-
-            # Return collected metrics
             self.send_response(200)
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
@@ -76,6 +63,7 @@ class NodeExporterHandler(BaseHTTPRequestHandler):
         else:
             self.send_response(404)
             self.end_headers()
+
 
 if __name__ == '__main__':
     server = HTTPServer(('0.0.0.0', 9904), NodeExporterHandler)

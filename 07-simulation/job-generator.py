@@ -6,10 +6,10 @@ from flask import Flask, Response, request, jsonify
 import threading
 
 # Configuration constants
-JOB_INTRO_MIN_SECONDS = 1
+JOB_INTRO_MIN_SECONDS = 15
 JOB_INTRO_MAX_SECONDS = 60
 MIN_JOBS = 1
-MAX_JOBS = 4
+MAX_JOBS = 3
 TOTAL_JOB_SAMPLES = 16
 FLASK_PORT = 9902
 MIN_REQUIRED_EPOCH = 10

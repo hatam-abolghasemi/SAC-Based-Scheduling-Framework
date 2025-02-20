@@ -80,4 +80,3 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         sys.stderr.write("\nShutting down Node exporter...\n")
         server.server_close()
-

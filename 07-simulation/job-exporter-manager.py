@@ -53,7 +53,7 @@ def start_container_exporter(port, generation_id, job_info, job_id):
     ]
     print(f"Running command: {' '.join(command)}")
     result = subprocess.run(command, capture_output=True, text=True)
-    print("Command output:", result.stdout)
+    # print("Command output:", result.stdout)
     if result.stderr:
         print("Command error:", result.stderr)
 

@@ -194,6 +194,7 @@ def simulate_epoch(passed_epochs, required_epochs, job_id, node, generation_id, 
     training_accuracy = get_training_accuracy(passed_epochs, progress_percentage)
     send_training_metrics(generation_id, job_id, node, training_loss, training_accuracy)
     job_passed_epoch.labels(generation_id=generation_id, job_id=job_id, node=node).set(passed_epochs)
+    job_required_epoch.labels(generation_id=generation_id, job_id=job_id, node=node).set(required_epochs)
             
 
 def main():

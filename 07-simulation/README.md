@@ -1,3 +1,5 @@
+job-generator --> cluster --> scheduler --> node-exporter --> job-exporter-manager --> state-updater
+
 k8s-worker:
 
 GPU Cores: 5120

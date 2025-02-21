@@ -15,6 +15,7 @@ container_gpu_usage = Gauge('container_used_gpu', 'GPU usage for the container',
 container_mem_usage = Gauge('container_used_mem', 'Memory usage for the container', ['generation_id', 'job_id', 'node'])
 job_training_loss = Gauge('job_training_loss', 'Cross-entropy loss for the training job', ['generation_id', 'job_id', 'node'])
 job_training_accuracy = Gauge('job_training_accuracy', 'Accuracy for the training job', ['generation_id', 'job_id', 'node'])
+job_training_progress = Gauge('job_training_progress', 'Progress for the training job', ['generation_id', 'job_id', 'node'])
 job_schedule_moment = Gauge('job_schedule_moment', 'The moment the job was scheduled', ['generation_id', 'job_id', 'node'])
 job_generation_moment = Gauge('job_generation_moment', 'The moment the job was generated', ['generation_id', 'job_id', 'node'])
 job_elapsed_time = Gauge('job_elapsed_time', 'Elapsed time since the schedule moment', ['generation_id', 'job_id', 'node'])
@@ -164,10 +165,11 @@ def get_training_accuracy(passed_epochs, progress_percentage):
 
 
 # Step 3.3: Send calculated training metrics to Prometheus
-def send_training_metrics(generation_id, job_id, node, training_loss, training_accuracy):
+def send_training_metrics(generation_id, job_id, node, training_loss, training_accuracy, progress_percentage):
     logger.info(f"Updating training metrics for job {job_id} on node {node} with generation ID {generation_id}: Loss={training_loss}, Accuracy={training_accuracy}")
     job_training_loss.labels(generation_id, job_id, node).set(training_loss)
     job_training_accuracy.labels(generation_id, job_id, node).set(training_accuracy)
+    job_training_progress.labels(generation_id, job_id, node).set(progress_percentage)
 
 
 # Step 4: Aggregate and expose all metrics for Prometheus --------------------------------------------------------------------------------------------------
@@ -188,11 +190,11 @@ def start_job_exporter(port):
 
 # Step 5: Simulate the epoch process, handling both resource usage and training job metrics --------------------------------------------------------------------------------------------------
 def simulate_epoch(passed_epochs, required_epochs, job_id, node, generation_id, schedule_moment, generation_moment):
-    progress_percentage = (passed_epochs / required_epochs) * 100
+    progress_percentage = int((passed_epochs / required_epochs) * 100)
     simulate_resource_usage_for_stages(generation_id, job_id, node, passed_epochs)
     training_loss = get_training_loss(passed_epochs, progress_percentage)
     training_accuracy = get_training_accuracy(passed_epochs, progress_percentage)
-    send_training_metrics(generation_id, job_id, node, training_loss, training_accuracy)
+    send_training_metrics(generation_id, job_id, node, training_loss, training_accuracy, progress_percentage)
     job_passed_epoch.labels(generation_id=generation_id, job_id=job_id, node=node).set(passed_epochs)
     job_required_epoch.labels(generation_id=generation_id, job_id=job_id, node=node).set(required_epochs)
             
@@ -214,7 +216,7 @@ def main():
     elapsed_time_thread.start()
     required_epochs = args.required_epochs
     passed_epochs = 1
-    while passed_epochs < required_epochs:
+    while passed_epochs <= required_epochs:
         simulate_epoch(
             passed_epochs, required_epochs, args.job_id, args.node, args.generation_id, args.schedule_moment, args.generation_moment
         )

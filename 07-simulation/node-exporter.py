@@ -8,7 +8,6 @@ import sys
 
 class NodeExporterHandler(BaseHTTPRequestHandler):
     def log_message(self, format, *args):
-        """Override to suppress standard logging of requests."""
         return
 
     def do_GET(self):
@@ -27,6 +26,7 @@ class NodeExporterHandler(BaseHTTPRequestHandler):
                 self.end_headers()
                 self.wfile.write(b'Failed to fetch node data')
                 return
+            
             usage = {'cpu': {}, 'gpu': {}, 'mem': {}}
             try:
                 result = subprocess.run(['ss', '-nlpt'], capture_output=True, text=True)
@@ -42,6 +42,7 @@ class NodeExporterHandler(BaseHTTPRequestHandler):
                                 usage[key][node_name] = usage[key].get(node_name, 0) + float(value)
                     except Exception as e:
                         sys.stderr.write(f"Error accessing metrics on port {port}: {e}\n")
+                
                 for node in nodes:
                     name = node['name']
                     used_cpu = usage["cpu"].get(name, 0)
@@ -53,12 +54,18 @@ class NodeExporterHandler(BaseHTTPRequestHandler):
                     free_cpu = total_cpu - used_cpu
                     free_gpu = total_gpu - used_gpu
                     free_mem = total_mem - used_mem
+                    cpu_utilization = int((used_cpu / total_cpu) * 100) if total_cpu > 0 else 0
+                    gpu_utilization = int((used_gpu / total_gpu) * 100) if total_gpu > 0 else 0
+                    mem_utilization = int((used_mem / total_mem) * 100) if total_mem > 0 else 0
                     metrics.append(f'node_used_cpu{{name="{name}"}} {used_cpu}')
                     metrics.append(f'node_used_gpu{{name="{name}"}} {used_gpu}')
                     metrics.append(f'node_used_mem{{name="{name}"}} {used_mem}')
                     metrics.append(f'node_free_cpu{{name="{name}"}} {free_cpu}')
                     metrics.append(f'node_free_gpu{{name="{name}"}} {free_gpu}')
                     metrics.append(f'node_free_mem{{name="{name}"}} {free_mem}')
+                    metrics.append(f'node_cpu_utilization{{name="{name}"}} {cpu_utilization}')
+                    metrics.append(f'node_gpu_utilization{{name="{name}"}} {gpu_utilization}')
+                    metrics.append(f'node_mem_utilization{{name="{name}"}} {mem_utilization}')
             except Exception as e:
                 sys.stderr.write(f"Error during exporter scan: {e}\n")
             self.send_response(200)
@@ -80,3 +87,4 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         sys.stderr.write("\nShutting down Node exporter...\n")
         server.server_close()
+

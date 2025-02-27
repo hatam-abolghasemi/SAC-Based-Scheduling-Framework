@@ -3,10 +3,10 @@ import random
 import requests
 import json
 
-
 job_generator_url = 'http://0.0.0.0:9902/jobs'
 job_deploy_url = 'http://0.0.0.0:9901/deploy_job'
-schedule_url = 'http://0.0.0.0:9902/schedule'
+queue_url = 'http://0.0.0.0:9902/queue'
+
 def fetch_generated_jobs():
     while True:
         try:
@@ -25,8 +25,8 @@ def fetch_generated_jobs():
             else:
                 print(f"Failed to fetch jobs, status code: {response.status_code}")
         except requests.RequestException as e:
-            print(f"Error accessing job generator service. Retrying in 5 seconds...")
-        time.sleep(5)
+            print(f"Error accessing job generator service. Retrying in 1 seconds...")
+        time.sleep(1)
 
 
 def choose_best_node(job):
@@ -41,7 +41,7 @@ def schedule_jobs():
         for job in generated_jobs:
             generation_id = job.get('generation_id')
             if generation_id in scheduled_generation_ids:
-                print(f"Job with generation_id {generation_id} already scheduled.")
+                # print(f"Job with generation_id {generation_id} already scheduled.")
                 continue
             node_name = choose_best_node(job)
             schedule_moment = job.get('generation_moment')
@@ -59,16 +59,17 @@ def schedule_jobs():
                     if deploy_response.status_code == 200:
                         print(f"Job with generation_id {generation_id} scheduled on node {node_name} successfully.")
                         scheduled_generation_ids.add(generation_id)
-                        schedule_response = requests.post(schedule_url, json={'generation_id': generation_id})
-                        if schedule_response.status_code != 200:
+                        # Changed the URL to /queue
+                        queue_response = requests.post(queue_url, json={'generation_id': generation_id})
+                        if queue_response.status_code != 200:
                             print(f"Failed to notify job-generator for job {job.get('job_id')}.")
                         break
                     else:
                         print(f"Failed to deploy job with generation_id {generation_id}. Response: {deploy_response.text}")
                 except requests.RequestException as e:
-                    print(f"Error accessing cluster. Retrying in 5 seconds...")
-                time.sleep(5)
-        time.sleep(5)
+                    print(f"Error accessing cluster. Retrying in 1 seconds...")
+                time.sleep(1)
+        time.sleep(1)
 
 
 if __name__ == '__main__':

@@ -18,6 +18,7 @@ log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 logging.basicConfig(filename='generated_jobs.log', level=logging.INFO, format='%(asctime)s - %(message)s')
 generated_jobs = []
+job_queue = []  # Queue to store jobs that need to be scheduled
 generation_counter = 1
 start_time = time.time()
 
@@ -60,17 +61,23 @@ def get_jobs():
     return Response("".join([f"{str(job)}\n" for job in generated_jobs]), mimetype='text/plain')
 
 
-@app.route('/schedule', methods=['POST'])
-def schedule_job():
+@app.route('/queue', methods=['POST'])
+def queue_job():
     generation_id = request.json.get('generation_id')
-    global generated_jobs
-    generated_jobs = [job for job in generated_jobs if job['generation_id'] != generation_id]
-    return jsonify({"message": f"Job with generation_id {generation_id} is scheduled and removed from the list."}), 200
+    global generated_jobs, job_queue
+    job_to_queue = next((job for job in generated_jobs if job['generation_id'] == generation_id), None)
+    if job_to_queue:
+        job_queue.append(job_to_queue)
+        logging.info(f"Job with generation_id {generation_id} added to the queue.")
+        return jsonify({"message": f"Job with generation_id {generation_id} added to the queue."}), 200
+    else:
+        return jsonify({"error": "Job not found."}), 404
 
 
 thread = threading.Thread(target=introduce_jobs)
 thread.daemon = True
 thread.start()
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=FLASK_PORT)
 

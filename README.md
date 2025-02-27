@@ -7,7 +7,7 @@ job_status=j*6
 - job_id*(job_training_progress,job_training_accuracy,job_training_loss,job_cpu_usage,job_gpu_usage,job_mem_usage)
 - this matrix container dynamic data about the current state of all jobs
 node_status=n*4
-- node_id*(node_cpu_utilization,node_gpu_utilization,node_gpu_utilization,node_job_count)
+- node_id*(node_cpu_utilization,node_gpu_utilization,node_mem_utilization,node_job_count)
 
 Action:
 node_selection()

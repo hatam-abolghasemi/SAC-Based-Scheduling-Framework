@@ -1,11 +1,12 @@
 import os
 import time
 import logging
-from prometheus_client import start_http_server, Gauge, Counter
+from prometheus_client import start_http_server, Gauge, Counter, REGISTRY
 import argparse
 import threading
 import requests
 import re
+import sqlite3
 
 
 # Step 1: Initialization --------------------------------------------------------------------------------------------------
@@ -21,10 +22,33 @@ job_generation_moment = Gauge('job_generation_moment', 'The moment the job was g
 job_elapsed_time = Gauge('job_elapsed_time', 'Elapsed time since the schedule moment', ['generation_id', 'job_id', 'node'])
 job_required_epoch = Gauge('job_required_epoch', 'The number of required epochs for the job', ['generation_id', 'job_id', 'node'])
 job_passed_epoch = Gauge('job_passed_epoch', 'The number of passed epochs for the job', ['generation_id', 'job_id', 'node'])
+job_model_complexity_gauge = Gauge('job_model_complexity', 'Complexity level of the used model', ['generation_id', 'job_id', 'node'])
+job_dataset_complexity_gauge = Gauge('job_dataset_complexity', 'Complexity level of the used dataset', ['generation_id', 'job_id', 'node'])
+job_batch_size_gauge = Gauge('job_batch_size', 'The batch size for the job', ['generation_id', 'job_id', 'node'])
+job_learning_rate_gauge = Gauge('job_learning_rate', 'The learning rate for the job', ['generation_id', 'job_id', 'node'])
 
 # Step 1.2: Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
+
+# Step 1.3: Fetch static data
+def fetch_static_data(job_id, generation_id, node):
+    conn = sqlite3.connect('jobs.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT job_id, job_batch_size, job_learning_rate, job_dataset_complexity, job_model_complexity FROM jobs WHERE job_id=?', (job_id,))
+    job = cursor.fetchone()
+    if job:
+        job_id, job_batch_size, job_learning_rate, job_dataset_complexity, job_model_complexity = job
+        job_model_complexity_gauge.labels(generation_id=generation_id, job_id=job_id, node=node).set(job_model_complexity)
+        job_dataset_complexity_gauge.labels(generation_id=generation_id, job_id=job_id, node=node).set(job_dataset_complexity)
+        job_batch_size_gauge.labels(generation_id=generation_id, job_id=job_id, node=node).set(job_batch_size)
+        job_learning_rate_gauge.labels(generation_id=generation_id, job_id=job_id, node=node).set(job_learning_rate)
+        print(f"job_id: {job_id}, job_batch_size: {job_batch_size}, job_learning_rate: {job_learning_rate}, "
+              f"job_dataset_complexity: {job_dataset_complexity}, job_model_complexity: {job_model_complexity}")
+    else:
+        print(f"No job found with job_id: {job_id}")
+    conn.close()
+
 
 # Step 1.4: Increment the job_schedule_moment and job_generation_moment every second
 def expose_moments(generation_id, job_id, node, schedule_moment_value, generation_moment_value):
@@ -198,8 +222,24 @@ def simulate_epoch(passed_epochs, required_epochs, job_id, node, generation_id, 
     job_passed_epoch.labels(generation_id=generation_id, job_id=job_id, node=node).set(passed_epochs)
     job_required_epoch.labels(generation_id=generation_id, job_id=job_id, node=node).set(required_epochs)
             
+def deregister_unwanted_metrics():
+    unwanted_metrics = [
+        'python_gc_objects_uncollectable_total',
+        'python_gc_collections_total',
+        'python_info',
+        'process_virtual_memory_bytes',
+        'process_resident_memory_bytes',
+        'process_start_time_seconds',
+        'process_cpu_seconds_total',
+        'process_open_fds',
+        'process_max_fds'
+    ]
+    for metric_name in unwanted_metrics:
+        if metric_name in REGISTRY._names_to_collectors:
+            REGISTRY.unregister(REGISTRY._names_to_collectors[metric_name])
 
 def main():
+    deregister_unwanted_metrics()
     parser = argparse.ArgumentParser(description="Container Exporter")
     parser.add_argument('--port', type=int, required=True, help="Port for the container exporter")
     parser.add_argument('--generation_id', type=int, required=True, help="Generation ID")
@@ -211,6 +251,7 @@ def main():
     args = parser.parse_args()
     start_job_exporter(args.port)
     expose_moments(args.generation_id, args.job_id, args.node, args.schedule_moment, args.generation_moment)
+    fetch_static_data(args.job_id, args.generation_id, args.node)
     elapsed_time_thread = threading.Thread(target=start_elapsed_time_counter, args=(args.generation_id, args.job_id, args.node, args.schedule_moment))
     elapsed_time_thread.daemon = True
     elapsed_time_thread.start()

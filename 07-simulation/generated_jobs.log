@@ -1,0 +1,452 @@
+2025-02-28 14:06:57,052 - Job introduced: {'generation_id': 1, 'generation_moment': 1, 'job_id': 8, 'required_epoch': 370}
+2025-02-28 14:06:57,052 - Job introduced: {'generation_id': 2, 'generation_moment': 1, 'job_id': 1, 'required_epoch': 480}
+2025-02-28 14:06:57,052 - Job introduced: {'generation_id': 3, 'generation_moment': 1, 'job_id': 14, 'required_epoch': 380}
+2025-02-28 14:06:57,052 - Job introduced: {'generation_id': 4, 'generation_moment': 1, 'job_id': 11, 'required_epoch': 210}
+2025-02-28 14:07:18,053 - Job introduced: {'generation_id': 5, 'generation_moment': 21, 'job_id': 11, 'required_epoch': 70}
+2025-02-28 14:07:49,369 - Job with generation_id 1 added to the queue.
+2025-02-28 14:07:49,373 - Job with generation_id 2 added to the queue.
+2025-02-28 14:07:49,378 - Job with generation_id 3 added to the queue.
+2025-02-28 14:07:49,382 - Job with generation_id 4 added to the queue.
+2025-02-28 14:07:49,386 - Job with generation_id 5 added to the queue.
+2025-02-28 14:08:06,054 - Job introduced: {'generation_id': 6, 'generation_moment': 69, 'job_id': 1, 'required_epoch': 310}
+2025-02-28 14:08:06,054 - Job introduced: {'generation_id': 7, 'generation_moment': 69, 'job_id': 16, 'required_epoch': 30}
+2025-02-28 14:08:06,068 - Job with generation_id 6 added to the queue.
+2025-02-28 14:08:06,072 - Job with generation_id 7 added to the queue.
+2025-02-28 14:08:28,055 - Job introduced: {'generation_id': 8, 'generation_moment': 91, 'job_id': 9, 'required_epoch': 260}
+2025-02-28 14:08:28,084 - Job with generation_id 8 added to the queue.
+2025-02-28 14:09:11,057 - Job introduced: {'generation_id': 9, 'generation_moment': 134, 'job_id': 6, 'required_epoch': 350}
+2025-02-28 14:09:11,058 - Job introduced: {'generation_id': 10, 'generation_moment': 134, 'job_id': 10, 'required_epoch': 260}
+2025-02-28 14:09:11,081 - Job with generation_id 9 added to the queue.
+2025-02-28 14:09:11,085 - Job with generation_id 10 added to the queue.
+2025-02-28 14:09:56,059 - Job introduced: {'generation_id': 11, 'generation_moment': 179, 'job_id': 8, 'required_epoch': 150}
+2025-02-28 14:09:56,059 - Job introduced: {'generation_id': 12, 'generation_moment': 179, 'job_id': 4, 'required_epoch': 360}
+2025-02-28 14:09:56,059 - Job introduced: {'generation_id': 13, 'generation_moment': 179, 'job_id': 9, 'required_epoch': 360}
+2025-02-28 14:09:56,059 - Job introduced: {'generation_id': 14, 'generation_moment': 179, 'job_id': 2, 'required_epoch': 330}
+2025-02-28 14:09:56,079 - Job with generation_id 11 added to the queue.
+2025-02-28 14:09:56,083 - Job with generation_id 12 added to the queue.
+2025-02-28 14:09:56,087 - Job with generation_id 13 added to the queue.
+2025-02-28 14:09:56,091 - Job with generation_id 14 added to the queue.
+2025-02-28 14:10:16,060 - Job introduced: {'generation_id': 15, 'generation_moment': 199, 'job_id': 2, 'required_epoch': 330}
+2025-02-28 14:10:16,060 - Job introduced: {'generation_id': 16, 'generation_moment': 199, 'job_id': 14, 'required_epoch': 240}
+2025-02-28 14:10:16,060 - Job introduced: {'generation_id': 17, 'generation_moment': 199, 'job_id': 11, 'required_epoch': 290}
+2025-02-28 14:10:16,071 - Job with generation_id 15 added to the queue.
+2025-02-28 14:10:16,074 - Job with generation_id 16 added to the queue.
+2025-02-28 14:10:16,078 - Job with generation_id 17 added to the queue.
+2025-02-28 14:11:11,061 - Job introduced: {'generation_id': 18, 'generation_moment': 254, 'job_id': 4, 'required_epoch': 180}
+2025-02-28 14:11:11,061 - Job introduced: {'generation_id': 19, 'generation_moment': 254, 'job_id': 1, 'required_epoch': 200}
+2025-02-28 14:11:11,061 - Job introduced: {'generation_id': 20, 'generation_moment': 254, 'job_id': 10, 'required_epoch': 390}
+2025-02-28 14:11:11,061 - Job introduced: {'generation_id': 21, 'generation_moment': 254, 'job_id': 15, 'required_epoch': 430}
+2025-02-28 14:11:11,078 - Job with generation_id 18 added to the queue.
+2025-02-28 14:11:11,081 - Job with generation_id 19 added to the queue.
+2025-02-28 14:11:11,085 - Job with generation_id 20 added to the queue.
+2025-02-28 14:11:11,088 - Job with generation_id 21 added to the queue.
+2025-02-28 14:11:45,062 - Job introduced: {'generation_id': 22, 'generation_moment': 288, 'job_id': 6, 'required_epoch': 70}
+2025-02-28 14:11:45,062 - Job introduced: {'generation_id': 23, 'generation_moment': 288, 'job_id': 3, 'required_epoch': 500}
+2025-02-28 14:11:45,062 - Job introduced: {'generation_id': 24, 'generation_moment': 288, 'job_id': 12, 'required_epoch': 210}
+2025-02-28 14:11:45,075 - Job with generation_id 22 added to the queue.
+2025-02-28 14:11:45,080 - Job with generation_id 23 added to the queue.
+2025-02-28 14:11:45,084 - Job with generation_id 24 added to the queue.
+2025-02-28 14:12:22,063 - Job introduced: {'generation_id': 25, 'generation_moment': 325, 'job_id': 3, 'required_epoch': 220}
+2025-02-28 14:12:22,070 - Job with generation_id 25 added to the queue.
+2025-02-28 14:12:53,064 - Job introduced: {'generation_id': 26, 'generation_moment': 356, 'job_id': 7, 'required_epoch': 410}
+2025-02-28 14:12:53,064 - Job introduced: {'generation_id': 27, 'generation_moment': 356, 'job_id': 3, 'required_epoch': 210}
+2025-02-28 14:12:53,071 - Job with generation_id 26 added to the queue.
+2025-02-28 14:12:53,076 - Job with generation_id 27 added to the queue.
+2025-02-28 14:13:21,066 - Job introduced: {'generation_id': 28, 'generation_moment': 384, 'job_id': 14, 'required_epoch': 370}
+2025-02-28 14:13:21,066 - Job introduced: {'generation_id': 29, 'generation_moment': 384, 'job_id': 4, 'required_epoch': 490}
+2025-02-28 14:13:21,066 - Job introduced: {'generation_id': 30, 'generation_moment': 384, 'job_id': 5, 'required_epoch': 70}
+2025-02-28 14:13:21,066 - Job introduced: {'generation_id': 31, 'generation_moment': 384, 'job_id': 8, 'required_epoch': 190}
+2025-02-28 14:13:21,080 - Job with generation_id 28 added to the queue.
+2025-02-28 14:13:21,083 - Job with generation_id 29 added to the queue.
+2025-02-28 14:13:21,087 - Job with generation_id 30 added to the queue.
+2025-02-28 14:13:21,090 - Job with generation_id 31 added to the queue.
+2025-02-28 14:13:43,067 - Job introduced: {'generation_id': 32, 'generation_moment': 406, 'job_id': 5, 'required_epoch': 110}
+2025-02-28 14:13:43,075 - Job with generation_id 32 added to the queue.
+2025-02-28 14:14:06,067 - Job introduced: {'generation_id': 33, 'generation_moment': 429, 'job_id': 7, 'required_epoch': 70}
+2025-02-28 14:14:06,068 - Job introduced: {'generation_id': 34, 'generation_moment': 429, 'job_id': 11, 'required_epoch': 490}
+2025-02-28 14:14:06,068 - Job introduced: {'generation_id': 35, 'generation_moment': 429, 'job_id': 6, 'required_epoch': 230}
+2025-02-28 14:14:06,075 - Job with generation_id 33 added to the queue.
+2025-02-28 14:14:06,079 - Job with generation_id 34 added to the queue.
+2025-02-28 14:14:06,083 - Job with generation_id 35 added to the queue.
+2025-02-28 14:15:06,069 - Job introduced: {'generation_id': 36, 'generation_moment': 489, 'job_id': 2, 'required_epoch': 430}
+2025-02-28 14:15:06,069 - Job introduced: {'generation_id': 37, 'generation_moment': 489, 'job_id': 8, 'required_epoch': 280}
+2025-02-28 14:15:06,078 - Job with generation_id 36 added to the queue.
+2025-02-28 14:15:06,081 - Job with generation_id 37 added to the queue.
+2025-02-28 14:15:39,070 - Job introduced: {'generation_id': 38, 'generation_moment': 522, 'job_id': 9, 'required_epoch': 280}
+2025-02-28 14:15:39,070 - Job introduced: {'generation_id': 39, 'generation_moment': 522, 'job_id': 13, 'required_epoch': 70}
+2025-02-28 14:15:39,071 - Job introduced: {'generation_id': 40, 'generation_moment': 522, 'job_id': 4, 'required_epoch': 200}
+2025-02-28 14:15:39,071 - Job introduced: {'generation_id': 41, 'generation_moment': 522, 'job_id': 15, 'required_epoch': 480}
+2025-02-28 14:16:38,071 - Job introduced: {'generation_id': 42, 'generation_moment': 581, 'job_id': 10, 'required_epoch': 450}
+2025-02-28 14:16:38,072 - Job introduced: {'generation_id': 43, 'generation_moment': 581, 'job_id': 12, 'required_epoch': 410}
+2025-02-28 14:17:37,072 - Job introduced: {'generation_id': 44, 'generation_moment': 640, 'job_id': 8, 'required_epoch': 190}
+2025-02-28 14:17:37,072 - Job introduced: {'generation_id': 45, 'generation_moment': 640, 'job_id': 11, 'required_epoch': 320}
+2025-02-28 14:17:37,072 - Job introduced: {'generation_id': 46, 'generation_moment': 640, 'job_id': 13, 'required_epoch': 20}
+2025-02-28 14:17:37,073 - Job introduced: {'generation_id': 47, 'generation_moment': 640, 'job_id': 6, 'required_epoch': 130}
+2025-02-28 14:17:57,741 - Job with generation_id 1 added to the queue.
+2025-02-28 14:17:57,745 - Job with generation_id 2 added to the queue.
+2025-02-28 14:17:57,749 - Job with generation_id 3 added to the queue.
+2025-02-28 14:17:57,752 - Job with generation_id 4 added to the queue.
+2025-02-28 14:17:57,756 - Job with generation_id 5 added to the queue.
+2025-02-28 14:17:57,760 - Job with generation_id 6 added to the queue.
+2025-02-28 14:17:57,765 - Job with generation_id 7 added to the queue.
+2025-02-28 14:17:57,768 - Job with generation_id 8 added to the queue.
+2025-02-28 14:17:57,771 - Job with generation_id 9 added to the queue.
+2025-02-28 14:17:57,775 - Job with generation_id 10 added to the queue.
+2025-02-28 14:17:57,778 - Job with generation_id 11 added to the queue.
+2025-02-28 14:17:57,782 - Job with generation_id 12 added to the queue.
+2025-02-28 14:17:57,785 - Job with generation_id 13 added to the queue.
+2025-02-28 14:17:57,789 - Job with generation_id 14 added to the queue.
+2025-02-28 14:17:57,792 - Job with generation_id 15 added to the queue.
+2025-02-28 14:17:57,795 - Job with generation_id 16 added to the queue.
+2025-02-28 14:17:57,799 - Job with generation_id 17 added to the queue.
+2025-02-28 14:17:57,802 - Job with generation_id 18 added to the queue.
+2025-02-28 14:17:57,806 - Job with generation_id 19 added to the queue.
+2025-02-28 14:17:57,809 - Job with generation_id 20 added to the queue.
+2025-02-28 14:17:57,813 - Job with generation_id 21 added to the queue.
+2025-02-28 14:17:57,816 - Job with generation_id 22 added to the queue.
+2025-02-28 14:17:57,820 - Job with generation_id 23 added to the queue.
+2025-02-28 14:17:57,823 - Job with generation_id 24 added to the queue.
+2025-02-28 14:17:57,826 - Job with generation_id 25 added to the queue.
+2025-02-28 14:17:57,830 - Job with generation_id 26 added to the queue.
+2025-02-28 14:17:57,833 - Job with generation_id 27 added to the queue.
+2025-02-28 14:17:57,837 - Job with generation_id 28 added to the queue.
+2025-02-28 14:17:57,842 - Job with generation_id 29 added to the queue.
+2025-02-28 14:17:57,846 - Job with generation_id 30 added to the queue.
+2025-02-28 14:17:57,851 - Job with generation_id 31 added to the queue.
+2025-02-28 14:17:57,855 - Job with generation_id 32 added to the queue.
+2025-02-28 14:17:57,859 - Job with generation_id 33 added to the queue.
+2025-02-28 14:17:57,862 - Job with generation_id 34 added to the queue.
+2025-02-28 14:17:57,866 - Job with generation_id 35 added to the queue.
+2025-02-28 14:17:57,869 - Job with generation_id 36 added to the queue.
+2025-02-28 14:17:57,873 - Job with generation_id 37 added to the queue.
+2025-02-28 14:17:57,876 - Job with generation_id 38 added to the queue.
+2025-02-28 14:17:57,879 - Job with generation_id 39 added to the queue.
+2025-02-28 14:17:57,883 - Job with generation_id 40 added to the queue.
+2025-02-28 14:17:57,887 - Job with generation_id 41 added to the queue.
+2025-02-28 14:17:57,890 - Job with generation_id 42 added to the queue.
+2025-02-28 14:17:57,893 - Job with generation_id 43 added to the queue.
+2025-02-28 14:17:57,897 - Job with generation_id 44 added to the queue.
+2025-02-28 14:17:58,073 - Job introduced: {'generation_id': 48, 'generation_moment': 661, 'job_id': 14, 'required_epoch': 310}
+2025-02-28 14:18:15,074 - Job introduced: {'generation_id': 49, 'generation_moment': 678, 'job_id': 6, 'required_epoch': 330}
+2025-02-28 14:18:15,074 - Job introduced: {'generation_id': 50, 'generation_moment': 678, 'job_id': 5, 'required_epoch': 230}
+2025-02-28 14:18:15,074 - Job introduced: {'generation_id': 51, 'generation_moment': 678, 'job_id': 3, 'required_epoch': 480}
+2025-02-28 14:18:15,074 - Job introduced: {'generation_id': 52, 'generation_moment': 678, 'job_id': 15, 'required_epoch': 10}
+2025-02-28 14:18:42,075 - Job introduced: {'generation_id': 53, 'generation_moment': 705, 'job_id': 2, 'required_epoch': 450}
+2025-02-28 14:18:42,075 - Job introduced: {'generation_id': 54, 'generation_moment': 705, 'job_id': 8, 'required_epoch': 370}
+2025-02-28 14:19:38,076 - Job introduced: {'generation_id': 55, 'generation_moment': 761, 'job_id': 11, 'required_epoch': 380}
+2025-02-28 14:19:38,076 - Job introduced: {'generation_id': 56, 'generation_moment': 761, 'job_id': 6, 'required_epoch': 320}
+2025-02-28 14:19:38,076 - Job introduced: {'generation_id': 57, 'generation_moment': 761, 'job_id': 1, 'required_epoch': 220}
+2025-02-28 14:20:23,116 - Job with generation_id 1 added to the queue.
+2025-02-28 14:20:23,121 - Job with generation_id 2 added to the queue.
+2025-02-28 14:20:23,126 - Job with generation_id 3 added to the queue.
+2025-02-28 14:20:23,130 - Job with generation_id 4 added to the queue.
+2025-02-28 14:20:23,134 - Job with generation_id 5 added to the queue.
+2025-02-28 14:20:23,138 - Job with generation_id 6 added to the queue.
+2025-02-28 14:20:23,142 - Job with generation_id 7 added to the queue.
+2025-02-28 14:20:23,145 - Job with generation_id 8 added to the queue.
+2025-02-28 14:20:23,148 - Job with generation_id 9 added to the queue.
+2025-02-28 14:20:23,152 - Job with generation_id 10 added to the queue.
+2025-02-28 14:20:23,155 - Job with generation_id 11 added to the queue.
+2025-02-28 14:20:23,159 - Job with generation_id 12 added to the queue.
+2025-02-28 14:20:23,162 - Job with generation_id 13 added to the queue.
+2025-02-28 14:20:23,165 - Job with generation_id 14 added to the queue.
+2025-02-28 14:20:23,169 - Job with generation_id 15 added to the queue.
+2025-02-28 14:20:23,173 - Job with generation_id 16 added to the queue.
+2025-02-28 14:20:23,177 - Job with generation_id 17 added to the queue.
+2025-02-28 14:20:23,180 - Job with generation_id 18 added to the queue.
+2025-02-28 14:20:23,184 - Job with generation_id 19 added to the queue.
+2025-02-28 14:20:23,188 - Job with generation_id 20 added to the queue.
+2025-02-28 14:20:23,192 - Job with generation_id 21 added to the queue.
+2025-02-28 14:20:23,195 - Job with generation_id 22 added to the queue.
+2025-02-28 14:20:23,199 - Job with generation_id 23 added to the queue.
+2025-02-28 14:20:23,203 - Job with generation_id 24 added to the queue.
+2025-02-28 14:20:23,207 - Job with generation_id 25 added to the queue.
+2025-02-28 14:20:23,210 - Job with generation_id 26 added to the queue.
+2025-02-28 14:20:23,214 - Job with generation_id 27 added to the queue.
+2025-02-28 14:20:23,218 - Job with generation_id 28 added to the queue.
+2025-02-28 14:20:23,221 - Job with generation_id 29 added to the queue.
+2025-02-28 14:20:23,225 - Job with generation_id 30 added to the queue.
+2025-02-28 14:20:23,229 - Job with generation_id 31 added to the queue.
+2025-02-28 14:20:23,233 - Job with generation_id 32 added to the queue.
+2025-02-28 14:20:23,236 - Job with generation_id 33 added to the queue.
+2025-02-28 14:20:23,240 - Job with generation_id 34 added to the queue.
+2025-02-28 14:20:23,244 - Job with generation_id 35 added to the queue.
+2025-02-28 14:20:23,247 - Job with generation_id 36 added to the queue.
+2025-02-28 14:20:23,251 - Job with generation_id 37 added to the queue.
+2025-02-28 14:20:23,255 - Job with generation_id 38 added to the queue.
+2025-02-28 14:20:23,259 - Job with generation_id 39 added to the queue.
+2025-02-28 14:20:23,262 - Job with generation_id 40 added to the queue.
+2025-02-28 14:20:23,266 - Job with generation_id 41 added to the queue.
+2025-02-28 14:20:23,270 - Job with generation_id 42 added to the queue.
+2025-02-28 14:20:23,274 - Job with generation_id 43 added to the queue.
+2025-02-28 14:20:23,278 - Job with generation_id 44 added to the queue.
+2025-02-28 14:20:27,077 - Job introduced: {'generation_id': 58, 'generation_moment': 810, 'job_id': 10, 'required_epoch': 160}
+2025-02-28 14:20:27,077 - Job introduced: {'generation_id': 59, 'generation_moment': 810, 'job_id': 15, 'required_epoch': 50}
+2025-02-28 14:21:19,078 - Job introduced: {'generation_id': 60, 'generation_moment': 862, 'job_id': 5, 'required_epoch': 100}
+2025-02-28 14:21:53,079 - Job introduced: {'generation_id': 61, 'generation_moment': 896, 'job_id': 14, 'required_epoch': 340}
+2025-02-28 14:21:53,079 - Job introduced: {'generation_id': 62, 'generation_moment': 896, 'job_id': 15, 'required_epoch': 410}
+2025-02-28 14:21:53,079 - Job introduced: {'generation_id': 63, 'generation_moment': 896, 'job_id': 4, 'required_epoch': 150}
+2025-02-28 14:22:40,080 - Job introduced: {'generation_id': 64, 'generation_moment': 943, 'job_id': 16, 'required_epoch': 270}
+2025-02-28 14:23:00,081 - Job introduced: {'generation_id': 65, 'generation_moment': 963, 'job_id': 12, 'required_epoch': 420}
+2025-02-28 14:23:00,081 - Job introduced: {'generation_id': 66, 'generation_moment': 963, 'job_id': 14, 'required_epoch': 110}
+2025-02-28 14:23:00,081 - Job introduced: {'generation_id': 67, 'generation_moment': 963, 'job_id': 7, 'required_epoch': 140}
+2025-02-28 14:23:22,082 - Job introduced: {'generation_id': 68, 'generation_moment': 985, 'job_id': 6, 'required_epoch': 200}
+2025-02-28 14:23:22,082 - Job introduced: {'generation_id': 69, 'generation_moment': 985, 'job_id': 12, 'required_epoch': 460}
+2025-02-28 14:23:22,082 - Job introduced: {'generation_id': 70, 'generation_moment': 985, 'job_id': 8, 'required_epoch': 420}
+2025-02-28 14:23:22,082 - Job introduced: {'generation_id': 71, 'generation_moment': 985, 'job_id': 10, 'required_epoch': 420}
+2025-02-28 14:24:09,083 - Job introduced: {'generation_id': 72, 'generation_moment': 1032, 'job_id': 5, 'required_epoch': 100}
+2025-02-28 14:24:09,083 - Job introduced: {'generation_id': 73, 'generation_moment': 1032, 'job_id': 11, 'required_epoch': 140}
+2025-02-28 14:24:09,083 - Job introduced: {'generation_id': 74, 'generation_moment': 1032, 'job_id': 1, 'required_epoch': 70}
+2025-02-28 14:24:46,084 - Job introduced: {'generation_id': 75, 'generation_moment': 1069, 'job_id': 12, 'required_epoch': 90}
+2025-02-28 14:24:46,084 - Job introduced: {'generation_id': 76, 'generation_moment': 1069, 'job_id': 16, 'required_epoch': 400}
+2025-02-28 14:24:46,084 - Job introduced: {'generation_id': 77, 'generation_moment': 1069, 'job_id': 7, 'required_epoch': 330}
+2025-02-28 14:25:18,085 - Job introduced: {'generation_id': 78, 'generation_moment': 1101, 'job_id': 12, 'required_epoch': 40}
+2025-02-28 14:25:18,085 - Job introduced: {'generation_id': 79, 'generation_moment': 1101, 'job_id': 5, 'required_epoch': 350}
+2025-02-28 14:25:59,086 - Job introduced: {'generation_id': 80, 'generation_moment': 1142, 'job_id': 9, 'required_epoch': 160}
+2025-02-28 14:25:59,086 - Job introduced: {'generation_id': 81, 'generation_moment': 1142, 'job_id': 12, 'required_epoch': 10}
+2025-02-28 14:26:31,086 - Job introduced: {'generation_id': 82, 'generation_moment': 1174, 'job_id': 3, 'required_epoch': 110}
+2025-02-28 14:27:11,087 - Job introduced: {'generation_id': 83, 'generation_moment': 1214, 'job_id': 3, 'required_epoch': 100}
+2025-02-28 14:27:11,087 - Job introduced: {'generation_id': 84, 'generation_moment': 1214, 'job_id': 12, 'required_epoch': 470}
+2025-02-28 14:28:09,088 - Job introduced: {'generation_id': 85, 'generation_moment': 1272, 'job_id': 10, 'required_epoch': 470}
+2025-02-28 14:28:41,439 - Job with generation_id 1 added to the queue.
+2025-02-28 14:28:41,443 - Job with generation_id 2 added to the queue.
+2025-02-28 14:28:41,447 - Job with generation_id 3 added to the queue.
+2025-02-28 14:28:41,450 - Job with generation_id 4 added to the queue.
+2025-02-28 14:28:41,454 - Job with generation_id 5 added to the queue.
+2025-02-28 14:28:41,458 - Job with generation_id 6 added to the queue.
+2025-02-28 14:28:41,462 - Job with generation_id 7 added to the queue.
+2025-02-28 14:28:41,465 - Job with generation_id 8 added to the queue.
+2025-02-28 14:28:41,468 - Job with generation_id 9 added to the queue.
+2025-02-28 14:28:41,472 - Job with generation_id 10 added to the queue.
+2025-02-28 14:28:41,475 - Job with generation_id 11 added to the queue.
+2025-02-28 14:28:41,479 - Job with generation_id 12 added to the queue.
+2025-02-28 14:28:41,482 - Job with generation_id 13 added to the queue.
+2025-02-28 14:28:41,485 - Job with generation_id 14 added to the queue.
+2025-02-28 14:28:41,489 - Job with generation_id 15 added to the queue.
+2025-02-28 14:28:41,492 - Job with generation_id 16 added to the queue.
+2025-02-28 14:28:41,496 - Job with generation_id 17 added to the queue.
+2025-02-28 14:28:41,499 - Job with generation_id 18 added to the queue.
+2025-02-28 14:28:41,503 - Job with generation_id 19 added to the queue.
+2025-02-28 14:28:41,506 - Job with generation_id 20 added to the queue.
+2025-02-28 14:28:41,509 - Job with generation_id 21 added to the queue.
+2025-02-28 14:28:41,513 - Job with generation_id 22 added to the queue.
+2025-02-28 14:28:41,517 - Job with generation_id 23 added to the queue.
+2025-02-28 14:28:41,520 - Job with generation_id 24 added to the queue.
+2025-02-28 14:28:41,523 - Job with generation_id 25 added to the queue.
+2025-02-28 14:28:41,527 - Job with generation_id 26 added to the queue.
+2025-02-28 14:28:41,531 - Job with generation_id 27 added to the queue.
+2025-02-28 14:28:41,534 - Job with generation_id 28 added to the queue.
+2025-02-28 14:28:41,538 - Job with generation_id 29 added to the queue.
+2025-02-28 14:28:41,542 - Job with generation_id 30 added to the queue.
+2025-02-28 14:28:41,546 - Job with generation_id 31 added to the queue.
+2025-02-28 14:28:41,550 - Job with generation_id 32 added to the queue.
+2025-02-28 14:28:41,554 - Job with generation_id 33 added to the queue.
+2025-02-28 14:28:41,557 - Job with generation_id 34 added to the queue.
+2025-02-28 14:28:41,561 - Job with generation_id 35 added to the queue.
+2025-02-28 14:28:41,564 - Job with generation_id 36 added to the queue.
+2025-02-28 14:28:41,568 - Job with generation_id 37 added to the queue.
+2025-02-28 14:28:41,571 - Job with generation_id 38 added to the queue.
+2025-02-28 14:28:41,574 - Job with generation_id 39 added to the queue.
+2025-02-28 14:28:41,578 - Job with generation_id 40 added to the queue.
+2025-02-28 14:28:41,581 - Job with generation_id 41 added to the queue.
+2025-02-28 14:28:41,585 - Job with generation_id 42 added to the queue.
+2025-02-28 14:28:41,588 - Job with generation_id 43 added to the queue.
+2025-02-28 14:28:41,591 - Job with generation_id 44 added to the queue.
+2025-02-28 14:28:41,595 - Job with generation_id 45 added to the queue.
+2025-02-28 14:28:41,598 - Job with generation_id 46 added to the queue.
+2025-02-28 14:28:41,602 - Job with generation_id 47 added to the queue.
+2025-02-28 14:28:41,605 - Job with generation_id 48 added to the queue.
+2025-02-28 14:28:41,609 - Job with generation_id 49 added to the queue.
+2025-02-28 14:28:41,612 - Job with generation_id 50 added to the queue.
+2025-02-28 14:28:41,615 - Job with generation_id 51 added to the queue.
+2025-02-28 14:28:41,619 - Job with generation_id 52 added to the queue.
+2025-02-28 14:28:41,622 - Job with generation_id 53 added to the queue.
+2025-02-28 14:28:41,626 - Job with generation_id 54 added to the queue.
+2025-02-28 14:29:04,089 - Job introduced: {'generation_id': 86, 'generation_moment': 1327, 'job_id': 16, 'required_epoch': 300}
+2025-02-28 14:29:04,089 - Job introduced: {'generation_id': 87, 'generation_moment': 1327, 'job_id': 12, 'required_epoch': 90}
+2025-02-28 14:29:04,089 - Job introduced: {'generation_id': 88, 'generation_moment': 1327, 'job_id': 6, 'required_epoch': 390}
+2025-02-28 14:30:03,090 - Job introduced: {'generation_id': 89, 'generation_moment': 1386, 'job_id': 6, 'required_epoch': 70}
+2025-02-28 14:30:03,090 - Job introduced: {'generation_id': 90, 'generation_moment': 1386, 'job_id': 1, 'required_epoch': 470}
+2025-02-28 14:30:03,090 - Job introduced: {'generation_id': 91, 'generation_moment': 1386, 'job_id': 13, 'required_epoch': 170}
+2025-02-28 14:30:03,090 - Job introduced: {'generation_id': 92, 'generation_moment': 1386, 'job_id': 4, 'required_epoch': 340}
+2025-02-28 14:30:22,091 - Job introduced: {'generation_id': 93, 'generation_moment': 1405, 'job_id': 11, 'required_epoch': 270}
+2025-02-28 14:31:16,092 - Job introduced: {'generation_id': 94, 'generation_moment': 1459, 'job_id': 10, 'required_epoch': 270}
+2025-02-28 14:31:16,092 - Job introduced: {'generation_id': 95, 'generation_moment': 1459, 'job_id': 3, 'required_epoch': 160}
+2025-02-28 14:31:16,092 - Job introduced: {'generation_id': 96, 'generation_moment': 1459, 'job_id': 16, 'required_epoch': 30}
+2025-02-28 14:31:16,092 - Job introduced: {'generation_id': 97, 'generation_moment': 1459, 'job_id': 12, 'required_epoch': 160}
+2025-02-28 14:31:35,093 - Job introduced: {'generation_id': 98, 'generation_moment': 1478, 'job_id': 8, 'required_epoch': 490}
+2025-02-28 14:31:35,093 - Job introduced: {'generation_id': 99, 'generation_moment': 1478, 'job_id': 12, 'required_epoch': 290}
+2025-02-28 14:31:35,093 - Job introduced: {'generation_id': 100, 'generation_moment': 1478, 'job_id': 7, 'required_epoch': 130}
+2025-02-28 14:31:35,093 - Job introduced: {'generation_id': 101, 'generation_moment': 1478, 'job_id': 16, 'required_epoch': 120}
+2025-02-28 14:32:35,094 - Job introduced: {'generation_id': 102, 'generation_moment': 1538, 'job_id': 5, 'required_epoch': 220}
+2025-02-28 14:32:35,094 - Job introduced: {'generation_id': 103, 'generation_moment': 1538, 'job_id': 15, 'required_epoch': 110}
+2025-02-28 14:32:35,094 - Job introduced: {'generation_id': 104, 'generation_moment': 1538, 'job_id': 16, 'required_epoch': 80}
+2025-02-28 14:33:28,095 - Job introduced: {'generation_id': 105, 'generation_moment': 1591, 'job_id': 3, 'required_epoch': 70}
+2025-02-28 14:33:28,095 - Job introduced: {'generation_id': 106, 'generation_moment': 1591, 'job_id': 16, 'required_epoch': 20}
+2025-02-28 14:33:28,095 - Job introduced: {'generation_id': 107, 'generation_moment': 1591, 'job_id': 15, 'required_epoch': 470}
+2025-02-28 14:33:28,095 - Job introduced: {'generation_id': 108, 'generation_moment': 1591, 'job_id': 7, 'required_epoch': 360}
+2025-02-28 14:34:04,096 - Job introduced: {'generation_id': 109, 'generation_moment': 1627, 'job_id': 1, 'required_epoch': 270}
+2025-02-28 14:35:02,097 - Job introduced: {'generation_id': 110, 'generation_moment': 1685, 'job_id': 6, 'required_epoch': 450}
+2025-02-28 14:35:02,097 - Job introduced: {'generation_id': 111, 'generation_moment': 1685, 'job_id': 1, 'required_epoch': 330}
+2025-02-28 14:35:08,556 - Job with generation_id 1 added to the queue.
+2025-02-28 14:35:08,561 - Job with generation_id 2 added to the queue.
+2025-02-28 14:35:08,565 - Job with generation_id 3 added to the queue.
+2025-02-28 14:35:08,569 - Job with generation_id 4 added to the queue.
+2025-02-28 14:35:08,572 - Job with generation_id 5 added to the queue.
+2025-02-28 14:35:08,576 - Job with generation_id 6 added to the queue.
+2025-02-28 14:35:08,580 - Job with generation_id 7 added to the queue.
+2025-02-28 14:35:08,584 - Job with generation_id 8 added to the queue.
+2025-02-28 14:35:08,587 - Job with generation_id 9 added to the queue.
+2025-02-28 14:35:08,591 - Job with generation_id 10 added to the queue.
+2025-02-28 14:35:08,596 - Job with generation_id 11 added to the queue.
+2025-02-28 14:35:08,600 - Job with generation_id 12 added to the queue.
+2025-02-28 14:35:08,604 - Job with generation_id 13 added to the queue.
+2025-02-28 14:35:08,608 - Job with generation_id 14 added to the queue.
+2025-02-28 14:35:08,612 - Job with generation_id 15 added to the queue.
+2025-02-28 14:35:08,615 - Job with generation_id 16 added to the queue.
+2025-02-28 14:35:08,619 - Job with generation_id 17 added to the queue.
+2025-02-28 14:35:08,623 - Job with generation_id 18 added to the queue.
+2025-02-28 14:35:08,627 - Job with generation_id 19 added to the queue.
+2025-02-28 14:35:08,632 - Job with generation_id 20 added to the queue.
+2025-02-28 14:35:08,635 - Job with generation_id 21 added to the queue.
+2025-02-28 14:35:08,639 - Job with generation_id 22 added to the queue.
+2025-02-28 14:35:08,643 - Job with generation_id 23 added to the queue.
+2025-02-28 14:35:08,647 - Job with generation_id 24 added to the queue.
+2025-02-28 14:35:08,650 - Job with generation_id 25 added to the queue.
+2025-02-28 14:35:08,654 - Job with generation_id 26 added to the queue.
+2025-02-28 14:35:08,658 - Job with generation_id 27 added to the queue.
+2025-02-28 14:35:08,662 - Job with generation_id 28 added to the queue.
+2025-02-28 14:35:08,665 - Job with generation_id 29 added to the queue.
+2025-02-28 14:35:08,669 - Job with generation_id 30 added to the queue.
+2025-02-28 14:35:08,673 - Job with generation_id 31 added to the queue.
+2025-02-28 14:35:08,677 - Job with generation_id 32 added to the queue.
+2025-02-28 14:35:08,680 - Job with generation_id 33 added to the queue.
+2025-02-28 14:35:08,684 - Job with generation_id 34 added to the queue.
+2025-02-28 14:35:08,688 - Job with generation_id 35 added to the queue.
+2025-02-28 14:35:08,692 - Job with generation_id 36 added to the queue.
+2025-02-28 14:35:08,696 - Job with generation_id 37 added to the queue.
+2025-02-28 14:35:08,701 - Job with generation_id 38 added to the queue.
+2025-02-28 14:35:08,706 - Job with generation_id 39 added to the queue.
+2025-02-28 14:35:08,711 - Job with generation_id 40 added to the queue.
+2025-02-28 14:35:08,716 - Job with generation_id 41 added to the queue.
+2025-02-28 14:35:08,721 - Job with generation_id 42 added to the queue.
+2025-02-28 14:35:08,726 - Job with generation_id 43 added to the queue.
+2025-02-28 14:35:08,732 - Job with generation_id 44 added to the queue.
+2025-02-28 14:35:08,737 - Job with generation_id 45 added to the queue.
+2025-02-28 14:35:08,742 - Job with generation_id 46 added to the queue.
+2025-02-28 14:35:08,746 - Job with generation_id 47 added to the queue.
+2025-02-28 14:35:08,751 - Job with generation_id 48 added to the queue.
+2025-02-28 14:35:08,755 - Job with generation_id 49 added to the queue.
+2025-02-28 14:35:08,759 - Job with generation_id 50 added to the queue.
+2025-02-28 14:35:08,762 - Job with generation_id 51 added to the queue.
+2025-02-28 14:35:08,766 - Job with generation_id 52 added to the queue.
+2025-02-28 14:35:08,769 - Job with generation_id 53 added to the queue.
+2025-02-28 14:35:08,775 - Job with generation_id 54 added to the queue.
+2025-02-28 14:35:44,098 - Job introduced: {'generation_id': 112, 'generation_moment': 1727, 'job_id': 10, 'required_epoch': 500}
+2025-02-28 14:35:44,099 - Job introduced: {'generation_id': 113, 'generation_moment': 1727, 'job_id': 14, 'required_epoch': 200}
+2025-02-28 14:35:44,099 - Job introduced: {'generation_id': 114, 'generation_moment': 1727, 'job_id': 3, 'required_epoch': 370}
+2025-02-28 14:35:44,099 - Job introduced: {'generation_id': 115, 'generation_moment': 1727, 'job_id': 6, 'required_epoch': 420}
+2025-02-28 14:36:11,100 - Job introduced: {'generation_id': 116, 'generation_moment': 1754, 'job_id': 12, 'required_epoch': 230}
+2025-02-28 14:36:11,100 - Job introduced: {'generation_id': 117, 'generation_moment': 1754, 'job_id': 8, 'required_epoch': 240}
+2025-02-28 14:36:11,100 - Job introduced: {'generation_id': 118, 'generation_moment': 1754, 'job_id': 4, 'required_epoch': 190}
+2025-02-28 14:36:11,100 - Job introduced: {'generation_id': 119, 'generation_moment': 1754, 'job_id': 7, 'required_epoch': 170}
+2025-02-28 14:36:53,101 - Job introduced: {'generation_id': 120, 'generation_moment': 1796, 'job_id': 16, 'required_epoch': 190}
+2025-02-28 14:36:53,101 - Job introduced: {'generation_id': 121, 'generation_moment': 1796, 'job_id': 9, 'required_epoch': 400}
+2025-02-28 14:37:51,102 - Job introduced: {'generation_id': 122, 'generation_moment': 1854, 'job_id': 5, 'required_epoch': 180}
+2025-02-28 14:38:21,102 - Job introduced: {'generation_id': 123, 'generation_moment': 1884, 'job_id': 2, 'required_epoch': 150}
+2025-02-28 14:38:21,103 - Job introduced: {'generation_id': 124, 'generation_moment': 1884, 'job_id': 16, 'required_epoch': 60}
+2025-02-28 14:38:47,799 - Job with generation_id 1 added to the queue.
+2025-02-28 14:38:47,803 - Job with generation_id 2 added to the queue.
+2025-02-28 14:38:47,807 - Job with generation_id 3 added to the queue.
+2025-02-28 14:38:47,812 - Job with generation_id 4 added to the queue.
+2025-02-28 14:38:47,817 - Job with generation_id 5 added to the queue.
+2025-02-28 14:38:47,821 - Job with generation_id 6 added to the queue.
+2025-02-28 14:38:47,826 - Job with generation_id 7 added to the queue.
+2025-02-28 14:38:47,831 - Job with generation_id 8 added to the queue.
+2025-02-28 14:38:47,835 - Job with generation_id 9 added to the queue.
+2025-02-28 14:38:47,840 - Job with generation_id 10 added to the queue.
+2025-02-28 14:38:47,844 - Job with generation_id 11 added to the queue.
+2025-02-28 14:38:47,849 - Job with generation_id 12 added to the queue.
+2025-02-28 14:38:47,854 - Job with generation_id 13 added to the queue.
+2025-02-28 14:38:47,858 - Job with generation_id 14 added to the queue.
+2025-02-28 14:38:47,863 - Job with generation_id 15 added to the queue.
+2025-02-28 14:38:47,868 - Job with generation_id 16 added to the queue.
+2025-02-28 14:38:47,873 - Job with generation_id 17 added to the queue.
+2025-02-28 14:38:47,877 - Job with generation_id 18 added to the queue.
+2025-02-28 14:38:47,882 - Job with generation_id 19 added to the queue.
+2025-02-28 14:38:47,885 - Job with generation_id 20 added to the queue.
+2025-02-28 14:38:47,888 - Job with generation_id 21 added to the queue.
+2025-02-28 14:38:47,892 - Job with generation_id 22 added to the queue.
+2025-02-28 14:38:47,895 - Job with generation_id 23 added to the queue.
+2025-02-28 14:38:47,899 - Job with generation_id 24 added to the queue.
+2025-02-28 14:38:47,902 - Job with generation_id 25 added to the queue.
+2025-02-28 14:38:47,906 - Job with generation_id 26 added to the queue.
+2025-02-28 14:38:47,909 - Job with generation_id 27 added to the queue.
+2025-02-28 14:38:47,913 - Job with generation_id 28 added to the queue.
+2025-02-28 14:38:47,916 - Job with generation_id 29 added to the queue.
+2025-02-28 14:38:47,920 - Job with generation_id 30 added to the queue.
+2025-02-28 14:39:02,931 - Job with generation_id 31 added to the queue.
+2025-02-28 14:39:02,935 - Job with generation_id 32 added to the queue.
+2025-02-28 14:39:02,938 - Job with generation_id 33 added to the queue.
+2025-02-28 14:39:02,942 - Job with generation_id 34 added to the queue.
+2025-02-28 14:39:02,945 - Job with generation_id 35 added to the queue.
+2025-02-28 14:39:17,103 - Job introduced: {'generation_id': 125, 'generation_moment': 1940, 'job_id': 15, 'required_epoch': 280}
+2025-02-28 14:39:17,103 - Job introduced: {'generation_id': 126, 'generation_moment': 1940, 'job_id': 12, 'required_epoch': 240}
+2025-02-28 14:39:17,103 - Job introduced: {'generation_id': 127, 'generation_moment': 1940, 'job_id': 8, 'required_epoch': 270}
+2025-02-28 14:39:41,699 - Job with generation_id 1 added to the queue.
+2025-02-28 14:39:41,703 - Job with generation_id 2 added to the queue.
+2025-02-28 14:39:41,707 - Job with generation_id 3 added to the queue.
+2025-02-28 14:39:41,711 - Job with generation_id 4 added to the queue.
+2025-02-28 14:39:41,714 - Job with generation_id 5 added to the queue.
+2025-02-28 14:39:41,717 - Job with generation_id 6 added to the queue.
+2025-02-28 14:39:41,721 - Job with generation_id 7 added to the queue.
+2025-02-28 14:39:41,724 - Job with generation_id 8 added to the queue.
+2025-02-28 14:39:41,728 - Job with generation_id 9 added to the queue.
+2025-02-28 14:39:41,731 - Job with generation_id 10 added to the queue.
+2025-02-28 14:39:41,734 - Job with generation_id 11 added to the queue.
+2025-02-28 14:39:41,738 - Job with generation_id 12 added to the queue.
+2025-02-28 14:39:41,741 - Job with generation_id 13 added to the queue.
+2025-02-28 14:39:41,745 - Job with generation_id 14 added to the queue.
+2025-02-28 14:39:41,748 - Job with generation_id 15 added to the queue.
+2025-02-28 14:39:41,751 - Job with generation_id 16 added to the queue.
+2025-02-28 14:39:41,755 - Job with generation_id 17 added to the queue.
+2025-02-28 14:39:41,758 - Job with generation_id 18 added to the queue.
+2025-02-28 14:39:41,762 - Job with generation_id 19 added to the queue.
+2025-02-28 14:39:41,765 - Job with generation_id 20 added to the queue.
+2025-02-28 14:39:41,769 - Job with generation_id 21 added to the queue.
+2025-02-28 14:39:41,772 - Job with generation_id 22 added to the queue.
+2025-02-28 14:39:41,776 - Job with generation_id 23 added to the queue.
+2025-02-28 14:39:41,779 - Job with generation_id 24 added to the queue.
+2025-02-28 14:39:41,783 - Job with generation_id 25 added to the queue.
+2025-02-28 14:39:41,786 - Job with generation_id 26 added to the queue.
+2025-02-28 14:39:41,790 - Job with generation_id 27 added to the queue.
+2025-02-28 14:39:41,793 - Job with generation_id 28 added to the queue.
+2025-02-28 14:39:41,797 - Job with generation_id 29 added to the queue.
+2025-02-28 14:39:41,800 - Job with generation_id 30 added to the queue.
+2025-02-28 14:39:41,803 - Job with generation_id 31 added to the queue.
+2025-02-28 14:39:41,807 - Job with generation_id 32 added to the queue.
+2025-02-28 14:39:41,810 - Job with generation_id 33 added to the queue.
+2025-02-28 14:39:41,813 - Job with generation_id 34 added to the queue.
+2025-02-28 14:39:41,817 - Job with generation_id 35 added to the queue.
+2025-02-28 14:39:41,820 - Job with generation_id 36 added to the queue.
+2025-02-28 14:39:41,824 - Job with generation_id 37 added to the queue.
+2025-02-28 14:39:41,827 - Job with generation_id 38 added to the queue.
+2025-02-28 14:39:41,830 - Job with generation_id 39 added to the queue.
+2025-02-28 14:39:41,834 - Job with generation_id 40 added to the queue.
+2025-02-28 14:39:42,104 - Job introduced: {'generation_id': 128, 'generation_moment': 1965, 'job_id': 10, 'required_epoch': 70}
+2025-02-28 14:39:42,104 - Job introduced: {'generation_id': 129, 'generation_moment': 1965, 'job_id': 7, 'required_epoch': 230}
+2025-02-28 14:39:42,104 - Job introduced: {'generation_id': 130, 'generation_moment': 1965, 'job_id': 13, 'required_epoch': 10}
+2025-02-28 14:39:42,104 - Job introduced: {'generation_id': 131, 'generation_moment': 1965, 'job_id': 9, 'required_epoch': 330}
+2025-02-28 14:39:56,844 - Job with generation_id 41 added to the queue.
+2025-02-28 14:39:56,848 - Job with generation_id 42 added to the queue.
+2025-02-28 14:39:56,852 - Job with generation_id 43 added to the queue.
+2025-02-28 14:39:56,856 - Job with generation_id 44 added to the queue.
+2025-02-28 14:39:56,859 - Job with generation_id 45 added to the queue.
+2025-02-28 14:40:24,105 - Job introduced: {'generation_id': 132, 'generation_moment': 2007, 'job_id': 9, 'required_epoch': 470}
+2025-02-28 14:40:24,105 - Job introduced: {'generation_id': 133, 'generation_moment': 2007, 'job_id': 8, 'required_epoch': 260}
+2025-02-28 14:40:24,105 - Job introduced: {'generation_id': 134, 'generation_moment': 2007, 'job_id': 11, 'required_epoch': 440}
+2025-02-28 14:40:24,105 - Job introduced: {'generation_id': 135, 'generation_moment': 2007, 'job_id': 14, 'required_epoch': 10}
+2025-02-28 14:41:02,106 - Job introduced: {'generation_id': 136, 'generation_moment': 2045, 'job_id': 1, 'required_epoch': 40}
+2025-02-28 14:41:02,106 - Job introduced: {'generation_id': 137, 'generation_moment': 2045, 'job_id': 6, 'required_epoch': 300}
+2025-02-28 14:41:02,106 - Job introduced: {'generation_id': 138, 'generation_moment': 2045, 'job_id': 10, 'required_epoch': 450}
+2025-02-28 14:41:02,106 - Job introduced: {'generation_id': 139, 'generation_moment': 2045, 'job_id': 9, 'required_epoch': 310}

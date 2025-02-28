@@ -12,6 +12,7 @@ queue_url = 'http://0.0.0.0:9902/queue'
 
 
 class deepLearningEnvironment(gym.Env):
+    # STEP 0: MAIN --------------------------------------------------------------------------------------------------------------------------------
     def __init__(self, max_dim=100):
         super(deepLearningEnvironment, self).__init__()
         self.max_dim = max_dim
@@ -24,11 +25,47 @@ class deepLearningEnvironment(gym.Env):
         self.generated_jobs = []
 
 
+    def reset(self, seed=None, **kwargs):
+        if seed is not None:
+            np.random.seed(seed)
+        self.set_state_dimension()
+        padded_state = np.zeros((self.max_dim,), dtype=np.float32)
+        padded_state[:self.current_dim] = self.state
+        return padded_state, {}
+
+
+    def step(self, action):
+        time.sleep(15)
+        self.state = self.fetch_state()
+        action = np.clip(action, self.action_space.low, self.action_space.high)
+        if action.shape != self.state.shape:
+            action = np.resize(action, self.state.shape)
+        self.schedule_jobs(action)
+        self.state += action
+        reward = -np.sum(np.abs(self.state - self.target_position))
+        done = False
+        padded_state = np.zeros((self.max_dim,), dtype=np.float32)
+        padded_state[:self.current_dim] = self.state
+        return padded_state, reward, done, False, {}
+
+    
+    def render(self):
+        print(f"Current state (dim {self.current_dim}): {self.state}")
+   
+
+    # STEP 1: STATE --------------------------------------------------------------------------------------------------------------------------------
     def fetch_state(self):
         response = requests.get("http://0.0.0.0:9907/state")
         return np.array(response.json(), dtype=np.float32)
 
 
+    def set_state_dimension(self):
+        self.state = self.fetch_state()
+        self.current_dim = len(self.state)
+        self.target_position = np.zeros((self.current_dim,), dtype=np.float32)
+
+
+    # STEP 2: ACTION --------------------------------------------------------------------------------------------------------------------------------
     def fetch_generated_jobs(self):
         while True:
             try:
@@ -85,43 +122,6 @@ class deepLearningEnvironment(gym.Env):
                 time.sleep(1)
 
 
-    def set_state_dimension(self):
-        self.state = self.fetch_state()
-        self.current_dim = len(self.state)
-        self.target_position = np.zeros((self.current_dim,), dtype=np.float32)
-
-
-    def reset(self, seed=None, **kwargs):
-        if seed is not None:
-            np.random.seed(seed)
-        self.set_state_dimension()
-        padded_state = np.zeros((self.max_dim,), dtype=np.float32)
-        padded_state[:self.current_dim] = self.state
-        return padded_state, {}
-
-
-    def step(self, action):
-        time.sleep(15)
-        self.state = self.fetch_state()
-        action = np.clip(action, self.action_space.low, self.action_space.high)
-        if action.shape != self.state.shape:
-            action = np.resize(action, self.state.shape)
-        self.schedule_jobs(action)
-        self.state += action
-        reward = -np.sum(np.abs(self.state - self.target_position))
-        done = False
-        padded_state = np.zeros((self.max_dim,), dtype=np.float32)
-        padded_state[:self.current_dim] = self.state
-        return padded_state, reward, done, False, {}
-
-
-    def render(self):
-        print(f"Current state (dim {self.current_dim}): {self.state}")
-   
-
-    def periodic_schedule(self):
-        while True:
-            action = np.random.uniform(low=-1, high=1, size=(len(self.generated_jobs),))
-            self.schedule_jobs(action)
-            time.sleep(15)
+    # STEP 3: REWARD --------------------------------------------------------------------------------------------------------------------------------
+    # Reward is calculated within the step function: -np.sum(np.abs(self.state - self.target_position))
 

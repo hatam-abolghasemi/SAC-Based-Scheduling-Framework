@@ -36,7 +36,7 @@ node_dict = {node.name: node for node in nodes}
 all_jobs = []
 class ClusterHandler(BaseHTTPRequestHandler):
     def log_message(self, format, *args):
-        return  # Suppress request logging
+        return
 
     def do_GET(self):
         try:
@@ -76,6 +76,7 @@ class ClusterHandler(BaseHTTPRequestHandler):
             logging.error(f"GET request error: {e}")
             self.send_response(500)
             self.end_headers()
+
 
     def do_POST(self):
         try:

@@ -53,15 +53,8 @@ class deepLearningEnvironment(gym.Env):
 
     def schedule_jobs(self, action):
         jobs = self.fetch_generated_jobs()
-        num_jobs = len(jobs)
-        num_nodes = 13
-        if np.all(action == 0):
-            print("Using round-robin scheduling...")
-            node_assignments = np.arange(num_jobs) % num_nodes + 1
-        else:
-            print("Using score-based scheduling...")
-            node_assignments = np.round((action + 1) * 6.5).astype(int)
-            node_assignments = np.clip(node_assignments, 1, 13)
+        node_assignments = np.round((action + 1) * 6.5).astype(int)
+        node_assignments = np.clip(node_assignments, 1, 13)
         for job, node in zip(jobs, node_assignments):
             generation_id = job['generation_id']
             if generation_id in self.scheduled_generation_ids:
@@ -88,7 +81,7 @@ class deepLearningEnvironment(gym.Env):
                     else:
                         print(f"Failed to deploy job with generation_id {generation_id}. Response: {deploy_response.text}")
                 except requests.RequestException as e:
-                    print(f"Error accessing cluster. Retrying in 1 second...")
+                    print(f"Error accessing cluster. Retrying in 1 seconds...")
                 time.sleep(1)
 
 
@@ -110,10 +103,10 @@ class deepLearningEnvironment(gym.Env):
     def step(self, action):
         time.sleep(15)
         self.state = self.fetch_state()
-        self.target_position = np.zeros_like(self.state)
         action = np.clip(action, self.action_space.low, self.action_space.high)
         if action.shape != self.state.shape:
             action = np.resize(action, self.state.shape)
+        self.schedule_jobs(action)
         self.state += action
         reward = -np.sum(np.abs(self.state - self.target_position))
         done = False

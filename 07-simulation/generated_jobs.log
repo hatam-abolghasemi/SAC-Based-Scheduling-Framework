@@ -1,0 +1,648 @@
+2025-03-04 20:54:00,843 - Job introduced: {'generation_id': 1, 'generation_moment': 1, 'job_id': 14, 'required_epoch': 130}
+2025-03-04 20:54:00,843 - Job introduced: {'generation_id': 2, 'generation_moment': 1, 'job_id': 10, 'required_epoch': 20}
+2025-03-04 20:54:58,845 - Job introduced: {'generation_id': 3, 'generation_moment': 58, 'job_id': 14, 'required_epoch': 360}
+2025-03-04 20:54:58,845 - Job introduced: {'generation_id': 4, 'generation_moment': 58, 'job_id': 4, 'required_epoch': 350}
+2025-03-04 20:54:58,845 - Job introduced: {'generation_id': 5, 'generation_moment': 58, 'job_id': 16, 'required_epoch': 120}
+2025-03-04 20:54:58,845 - Job introduced: {'generation_id': 6, 'generation_moment': 58, 'job_id': 3, 'required_epoch': 20}
+2025-03-04 20:55:50,846 - Job introduced: {'generation_id': 7, 'generation_moment': 110, 'job_id': 11, 'required_epoch': 270}
+2025-03-04 20:56:41,847 - Job introduced: {'generation_id': 8, 'generation_moment': 161, 'job_id': 10, 'required_epoch': 90}
+2025-03-04 20:56:41,847 - Job introduced: {'generation_id': 9, 'generation_moment': 161, 'job_id': 15, 'required_epoch': 450}
+2025-03-04 20:57:18,849 - Job introduced: {'generation_id': 10, 'generation_moment': 198, 'job_id': 8, 'required_epoch': 300}
+2025-03-04 20:57:55,851 - Job introduced: {'generation_id': 11, 'generation_moment': 235, 'job_id': 2, 'required_epoch': 380}
+2025-03-04 20:58:31,851 - Job introduced: {'generation_id': 12, 'generation_moment': 271, 'job_id': 12, 'required_epoch': 230}
+2025-03-04 20:59:30,853 - Job introduced: {'generation_id': 13, 'generation_moment': 330, 'job_id': 5, 'required_epoch': 120}
+2025-03-04 20:59:30,853 - Job introduced: {'generation_id': 14, 'generation_moment': 330, 'job_id': 6, 'required_epoch': 120}
+2025-03-04 20:59:30,853 - Job introduced: {'generation_id': 15, 'generation_moment': 330, 'job_id': 7, 'required_epoch': 40}
+2025-03-04 20:59:47,854 - Job introduced: {'generation_id': 16, 'generation_moment': 347, 'job_id': 7, 'required_epoch': 460}
+2025-03-04 20:59:47,854 - Job introduced: {'generation_id': 17, 'generation_moment': 347, 'job_id': 4, 'required_epoch': 50}
+2025-03-04 20:59:47,854 - Job introduced: {'generation_id': 18, 'generation_moment': 347, 'job_id': 3, 'required_epoch': 240}
+2025-03-04 20:59:47,854 - Job introduced: {'generation_id': 19, 'generation_moment': 347, 'job_id': 15, 'required_epoch': 440}
+2025-03-04 21:00:15,855 - Job introduced: {'generation_id': 20, 'generation_moment': 375, 'job_id': 8, 'required_epoch': 450}
+2025-03-04 21:01:01,855 - Job introduced: {'generation_id': 21, 'generation_moment': 421, 'job_id': 11, 'required_epoch': 130}
+2025-03-04 21:01:01,856 - Job introduced: {'generation_id': 22, 'generation_moment': 421, 'job_id': 12, 'required_epoch': 230}
+2025-03-04 21:01:01,856 - Job introduced: {'generation_id': 23, 'generation_moment': 421, 'job_id': 8, 'required_epoch': 480}
+2025-03-04 21:01:01,856 - Job introduced: {'generation_id': 24, 'generation_moment': 421, 'job_id': 9, 'required_epoch': 390}
+2025-03-04 21:01:31,856 - Job introduced: {'generation_id': 25, 'generation_moment': 451, 'job_id': 8, 'required_epoch': 50}
+2025-03-04 21:01:31,856 - Job introduced: {'generation_id': 26, 'generation_moment': 451, 'job_id': 3, 'required_epoch': 150}
+2025-03-04 21:01:31,857 - Job introduced: {'generation_id': 27, 'generation_moment': 451, 'job_id': 1, 'required_epoch': 370}
+2025-03-04 21:01:31,857 - Job introduced: {'generation_id': 28, 'generation_moment': 451, 'job_id': 13, 'required_epoch': 180}
+2025-03-04 21:01:58,857 - Job introduced: {'generation_id': 29, 'generation_moment': 478, 'job_id': 13, 'required_epoch': 430}
+2025-03-04 21:01:58,858 - Job introduced: {'generation_id': 30, 'generation_moment': 478, 'job_id': 4, 'required_epoch': 90}
+2025-03-04 21:01:58,858 - Job introduced: {'generation_id': 31, 'generation_moment': 478, 'job_id': 7, 'required_epoch': 140}
+2025-03-04 21:02:22,858 - Job introduced: {'generation_id': 32, 'generation_moment': 502, 'job_id': 11, 'required_epoch': 450}
+2025-03-04 21:02:22,859 - Job introduced: {'generation_id': 33, 'generation_moment': 502, 'job_id': 16, 'required_epoch': 50}
+2025-03-04 21:02:22,859 - Job introduced: {'generation_id': 34, 'generation_moment': 502, 'job_id': 10, 'required_epoch': 430}
+2025-03-04 21:03:10,860 - Job introduced: {'generation_id': 35, 'generation_moment': 550, 'job_id': 9, 'required_epoch': 240}
+2025-03-04 21:03:39,861 - Job introduced: {'generation_id': 36, 'generation_moment': 579, 'job_id': 2, 'required_epoch': 420}
+2025-03-04 21:03:39,861 - Job introduced: {'generation_id': 37, 'generation_moment': 579, 'job_id': 16, 'required_epoch': 460}
+2025-03-04 21:03:39,861 - Job introduced: {'generation_id': 38, 'generation_moment': 579, 'job_id': 3, 'required_epoch': 480}
+2025-03-04 21:04:37,862 - Job introduced: {'generation_id': 39, 'generation_moment': 637, 'job_id': 15, 'required_epoch': 300}
+2025-03-04 21:04:37,862 - Job introduced: {'generation_id': 40, 'generation_moment': 637, 'job_id': 13, 'required_epoch': 470}
+2025-03-04 21:04:37,862 - Job introduced: {'generation_id': 41, 'generation_moment': 637, 'job_id': 7, 'required_epoch': 90}
+2025-03-04 21:04:37,862 - Job introduced: {'generation_id': 42, 'generation_moment': 637, 'job_id': 8, 'required_epoch': 370}
+2025-03-04 21:05:29,863 - Job introduced: {'generation_id': 43, 'generation_moment': 689, 'job_id': 4, 'required_epoch': 150}
+2025-03-04 21:06:29,864 - Job introduced: {'generation_id': 44, 'generation_moment': 749, 'job_id': 4, 'required_epoch': 180}
+2025-03-04 21:06:29,864 - Job introduced: {'generation_id': 45, 'generation_moment': 749, 'job_id': 5, 'required_epoch': 20}
+2025-03-04 21:06:29,864 - Job introduced: {'generation_id': 46, 'generation_moment': 749, 'job_id': 15, 'required_epoch': 130}
+2025-03-04 21:06:29,864 - Job introduced: {'generation_id': 47, 'generation_moment': 749, 'job_id': 14, 'required_epoch': 80}
+2025-03-04 21:07:26,865 - Job introduced: {'generation_id': 48, 'generation_moment': 806, 'job_id': 8, 'required_epoch': 90}
+2025-03-04 21:07:26,865 - Job introduced: {'generation_id': 49, 'generation_moment': 806, 'job_id': 11, 'required_epoch': 490}
+2025-03-04 21:07:42,866 - Job introduced: {'generation_id': 50, 'generation_moment': 822, 'job_id': 4, 'required_epoch': 320}
+2025-03-04 21:07:42,866 - Job introduced: {'generation_id': 51, 'generation_moment': 822, 'job_id': 7, 'required_epoch': 40}
+2025-03-04 21:07:42,866 - Job introduced: {'generation_id': 52, 'generation_moment': 822, 'job_id': 14, 'required_epoch': 70}
+2025-03-04 21:07:42,866 - Job introduced: {'generation_id': 53, 'generation_moment': 822, 'job_id': 16, 'required_epoch': 240}
+2025-03-04 21:08:10,867 - Job introduced: {'generation_id': 54, 'generation_moment': 850, 'job_id': 15, 'required_epoch': 50}
+2025-03-04 21:08:10,867 - Job introduced: {'generation_id': 55, 'generation_moment': 850, 'job_id': 12, 'required_epoch': 410}
+2025-03-04 21:08:30,868 - Job introduced: {'generation_id': 56, 'generation_moment': 870, 'job_id': 10, 'required_epoch': 360}
+2025-03-04 21:08:30,868 - Job introduced: {'generation_id': 57, 'generation_moment': 870, 'job_id': 9, 'required_epoch': 200}
+2025-03-04 21:09:15,869 - Job introduced: {'generation_id': 58, 'generation_moment': 915, 'job_id': 7, 'required_epoch': 140}
+2025-03-04 21:09:15,869 - Job introduced: {'generation_id': 59, 'generation_moment': 915, 'job_id': 11, 'required_epoch': 170}
+2025-03-04 21:09:15,869 - Job introduced: {'generation_id': 60, 'generation_moment': 915, 'job_id': 4, 'required_epoch': 90}
+2025-03-04 21:09:15,869 - Job introduced: {'generation_id': 61, 'generation_moment': 915, 'job_id': 2, 'required_epoch': 210}
+2025-03-04 21:09:34,870 - Job introduced: {'generation_id': 62, 'generation_moment': 934, 'job_id': 12, 'required_epoch': 400}
+2025-03-04 21:09:34,870 - Job introduced: {'generation_id': 63, 'generation_moment': 934, 'job_id': 1, 'required_epoch': 300}
+2025-03-04 21:09:34,870 - Job introduced: {'generation_id': 64, 'generation_moment': 934, 'job_id': 8, 'required_epoch': 180}
+2025-03-04 21:09:34,871 - Job introduced: {'generation_id': 65, 'generation_moment': 934, 'job_id': 11, 'required_epoch': 190}
+2025-03-04 21:10:02,871 - Job introduced: {'generation_id': 66, 'generation_moment': 962, 'job_id': 3, 'required_epoch': 230}
+2025-03-04 21:10:02,871 - Job introduced: {'generation_id': 67, 'generation_moment': 962, 'job_id': 12, 'required_epoch': 140}
+2025-03-04 21:10:20,873 - Job introduced: {'generation_id': 68, 'generation_moment': 980, 'job_id': 5, 'required_epoch': 460}
+2025-03-04 21:11:17,874 - Job introduced: {'generation_id': 69, 'generation_moment': 1037, 'job_id': 15, 'required_epoch': 40}
+2025-03-04 21:12:04,875 - Job introduced: {'generation_id': 70, 'generation_moment': 1084, 'job_id': 3, 'required_epoch': 340}
+2025-03-04 21:12:04,875 - Job introduced: {'generation_id': 71, 'generation_moment': 1084, 'job_id': 14, 'required_epoch': 50}
+2025-03-04 21:12:04,875 - Job introduced: {'generation_id': 72, 'generation_moment': 1084, 'job_id': 15, 'required_epoch': 230}
+2025-03-04 21:12:04,875 - Job introduced: {'generation_id': 73, 'generation_moment': 1084, 'job_id': 9, 'required_epoch': 110}
+2025-03-04 21:12:39,876 - Job introduced: {'generation_id': 74, 'generation_moment': 1119, 'job_id': 12, 'required_epoch': 30}
+2025-03-04 21:12:39,876 - Job introduced: {'generation_id': 75, 'generation_moment': 1119, 'job_id': 3, 'required_epoch': 230}
+2025-03-04 21:12:39,876 - Job introduced: {'generation_id': 76, 'generation_moment': 1119, 'job_id': 2, 'required_epoch': 400}
+2025-03-04 21:13:22,877 - Job introduced: {'generation_id': 77, 'generation_moment': 1162, 'job_id': 16, 'required_epoch': 30}
+2025-03-04 21:13:22,877 - Job introduced: {'generation_id': 78, 'generation_moment': 1162, 'job_id': 10, 'required_epoch': 160}
+2025-03-04 21:13:22,877 - Job introduced: {'generation_id': 79, 'generation_moment': 1162, 'job_id': 11, 'required_epoch': 240}
+2025-03-04 21:13:22,877 - Job introduced: {'generation_id': 80, 'generation_moment': 1162, 'job_id': 8, 'required_epoch': 20}
+2025-03-04 21:14:16,878 - Job introduced: {'generation_id': 81, 'generation_moment': 1216, 'job_id': 8, 'required_epoch': 40}
+2025-03-04 21:14:33,879 - Job introduced: {'generation_id': 82, 'generation_moment': 1233, 'job_id': 8, 'required_epoch': 150}
+2025-03-04 21:15:26,879 - Job introduced: {'generation_id': 83, 'generation_moment': 1286, 'job_id': 13, 'required_epoch': 160}
+2025-03-04 21:15:26,880 - Job introduced: {'generation_id': 84, 'generation_moment': 1286, 'job_id': 5, 'required_epoch': 220}
+2025-03-04 21:16:22,880 - Job introduced: {'generation_id': 85, 'generation_moment': 1342, 'job_id': 9, 'required_epoch': 290}
+2025-03-04 21:16:43,882 - Job introduced: {'generation_id': 86, 'generation_moment': 1363, 'job_id': 1, 'required_epoch': 230}
+2025-03-04 21:16:51,100 - Job with generation_id 1 added to the queue.
+2025-03-04 21:16:51,104 - Job with generation_id 2 added to the queue.
+2025-03-04 21:16:51,108 - Job with generation_id 3 added to the queue.
+2025-03-04 21:16:51,111 - Job with generation_id 4 added to the queue.
+2025-03-04 21:16:51,115 - Job with generation_id 5 added to the queue.
+2025-03-04 21:16:51,118 - Job with generation_id 6 added to the queue.
+2025-03-04 21:16:51,122 - Job with generation_id 7 added to the queue.
+2025-03-04 21:16:51,125 - Job with generation_id 8 added to the queue.
+2025-03-04 21:16:51,129 - Job with generation_id 9 added to the queue.
+2025-03-04 21:16:51,132 - Job with generation_id 10 added to the queue.
+2025-03-04 21:16:51,136 - Job with generation_id 11 added to the queue.
+2025-03-04 21:16:51,139 - Job with generation_id 12 added to the queue.
+2025-03-04 21:16:51,143 - Job with generation_id 13 added to the queue.
+2025-03-04 21:16:51,146 - Job with generation_id 14 added to the queue.
+2025-03-04 21:16:51,150 - Job with generation_id 15 added to the queue.
+2025-03-04 21:16:51,153 - Job with generation_id 16 added to the queue.
+2025-03-04 21:16:51,157 - Job with generation_id 17 added to the queue.
+2025-03-04 21:16:51,161 - Job with generation_id 18 added to the queue.
+2025-03-04 21:16:51,165 - Job with generation_id 19 added to the queue.
+2025-03-04 21:16:51,169 - Job with generation_id 20 added to the queue.
+2025-03-04 21:16:51,174 - Job with generation_id 21 added to the queue.
+2025-03-04 21:16:51,179 - Job with generation_id 22 added to the queue.
+2025-03-04 21:16:51,183 - Job with generation_id 23 added to the queue.
+2025-03-04 21:16:51,187 - Job with generation_id 24 added to the queue.
+2025-03-04 21:16:51,191 - Job with generation_id 25 added to the queue.
+2025-03-04 21:16:51,195 - Job with generation_id 26 added to the queue.
+2025-03-04 21:16:51,199 - Job with generation_id 27 added to the queue.
+2025-03-04 21:16:51,204 - Job with generation_id 28 added to the queue.
+2025-03-04 21:16:51,208 - Job with generation_id 29 added to the queue.
+2025-03-04 21:16:51,212 - Job with generation_id 30 added to the queue.
+2025-03-04 21:16:51,216 - Job with generation_id 31 added to the queue.
+2025-03-04 21:16:51,220 - Job with generation_id 32 added to the queue.
+2025-03-04 21:16:51,224 - Job with generation_id 33 added to the queue.
+2025-03-04 21:16:51,229 - Job with generation_id 34 added to the queue.
+2025-03-04 21:16:51,233 - Job with generation_id 35 added to the queue.
+2025-03-04 21:16:51,237 - Job with generation_id 36 added to the queue.
+2025-03-04 21:16:51,241 - Job with generation_id 37 added to the queue.
+2025-03-04 21:16:51,245 - Job with generation_id 38 added to the queue.
+2025-03-04 21:16:51,250 - Job with generation_id 39 added to the queue.
+2025-03-04 21:16:51,253 - Job with generation_id 40 added to the queue.
+2025-03-04 21:16:51,257 - Job with generation_id 41 added to the queue.
+2025-03-04 21:16:51,262 - Job with generation_id 42 added to the queue.
+2025-03-04 21:16:51,266 - Job with generation_id 43 added to the queue.
+2025-03-04 21:16:51,269 - Job with generation_id 44 added to the queue.
+2025-03-04 21:16:51,273 - Job with generation_id 45 added to the queue.
+2025-03-04 21:16:51,277 - Job with generation_id 46 added to the queue.
+2025-03-04 21:16:51,281 - Job with generation_id 47 added to the queue.
+2025-03-04 21:16:51,285 - Job with generation_id 48 added to the queue.
+2025-03-04 21:16:51,289 - Job with generation_id 49 added to the queue.
+2025-03-04 21:16:51,293 - Job with generation_id 50 added to the queue.
+2025-03-04 21:16:51,297 - Job with generation_id 51 added to the queue.
+2025-03-04 21:16:51,301 - Job with generation_id 52 added to the queue.
+2025-03-04 21:16:51,305 - Job with generation_id 53 added to the queue.
+2025-03-04 21:16:51,309 - Job with generation_id 54 added to the queue.
+2025-03-04 21:16:51,313 - Job with generation_id 55 added to the queue.
+2025-03-04 21:16:51,317 - Job with generation_id 56 added to the queue.
+2025-03-04 21:16:51,321 - Job with generation_id 57 added to the queue.
+2025-03-04 21:16:51,325 - Job with generation_id 58 added to the queue.
+2025-03-04 21:16:51,329 - Job with generation_id 59 added to the queue.
+2025-03-04 21:16:51,333 - Job with generation_id 60 added to the queue.
+2025-03-04 21:16:51,336 - Job with generation_id 61 added to the queue.
+2025-03-04 21:16:51,340 - Job with generation_id 62 added to the queue.
+2025-03-04 21:16:51,344 - Job with generation_id 63 added to the queue.
+2025-03-04 21:16:51,348 - Job with generation_id 64 added to the queue.
+2025-03-04 21:16:51,352 - Job with generation_id 65 added to the queue.
+2025-03-04 21:16:51,357 - Job with generation_id 66 added to the queue.
+2025-03-04 21:16:51,361 - Job with generation_id 67 added to the queue.
+2025-03-04 21:16:51,366 - Job with generation_id 68 added to the queue.
+2025-03-04 21:16:51,370 - Job with generation_id 69 added to the queue.
+2025-03-04 21:16:51,374 - Job with generation_id 70 added to the queue.
+2025-03-04 21:16:51,378 - Job with generation_id 71 added to the queue.
+2025-03-04 21:16:51,382 - Job with generation_id 72 added to the queue.
+2025-03-04 21:16:51,386 - Job with generation_id 73 added to the queue.
+2025-03-04 21:16:51,390 - Job with generation_id 74 added to the queue.
+2025-03-04 21:16:51,393 - Job with generation_id 75 added to the queue.
+2025-03-04 21:16:51,397 - Job with generation_id 76 added to the queue.
+2025-03-04 21:16:51,401 - Job with generation_id 77 added to the queue.
+2025-03-04 21:16:51,405 - Job with generation_id 78 added to the queue.
+2025-03-04 21:16:51,409 - Job with generation_id 79 added to the queue.
+2025-03-04 21:16:51,413 - Job with generation_id 80 added to the queue.
+2025-03-04 21:16:51,417 - Job with generation_id 81 added to the queue.
+2025-03-04 21:16:51,421 - Job with generation_id 82 added to the queue.
+2025-03-04 21:16:51,425 - Job with generation_id 83 added to the queue.
+2025-03-04 21:16:51,429 - Job with generation_id 84 added to the queue.
+2025-03-04 21:16:51,432 - Job with generation_id 85 added to the queue.
+2025-03-04 21:16:51,436 - Job with generation_id 86 added to the queue.
+2025-03-04 21:17:41,883 - Job introduced: {'generation_id': 87, 'generation_moment': 1421, 'job_id': 2, 'required_epoch': 380}
+2025-03-04 21:17:41,884 - Job introduced: {'generation_id': 88, 'generation_moment': 1421, 'job_id': 6, 'required_epoch': 490}
+2025-03-04 21:18:00,884 - Job introduced: {'generation_id': 89, 'generation_moment': 1440, 'job_id': 4, 'required_epoch': 240}
+2025-03-04 21:18:00,884 - Job introduced: {'generation_id': 90, 'generation_moment': 1440, 'job_id': 8, 'required_epoch': 390}
+2025-03-04 21:18:00,884 - Job introduced: {'generation_id': 91, 'generation_moment': 1440, 'job_id': 16, 'required_epoch': 120}
+2025-03-04 21:18:27,885 - Job introduced: {'generation_id': 92, 'generation_moment': 1467, 'job_id': 13, 'required_epoch': 400}
+2025-03-04 21:18:27,885 - Job introduced: {'generation_id': 93, 'generation_moment': 1467, 'job_id': 16, 'required_epoch': 270}
+2025-03-04 21:18:27,885 - Job introduced: {'generation_id': 94, 'generation_moment': 1467, 'job_id': 10, 'required_epoch': 60}
+2025-03-04 21:19:08,886 - Job introduced: {'generation_id': 95, 'generation_moment': 1508, 'job_id': 5, 'required_epoch': 430}
+2025-03-04 21:19:08,886 - Job introduced: {'generation_id': 96, 'generation_moment': 1508, 'job_id': 10, 'required_epoch': 410}
+2025-03-04 21:19:08,886 - Job introduced: {'generation_id': 97, 'generation_moment': 1508, 'job_id': 12, 'required_epoch': 290}
+2025-03-04 21:19:08,886 - Job introduced: {'generation_id': 98, 'generation_moment': 1508, 'job_id': 4, 'required_epoch': 90}
+2025-03-04 21:19:54,887 - Job introduced: {'generation_id': 99, 'generation_moment': 1554, 'job_id': 5, 'required_epoch': 250}
+2025-03-04 21:19:54,887 - Job introduced: {'generation_id': 100, 'generation_moment': 1554, 'job_id': 8, 'required_epoch': 220}
+2025-03-04 21:19:54,887 - Job introduced: {'generation_id': 101, 'generation_moment': 1554, 'job_id': 13, 'required_epoch': 210}
+2025-03-04 21:19:54,887 - Job introduced: {'generation_id': 102, 'generation_moment': 1554, 'job_id': 4, 'required_epoch': 190}
+2025-03-04 21:20:41,888 - Job introduced: {'generation_id': 103, 'generation_moment': 1601, 'job_id': 1, 'required_epoch': 250}
+2025-03-04 21:20:41,888 - Job introduced: {'generation_id': 104, 'generation_moment': 1601, 'job_id': 11, 'required_epoch': 150}
+2025-03-04 21:21:31,889 - Job introduced: {'generation_id': 105, 'generation_moment': 1651, 'job_id': 15, 'required_epoch': 50}
+2025-03-04 21:21:31,889 - Job introduced: {'generation_id': 106, 'generation_moment': 1651, 'job_id': 1, 'required_epoch': 380}
+2025-03-04 21:21:31,889 - Job introduced: {'generation_id': 107, 'generation_moment': 1651, 'job_id': 7, 'required_epoch': 300}
+2025-03-04 21:21:31,889 - Job introduced: {'generation_id': 108, 'generation_moment': 1651, 'job_id': 14, 'required_epoch': 430}
+2025-03-04 21:22:21,890 - Job introduced: {'generation_id': 109, 'generation_moment': 1701, 'job_id': 2, 'required_epoch': 260}
+2025-03-04 21:22:38,891 - Job introduced: {'generation_id': 110, 'generation_moment': 1718, 'job_id': 4, 'required_epoch': 490}
+2025-03-04 21:22:38,891 - Job introduced: {'generation_id': 111, 'generation_moment': 1718, 'job_id': 6, 'required_epoch': 500}
+2025-03-04 21:23:00,891 - Job introduced: {'generation_id': 112, 'generation_moment': 1740, 'job_id': 1, 'required_epoch': 450}
+2025-03-04 21:23:00,892 - Job introduced: {'generation_id': 113, 'generation_moment': 1740, 'job_id': 10, 'required_epoch': 490}
+2025-03-04 21:23:46,892 - Job introduced: {'generation_id': 114, 'generation_moment': 1786, 'job_id': 16, 'required_epoch': 130}
+2025-03-04 21:24:11,894 - Job introduced: {'generation_id': 115, 'generation_moment': 1811, 'job_id': 4, 'required_epoch': 500}
+2025-03-04 21:24:11,894 - Job introduced: {'generation_id': 116, 'generation_moment': 1811, 'job_id': 2, 'required_epoch': 500}
+2025-03-04 21:24:34,895 - Job introduced: {'generation_id': 117, 'generation_moment': 1834, 'job_id': 15, 'required_epoch': 230}
+2025-03-04 21:25:07,896 - Job introduced: {'generation_id': 118, 'generation_moment': 1867, 'job_id': 13, 'required_epoch': 480}
+2025-03-04 21:25:07,896 - Job introduced: {'generation_id': 119, 'generation_moment': 1867, 'job_id': 3, 'required_epoch': 290}
+2025-03-04 21:25:07,896 - Job introduced: {'generation_id': 120, 'generation_moment': 1867, 'job_id': 1, 'required_epoch': 440}
+2025-03-04 21:25:07,896 - Job introduced: {'generation_id': 121, 'generation_moment': 1867, 'job_id': 8, 'required_epoch': 310}
+2025-03-04 21:25:25,897 - Job introduced: {'generation_id': 122, 'generation_moment': 1885, 'job_id': 16, 'required_epoch': 310}
+2025-03-04 21:25:25,897 - Job introduced: {'generation_id': 123, 'generation_moment': 1885, 'job_id': 8, 'required_epoch': 250}
+2025-03-04 21:25:53,897 - Job introduced: {'generation_id': 124, 'generation_moment': 1913, 'job_id': 4, 'required_epoch': 260}
+2025-03-04 21:25:53,898 - Job introduced: {'generation_id': 125, 'generation_moment': 1913, 'job_id': 15, 'required_epoch': 210}
+2025-03-04 21:25:53,898 - Job introduced: {'generation_id': 126, 'generation_moment': 1913, 'job_id': 10, 'required_epoch': 280}
+2025-03-04 21:25:53,898 - Job introduced: {'generation_id': 127, 'generation_moment': 1913, 'job_id': 7, 'required_epoch': 210}
+2025-03-04 21:26:32,898 - Job introduced: {'generation_id': 128, 'generation_moment': 1952, 'job_id': 9, 'required_epoch': 140}
+2025-03-04 21:26:32,899 - Job introduced: {'generation_id': 129, 'generation_moment': 1952, 'job_id': 10, 'required_epoch': 70}
+2025-03-04 21:26:32,899 - Job introduced: {'generation_id': 130, 'generation_moment': 1952, 'job_id': 3, 'required_epoch': 190}
+2025-03-04 21:27:14,899 - Job introduced: {'generation_id': 131, 'generation_moment': 1994, 'job_id': 15, 'required_epoch': 140}
+2025-03-04 21:27:14,899 - Job introduced: {'generation_id': 132, 'generation_moment': 1994, 'job_id': 8, 'required_epoch': 230}
+2025-03-04 21:27:25,736 - Job with generation_id 1 added to the queue.
+2025-03-04 21:27:25,740 - Job with generation_id 2 added to the queue.
+2025-03-04 21:27:25,744 - Job with generation_id 3 added to the queue.
+2025-03-04 21:27:25,748 - Job with generation_id 4 added to the queue.
+2025-03-04 21:27:25,751 - Job with generation_id 5 added to the queue.
+2025-03-04 21:27:25,755 - Job with generation_id 6 added to the queue.
+2025-03-04 21:27:25,758 - Job with generation_id 7 added to the queue.
+2025-03-04 21:27:25,762 - Job with generation_id 8 added to the queue.
+2025-03-04 21:27:25,766 - Job with generation_id 9 added to the queue.
+2025-03-04 21:27:25,769 - Job with generation_id 10 added to the queue.
+2025-03-04 21:27:25,773 - Job with generation_id 11 added to the queue.
+2025-03-04 21:27:25,776 - Job with generation_id 12 added to the queue.
+2025-03-04 21:27:25,780 - Job with generation_id 13 added to the queue.
+2025-03-04 21:27:25,783 - Job with generation_id 14 added to the queue.
+2025-03-04 21:27:25,787 - Job with generation_id 15 added to the queue.
+2025-03-04 21:27:25,790 - Job with generation_id 16 added to the queue.
+2025-03-04 21:27:25,794 - Job with generation_id 17 added to the queue.
+2025-03-04 21:27:25,797 - Job with generation_id 18 added to the queue.
+2025-03-04 21:27:25,801 - Job with generation_id 19 added to the queue.
+2025-03-04 21:27:25,804 - Job with generation_id 20 added to the queue.
+2025-03-04 21:27:25,807 - Job with generation_id 21 added to the queue.
+2025-03-04 21:27:25,811 - Job with generation_id 22 added to the queue.
+2025-03-04 21:27:25,814 - Job with generation_id 23 added to the queue.
+2025-03-04 21:27:25,818 - Job with generation_id 24 added to the queue.
+2025-03-04 21:27:25,821 - Job with generation_id 25 added to the queue.
+2025-03-04 21:27:25,824 - Job with generation_id 26 added to the queue.
+2025-03-04 21:27:25,828 - Job with generation_id 27 added to the queue.
+2025-03-04 21:27:25,831 - Job with generation_id 28 added to the queue.
+2025-03-04 21:27:25,834 - Job with generation_id 29 added to the queue.
+2025-03-04 21:27:25,838 - Job with generation_id 30 added to the queue.
+2025-03-04 21:27:25,842 - Job with generation_id 31 added to the queue.
+2025-03-04 21:27:25,845 - Job with generation_id 32 added to the queue.
+2025-03-04 21:27:25,849 - Job with generation_id 33 added to the queue.
+2025-03-04 21:27:25,853 - Job with generation_id 34 added to the queue.
+2025-03-04 21:27:25,856 - Job with generation_id 35 added to the queue.
+2025-03-04 21:27:25,860 - Job with generation_id 36 added to the queue.
+2025-03-04 21:27:25,864 - Job with generation_id 37 added to the queue.
+2025-03-04 21:27:25,867 - Job with generation_id 38 added to the queue.
+2025-03-04 21:27:25,871 - Job with generation_id 39 added to the queue.
+2025-03-04 21:27:25,875 - Job with generation_id 40 added to the queue.
+2025-03-04 21:27:25,878 - Job with generation_id 41 added to the queue.
+2025-03-04 21:27:25,882 - Job with generation_id 42 added to the queue.
+2025-03-04 21:27:25,886 - Job with generation_id 43 added to the queue.
+2025-03-04 21:27:25,890 - Job with generation_id 44 added to the queue.
+2025-03-04 21:27:25,893 - Job with generation_id 45 added to the queue.
+2025-03-04 21:27:25,897 - Job with generation_id 46 added to the queue.
+2025-03-04 21:27:25,901 - Job with generation_id 47 added to the queue.
+2025-03-04 21:27:25,905 - Job with generation_id 48 added to the queue.
+2025-03-04 21:27:25,908 - Job with generation_id 49 added to the queue.
+2025-03-04 21:27:25,912 - Job with generation_id 50 added to the queue.
+2025-03-04 21:27:25,915 - Job with generation_id 51 added to the queue.
+2025-03-04 21:27:25,919 - Job with generation_id 52 added to the queue.
+2025-03-04 21:27:25,922 - Job with generation_id 53 added to the queue.
+2025-03-04 21:27:25,926 - Job with generation_id 54 added to the queue.
+2025-03-04 21:27:25,930 - Job with generation_id 55 added to the queue.
+2025-03-04 21:27:25,934 - Job with generation_id 56 added to the queue.
+2025-03-04 21:27:25,938 - Job with generation_id 57 added to the queue.
+2025-03-04 21:27:25,942 - Job with generation_id 58 added to the queue.
+2025-03-04 21:27:25,947 - Job with generation_id 59 added to the queue.
+2025-03-04 21:27:25,950 - Job with generation_id 60 added to the queue.
+2025-03-04 21:27:25,955 - Job with generation_id 61 added to the queue.
+2025-03-04 21:27:25,958 - Job with generation_id 62 added to the queue.
+2025-03-04 21:27:25,962 - Job with generation_id 63 added to the queue.
+2025-03-04 21:27:25,966 - Job with generation_id 64 added to the queue.
+2025-03-04 21:27:25,970 - Job with generation_id 65 added to the queue.
+2025-03-04 21:27:25,974 - Job with generation_id 66 added to the queue.
+2025-03-04 21:27:25,977 - Job with generation_id 67 added to the queue.
+2025-03-04 21:27:25,981 - Job with generation_id 68 added to the queue.
+2025-03-04 21:27:25,985 - Job with generation_id 69 added to the queue.
+2025-03-04 21:27:25,989 - Job with generation_id 70 added to the queue.
+2025-03-04 21:27:25,993 - Job with generation_id 71 added to the queue.
+2025-03-04 21:27:25,997 - Job with generation_id 72 added to the queue.
+2025-03-04 21:27:26,001 - Job with generation_id 73 added to the queue.
+2025-03-04 21:27:26,004 - Job with generation_id 74 added to the queue.
+2025-03-04 21:27:26,008 - Job with generation_id 75 added to the queue.
+2025-03-04 21:27:26,012 - Job with generation_id 76 added to the queue.
+2025-03-04 21:27:26,016 - Job with generation_id 77 added to the queue.
+2025-03-04 21:27:26,020 - Job with generation_id 78 added to the queue.
+2025-03-04 21:27:26,024 - Job with generation_id 79 added to the queue.
+2025-03-04 21:27:26,027 - Job with generation_id 80 added to the queue.
+2025-03-04 21:27:26,031 - Job with generation_id 81 added to the queue.
+2025-03-04 21:27:26,035 - Job with generation_id 82 added to the queue.
+2025-03-04 21:27:26,039 - Job with generation_id 83 added to the queue.
+2025-03-04 21:27:26,043 - Job with generation_id 84 added to the queue.
+2025-03-04 21:27:26,047 - Job with generation_id 85 added to the queue.
+2025-03-04 21:27:26,051 - Job with generation_id 86 added to the queue.
+2025-03-04 21:27:26,055 - Job with generation_id 87 added to the queue.
+2025-03-04 21:27:26,059 - Job with generation_id 88 added to the queue.
+2025-03-04 21:27:26,063 - Job with generation_id 89 added to the queue.
+2025-03-04 21:27:26,069 - Job with generation_id 90 added to the queue.
+2025-03-04 21:27:26,074 - Job with generation_id 91 added to the queue.
+2025-03-04 21:27:26,078 - Job with generation_id 92 added to the queue.
+2025-03-04 21:27:26,083 - Job with generation_id 93 added to the queue.
+2025-03-04 21:27:26,087 - Job with generation_id 94 added to the queue.
+2025-03-04 21:27:26,092 - Job with generation_id 95 added to the queue.
+2025-03-04 21:27:26,096 - Job with generation_id 96 added to the queue.
+2025-03-04 21:27:26,101 - Job with generation_id 97 added to the queue.
+2025-03-04 21:27:26,105 - Job with generation_id 98 added to the queue.
+2025-03-04 21:27:26,110 - Job with generation_id 99 added to the queue.
+2025-03-04 21:27:26,114 - Job with generation_id 100 added to the queue.
+2025-03-04 21:27:26,119 - Job with generation_id 101 added to the queue.
+2025-03-04 21:27:26,124 - Job with generation_id 102 added to the queue.
+2025-03-04 21:27:26,129 - Job with generation_id 103 added to the queue.
+2025-03-04 21:27:26,134 - Job with generation_id 104 added to the queue.
+2025-03-04 21:27:26,139 - Job with generation_id 105 added to the queue.
+2025-03-04 21:27:26,144 - Job with generation_id 106 added to the queue.
+2025-03-04 21:27:26,149 - Job with generation_id 107 added to the queue.
+2025-03-04 21:27:26,153 - Job with generation_id 108 added to the queue.
+2025-03-04 21:27:26,156 - Job with generation_id 109 added to the queue.
+2025-03-04 21:27:26,160 - Job with generation_id 110 added to the queue.
+2025-03-04 21:27:26,164 - Job with generation_id 111 added to the queue.
+2025-03-04 21:27:26,168 - Job with generation_id 112 added to the queue.
+2025-03-04 21:27:26,171 - Job with generation_id 113 added to the queue.
+2025-03-04 21:27:26,175 - Job with generation_id 114 added to the queue.
+2025-03-04 21:27:26,179 - Job with generation_id 115 added to the queue.
+2025-03-04 21:27:26,182 - Job with generation_id 116 added to the queue.
+2025-03-04 21:27:26,186 - Job with generation_id 117 added to the queue.
+2025-03-04 21:27:26,189 - Job with generation_id 118 added to the queue.
+2025-03-04 21:27:26,193 - Job with generation_id 119 added to the queue.
+2025-03-04 21:27:26,197 - Job with generation_id 120 added to the queue.
+2025-03-04 21:27:26,201 - Job with generation_id 121 added to the queue.
+2025-03-04 21:27:26,205 - Job with generation_id 122 added to the queue.
+2025-03-04 21:27:26,209 - Job with generation_id 123 added to the queue.
+2025-03-04 21:27:26,213 - Job with generation_id 124 added to the queue.
+2025-03-04 21:27:26,216 - Job with generation_id 125 added to the queue.
+2025-03-04 21:27:26,220 - Job with generation_id 126 added to the queue.
+2025-03-04 21:27:26,224 - Job with generation_id 127 added to the queue.
+2025-03-04 21:27:26,228 - Job with generation_id 128 added to the queue.
+2025-03-04 21:27:26,231 - Job with generation_id 129 added to the queue.
+2025-03-04 21:27:26,235 - Job with generation_id 130 added to the queue.
+2025-03-04 21:27:26,238 - Job with generation_id 131 added to the queue.
+2025-03-04 21:27:26,241 - Job with generation_id 132 added to the queue.
+2025-03-04 21:27:52,900 - Job introduced: {'generation_id': 133, 'generation_moment': 2032, 'job_id': 10, 'required_epoch': 80}
+2025-03-04 21:27:52,900 - Job introduced: {'generation_id': 134, 'generation_moment': 2032, 'job_id': 9, 'required_epoch': 260}
+2025-03-04 21:27:52,900 - Job introduced: {'generation_id': 135, 'generation_moment': 2032, 'job_id': 15, 'required_epoch': 40}
+2025-03-04 21:27:52,900 - Job introduced: {'generation_id': 136, 'generation_moment': 2032, 'job_id': 6, 'required_epoch': 320}
+2025-03-04 21:27:56,265 - Job with generation_id 133 added to the queue.
+2025-03-04 21:27:56,269 - Job with generation_id 134 added to the queue.
+2025-03-04 21:27:56,272 - Job with generation_id 135 added to the queue.
+2025-03-04 21:27:56,276 - Job with generation_id 136 added to the queue.
+2025-03-04 21:28:38,901 - Job introduced: {'generation_id': 137, 'generation_moment': 2078, 'job_id': 6, 'required_epoch': 350}
+2025-03-04 21:28:41,309 - Job with generation_id 137 added to the queue.
+2025-03-04 21:29:00,902 - Job introduced: {'generation_id': 138, 'generation_moment': 2100, 'job_id': 1, 'required_epoch': 370}
+2025-03-04 21:29:00,902 - Job introduced: {'generation_id': 139, 'generation_moment': 2100, 'job_id': 9, 'required_epoch': 300}
+2025-03-04 21:29:11,334 - Job with generation_id 138 added to the queue.
+2025-03-04 21:29:11,339 - Job with generation_id 139 added to the queue.
+2025-03-04 21:29:21,903 - Job introduced: {'generation_id': 140, 'generation_moment': 2121, 'job_id': 13, 'required_epoch': 130}
+2025-03-04 21:29:21,903 - Job introduced: {'generation_id': 141, 'generation_moment': 2121, 'job_id': 3, 'required_epoch': 270}
+2025-03-04 21:29:21,903 - Job introduced: {'generation_id': 142, 'generation_moment': 2121, 'job_id': 11, 'required_epoch': 430}
+2025-03-04 21:29:26,355 - Job with generation_id 140 added to the queue.
+2025-03-04 21:29:26,360 - Job with generation_id 141 added to the queue.
+2025-03-04 21:29:26,364 - Job with generation_id 142 added to the queue.
+2025-03-04 21:30:09,904 - Job introduced: {'generation_id': 143, 'generation_moment': 2169, 'job_id': 2, 'required_epoch': 390}
+2025-03-04 21:30:09,904 - Job introduced: {'generation_id': 144, 'generation_moment': 2169, 'job_id': 6, 'required_epoch': 260}
+2025-03-04 21:30:42,905 - Job introduced: {'generation_id': 145, 'generation_moment': 2202, 'job_id': 2, 'required_epoch': 70}
+2025-03-04 21:30:59,906 - Job introduced: {'generation_id': 146, 'generation_moment': 2219, 'job_id': 14, 'required_epoch': 100}
+2025-03-04 21:31:30,907 - Job introduced: {'generation_id': 147, 'generation_moment': 2250, 'job_id': 16, 'required_epoch': 400}
+2025-03-04 21:32:28,908 - Job introduced: {'generation_id': 148, 'generation_moment': 2308, 'job_id': 15, 'required_epoch': 310}
+2025-03-04 21:32:28,908 - Job introduced: {'generation_id': 149, 'generation_moment': 2308, 'job_id': 4, 'required_epoch': 170}
+2025-03-04 21:33:26,909 - Job introduced: {'generation_id': 150, 'generation_moment': 2366, 'job_id': 15, 'required_epoch': 220}
+2025-03-04 21:33:26,909 - Job introduced: {'generation_id': 151, 'generation_moment': 2366, 'job_id': 11, 'required_epoch': 460}
+2025-03-04 21:34:14,910 - Job introduced: {'generation_id': 152, 'generation_moment': 2414, 'job_id': 12, 'required_epoch': 370}
+2025-03-04 21:34:14,910 - Job introduced: {'generation_id': 153, 'generation_moment': 2414, 'job_id': 9, 'required_epoch': 500}
+2025-03-04 21:34:14,910 - Job introduced: {'generation_id': 154, 'generation_moment': 2414, 'job_id': 4, 'required_epoch': 380}
+2025-03-04 21:34:56,911 - Job introduced: {'generation_id': 155, 'generation_moment': 2456, 'job_id': 8, 'required_epoch': 420}
+2025-03-04 21:34:56,911 - Job introduced: {'generation_id': 156, 'generation_moment': 2456, 'job_id': 4, 'required_epoch': 70}
+2025-03-04 21:34:56,911 - Job introduced: {'generation_id': 157, 'generation_moment': 2456, 'job_id': 1, 'required_epoch': 400}
+2025-03-04 21:35:37,912 - Job introduced: {'generation_id': 158, 'generation_moment': 2497, 'job_id': 13, 'required_epoch': 380}
+2025-03-04 21:35:37,912 - Job introduced: {'generation_id': 159, 'generation_moment': 2497, 'job_id': 9, 'required_epoch': 10}
+2025-03-04 21:35:37,912 - Job introduced: {'generation_id': 160, 'generation_moment': 2497, 'job_id': 5, 'required_epoch': 190}
+2025-03-04 21:36:28,913 - Job introduced: {'generation_id': 161, 'generation_moment': 2548, 'job_id': 6, 'required_epoch': 180}
+2025-03-04 21:37:01,914 - Job introduced: {'generation_id': 162, 'generation_moment': 2581, 'job_id': 8, 'required_epoch': 160}
+2025-03-04 21:37:01,915 - Job introduced: {'generation_id': 163, 'generation_moment': 2581, 'job_id': 5, 'required_epoch': 400}
+2025-03-04 21:37:01,915 - Job introduced: {'generation_id': 164, 'generation_moment': 2581, 'job_id': 15, 'required_epoch': 330}
+2025-03-04 21:37:52,916 - Job introduced: {'generation_id': 165, 'generation_moment': 2632, 'job_id': 4, 'required_epoch': 480}
+2025-03-04 21:37:52,917 - Job introduced: {'generation_id': 166, 'generation_moment': 2632, 'job_id': 11, 'required_epoch': 350}
+2025-03-04 21:37:52,917 - Job introduced: {'generation_id': 167, 'generation_moment': 2632, 'job_id': 1, 'required_epoch': 30}
+2025-03-04 21:37:52,917 - Job introduced: {'generation_id': 168, 'generation_moment': 2632, 'job_id': 3, 'required_epoch': 480}
+2025-03-04 21:38:26,918 - Job introduced: {'generation_id': 169, 'generation_moment': 2666, 'job_id': 7, 'required_epoch': 110}
+2025-03-04 21:39:13,918 - Job introduced: {'generation_id': 170, 'generation_moment': 2713, 'job_id': 8, 'required_epoch': 300}
+2025-03-04 21:39:13,919 - Job introduced: {'generation_id': 171, 'generation_moment': 2713, 'job_id': 2, 'required_epoch': 440}
+2025-03-04 21:40:12,919 - Job introduced: {'generation_id': 172, 'generation_moment': 2772, 'job_id': 16, 'required_epoch': 220}
+2025-03-04 21:40:12,919 - Job introduced: {'generation_id': 173, 'generation_moment': 2772, 'job_id': 12, 'required_epoch': 400}
+2025-03-04 21:40:12,919 - Job introduced: {'generation_id': 174, 'generation_moment': 2772, 'job_id': 15, 'required_epoch': 250}
+2025-03-04 21:40:12,919 - Job introduced: {'generation_id': 175, 'generation_moment': 2772, 'job_id': 3, 'required_epoch': 160}
+2025-03-04 21:40:37,920 - Job introduced: {'generation_id': 176, 'generation_moment': 2797, 'job_id': 12, 'required_epoch': 230}
+2025-03-04 21:40:58,921 - Job introduced: {'generation_id': 177, 'generation_moment': 2818, 'job_id': 5, 'required_epoch': 90}
+2025-03-04 21:40:58,921 - Job introduced: {'generation_id': 178, 'generation_moment': 2818, 'job_id': 13, 'required_epoch': 340}
+2025-03-04 21:41:57,922 - Job introduced: {'generation_id': 179, 'generation_moment': 2877, 'job_id': 15, 'required_epoch': 90}
+2025-03-04 21:41:57,922 - Job introduced: {'generation_id': 180, 'generation_moment': 2877, 'job_id': 6, 'required_epoch': 350}
+2025-03-04 21:41:57,922 - Job introduced: {'generation_id': 181, 'generation_moment': 2877, 'job_id': 5, 'required_epoch': 480}
+2025-03-04 21:41:57,922 - Job introduced: {'generation_id': 182, 'generation_moment': 2877, 'job_id': 11, 'required_epoch': 260}
+2025-03-04 21:42:13,923 - Job introduced: {'generation_id': 183, 'generation_moment': 2893, 'job_id': 11, 'required_epoch': 360}
+2025-03-04 21:42:13,923 - Job introduced: {'generation_id': 184, 'generation_moment': 2893, 'job_id': 14, 'required_epoch': 240}
+2025-03-04 21:42:13,923 - Job introduced: {'generation_id': 185, 'generation_moment': 2893, 'job_id': 1, 'required_epoch': 220}
+2025-03-04 21:42:41,923 - Job introduced: {'generation_id': 186, 'generation_moment': 2921, 'job_id': 3, 'required_epoch': 70}
+2025-03-04 21:42:41,924 - Job introduced: {'generation_id': 187, 'generation_moment': 2921, 'job_id': 4, 'required_epoch': 430}
+2025-03-04 21:42:41,924 - Job introduced: {'generation_id': 188, 'generation_moment': 2921, 'job_id': 15, 'required_epoch': 50}
+2025-03-04 21:42:41,924 - Job introduced: {'generation_id': 189, 'generation_moment': 2921, 'job_id': 1, 'required_epoch': 240}
+2025-03-04 21:43:32,924 - Job introduced: {'generation_id': 190, 'generation_moment': 2972, 'job_id': 5, 'required_epoch': 230}
+2025-03-04 21:43:32,925 - Job introduced: {'generation_id': 191, 'generation_moment': 2972, 'job_id': 1, 'required_epoch': 500}
+2025-03-04 21:44:28,925 - Job introduced: {'generation_id': 192, 'generation_moment': 3028, 'job_id': 5, 'required_epoch': 280}
+2025-03-04 21:44:28,925 - Job introduced: {'generation_id': 193, 'generation_moment': 3028, 'job_id': 14, 'required_epoch': 150}
+2025-03-04 21:44:28,926 - Job introduced: {'generation_id': 194, 'generation_moment': 3028, 'job_id': 2, 'required_epoch': 320}
+2025-03-04 21:44:59,926 - Job introduced: {'generation_id': 195, 'generation_moment': 3059, 'job_id': 5, 'required_epoch': 490}
+2025-03-04 21:44:59,926 - Job introduced: {'generation_id': 196, 'generation_moment': 3059, 'job_id': 16, 'required_epoch': 260}
+2025-03-04 21:45:51,927 - Job introduced: {'generation_id': 197, 'generation_moment': 3111, 'job_id': 6, 'required_epoch': 100}
+2025-03-04 21:46:28,928 - Job introduced: {'generation_id': 198, 'generation_moment': 3148, 'job_id': 4, 'required_epoch': 360}
+2025-03-04 21:46:28,928 - Job introduced: {'generation_id': 199, 'generation_moment': 3148, 'job_id': 10, 'required_epoch': 100}
+2025-03-04 21:46:28,928 - Job introduced: {'generation_id': 200, 'generation_moment': 3148, 'job_id': 11, 'required_epoch': 60}
+2025-03-04 21:46:28,928 - Job introduced: {'generation_id': 201, 'generation_moment': 3148, 'job_id': 1, 'required_epoch': 300}
+2025-03-04 21:46:59,930 - Job introduced: {'generation_id': 202, 'generation_moment': 3179, 'job_id': 14, 'required_epoch': 110}
+2025-03-04 21:46:59,930 - Job introduced: {'generation_id': 203, 'generation_moment': 3179, 'job_id': 13, 'required_epoch': 110}
+2025-03-04 21:46:59,930 - Job introduced: {'generation_id': 204, 'generation_moment': 3179, 'job_id': 12, 'required_epoch': 390}
+2025-03-04 21:46:59,930 - Job introduced: {'generation_id': 205, 'generation_moment': 3179, 'job_id': 2, 'required_epoch': 300}
+2025-03-04 21:47:23,931 - Job introduced: {'generation_id': 206, 'generation_moment': 3203, 'job_id': 16, 'required_epoch': 120}
+2025-03-04 21:47:23,931 - Job introduced: {'generation_id': 207, 'generation_moment': 3203, 'job_id': 2, 'required_epoch': 110}
+2025-03-04 21:47:58,932 - Job introduced: {'generation_id': 208, 'generation_moment': 3238, 'job_id': 13, 'required_epoch': 270}
+2025-03-04 21:47:58,932 - Job introduced: {'generation_id': 209, 'generation_moment': 3238, 'job_id': 9, 'required_epoch': 220}
+2025-03-04 21:47:58,932 - Job introduced: {'generation_id': 210, 'generation_moment': 3238, 'job_id': 2, 'required_epoch': 190}
+2025-03-04 21:47:58,932 - Job introduced: {'generation_id': 211, 'generation_moment': 3238, 'job_id': 1, 'required_epoch': 320}
+2025-03-04 21:48:34,932 - Job introduced: {'generation_id': 212, 'generation_moment': 3274, 'job_id': 7, 'required_epoch': 250}
+2025-03-04 21:49:30,933 - Job introduced: {'generation_id': 213, 'generation_moment': 3330, 'job_id': 3, 'required_epoch': 120}
+2025-03-04 21:49:30,933 - Job introduced: {'generation_id': 214, 'generation_moment': 3330, 'job_id': 15, 'required_epoch': 410}
+2025-03-04 21:49:30,933 - Job introduced: {'generation_id': 215, 'generation_moment': 3330, 'job_id': 6, 'required_epoch': 10}
+2025-03-04 21:49:30,933 - Job introduced: {'generation_id': 216, 'generation_moment': 3330, 'job_id': 14, 'required_epoch': 250}
+2025-03-04 21:50:19,934 - Job introduced: {'generation_id': 217, 'generation_moment': 3379, 'job_id': 14, 'required_epoch': 480}
+2025-03-04 21:50:19,934 - Job introduced: {'generation_id': 218, 'generation_moment': 3379, 'job_id': 8, 'required_epoch': 340}
+2025-03-04 21:50:19,934 - Job introduced: {'generation_id': 219, 'generation_moment': 3379, 'job_id': 11, 'required_epoch': 70}
+2025-03-04 21:51:06,935 - Job introduced: {'generation_id': 220, 'generation_moment': 3426, 'job_id': 9, 'required_epoch': 170}
+2025-03-04 21:51:06,936 - Job introduced: {'generation_id': 221, 'generation_moment': 3426, 'job_id': 14, 'required_epoch': 130}
+2025-03-04 21:51:53,937 - Job introduced: {'generation_id': 222, 'generation_moment': 3473, 'job_id': 9, 'required_epoch': 300}
+2025-03-04 21:51:53,937 - Job introduced: {'generation_id': 223, 'generation_moment': 3473, 'job_id': 11, 'required_epoch': 190}
+2025-03-04 21:51:53,937 - Job introduced: {'generation_id': 224, 'generation_moment': 3473, 'job_id': 15, 'required_epoch': 490}
+2025-03-04 21:52:46,938 - Job introduced: {'generation_id': 225, 'generation_moment': 3526, 'job_id': 11, 'required_epoch': 180}
+2025-03-04 21:52:46,938 - Job introduced: {'generation_id': 226, 'generation_moment': 3526, 'job_id': 2, 'required_epoch': 310}
+2025-03-04 21:52:46,938 - Job introduced: {'generation_id': 227, 'generation_moment': 3526, 'job_id': 12, 'required_epoch': 50}
+2025-03-04 21:52:46,938 - Job introduced: {'generation_id': 228, 'generation_moment': 3526, 'job_id': 16, 'required_epoch': 220}
+2025-03-04 21:53:15,939 - Job introduced: {'generation_id': 229, 'generation_moment': 3555, 'job_id': 10, 'required_epoch': 320}
+2025-03-04 21:53:15,939 - Job introduced: {'generation_id': 230, 'generation_moment': 3555, 'job_id': 14, 'required_epoch': 140}
+2025-03-04 21:53:15,939 - Job introduced: {'generation_id': 231, 'generation_moment': 3555, 'job_id': 8, 'required_epoch': 420}
+2025-03-04 21:53:39,940 - Job introduced: {'generation_id': 232, 'generation_moment': 3579, 'job_id': 14, 'required_epoch': 90}
+2025-03-04 21:53:39,940 - Job introduced: {'generation_id': 233, 'generation_moment': 3579, 'job_id': 2, 'required_epoch': 270}
+2025-03-04 21:53:39,940 - Job introduced: {'generation_id': 234, 'generation_moment': 3579, 'job_id': 11, 'required_epoch': 410}
+2025-03-04 21:54:34,941 - Job introduced: {'generation_id': 235, 'generation_moment': 3634, 'job_id': 13, 'required_epoch': 140}
+2025-03-04 21:55:32,942 - Job introduced: {'generation_id': 236, 'generation_moment': 3692, 'job_id': 6, 'required_epoch': 240}
+2025-03-04 21:55:32,942 - Job introduced: {'generation_id': 237, 'generation_moment': 3692, 'job_id': 13, 'required_epoch': 410}
+2025-03-04 21:55:32,942 - Job introduced: {'generation_id': 238, 'generation_moment': 3692, 'job_id': 2, 'required_epoch': 470}
+2025-03-04 21:55:57,943 - Job introduced: {'generation_id': 239, 'generation_moment': 3717, 'job_id': 6, 'required_epoch': 100}
+2025-03-04 21:55:57,943 - Job introduced: {'generation_id': 240, 'generation_moment': 3717, 'job_id': 11, 'required_epoch': 280}
+2025-03-04 21:56:40,944 - Job introduced: {'generation_id': 241, 'generation_moment': 3760, 'job_id': 7, 'required_epoch': 50}
+2025-03-04 21:56:40,944 - Job introduced: {'generation_id': 242, 'generation_moment': 3760, 'job_id': 5, 'required_epoch': 430}
+2025-03-04 21:56:40,944 - Job introduced: {'generation_id': 243, 'generation_moment': 3760, 'job_id': 4, 'required_epoch': 100}
+2025-03-04 21:56:40,944 - Job introduced: {'generation_id': 244, 'generation_moment': 3760, 'job_id': 6, 'required_epoch': 30}
+2025-03-04 21:57:29,946 - Job introduced: {'generation_id': 245, 'generation_moment': 3809, 'job_id': 14, 'required_epoch': 10}
+2025-03-04 21:57:29,946 - Job introduced: {'generation_id': 246, 'generation_moment': 3809, 'job_id': 7, 'required_epoch': 440}
+2025-03-04 21:57:29,946 - Job introduced: {'generation_id': 247, 'generation_moment': 3809, 'job_id': 15, 'required_epoch': 340}
+2025-03-04 21:57:53,947 - Job introduced: {'generation_id': 248, 'generation_moment': 3833, 'job_id': 11, 'required_epoch': 340}
+2025-03-04 21:57:53,947 - Job introduced: {'generation_id': 249, 'generation_moment': 3833, 'job_id': 13, 'required_epoch': 50}
+2025-03-04 21:57:53,947 - Job introduced: {'generation_id': 250, 'generation_moment': 3833, 'job_id': 10, 'required_epoch': 290}
+2025-03-04 21:58:23,948 - Job introduced: {'generation_id': 251, 'generation_moment': 3863, 'job_id': 12, 'required_epoch': 350}
+2025-03-04 21:58:23,948 - Job introduced: {'generation_id': 252, 'generation_moment': 3863, 'job_id': 11, 'required_epoch': 390}
+2025-03-04 21:58:23,948 - Job introduced: {'generation_id': 253, 'generation_moment': 3863, 'job_id': 13, 'required_epoch': 240}
+2025-03-04 21:58:23,948 - Job introduced: {'generation_id': 254, 'generation_moment': 3863, 'job_id': 2, 'required_epoch': 50}
+2025-03-04 21:59:08,948 - Job introduced: {'generation_id': 255, 'generation_moment': 3908, 'job_id': 15, 'required_epoch': 30}
+2025-03-04 21:59:08,949 - Job introduced: {'generation_id': 256, 'generation_moment': 3908, 'job_id': 9, 'required_epoch': 190}
+2025-03-04 21:59:08,949 - Job introduced: {'generation_id': 257, 'generation_moment': 3908, 'job_id': 14, 'required_epoch': 240}
+2025-03-04 21:59:46,950 - Job introduced: {'generation_id': 258, 'generation_moment': 3946, 'job_id': 5, 'required_epoch': 80}
+2025-03-04 21:59:46,950 - Job introduced: {'generation_id': 259, 'generation_moment': 3946, 'job_id': 15, 'required_epoch': 190}
+2025-03-04 21:59:46,950 - Job introduced: {'generation_id': 260, 'generation_moment': 3946, 'job_id': 1, 'required_epoch': 160}
+2025-03-04 21:59:46,950 - Job introduced: {'generation_id': 261, 'generation_moment': 3946, 'job_id': 14, 'required_epoch': 400}
+2025-03-04 22:00:21,951 - Job introduced: {'generation_id': 262, 'generation_moment': 3981, 'job_id': 10, 'required_epoch': 60}
+2025-03-04 22:00:21,951 - Job introduced: {'generation_id': 263, 'generation_moment': 3981, 'job_id': 13, 'required_epoch': 260}
+2025-03-04 22:00:21,951 - Job introduced: {'generation_id': 264, 'generation_moment': 3981, 'job_id': 14, 'required_epoch': 340}
+2025-03-04 22:00:21,951 - Job introduced: {'generation_id': 265, 'generation_moment': 3981, 'job_id': 4, 'required_epoch': 30}
+2025-03-04 22:00:39,952 - Job introduced: {'generation_id': 266, 'generation_moment': 3999, 'job_id': 14, 'required_epoch': 30}
+2025-03-04 22:00:39,952 - Job introduced: {'generation_id': 267, 'generation_moment': 3999, 'job_id': 8, 'required_epoch': 480}
+2025-03-04 22:00:39,952 - Job introduced: {'generation_id': 268, 'generation_moment': 3999, 'job_id': 3, 'required_epoch': 120}
+2025-03-04 22:01:14,953 - Job introduced: {'generation_id': 269, 'generation_moment': 4034, 'job_id': 5, 'required_epoch': 370}
+2025-03-04 22:01:35,953 - Job introduced: {'generation_id': 270, 'generation_moment': 4055, 'job_id': 2, 'required_epoch': 230}
+2025-03-04 22:01:35,954 - Job introduced: {'generation_id': 271, 'generation_moment': 4055, 'job_id': 4, 'required_epoch': 410}
+2025-03-04 22:01:35,954 - Job introduced: {'generation_id': 272, 'generation_moment': 4055, 'job_id': 9, 'required_epoch': 240}
+2025-03-04 22:01:53,954 - Job introduced: {'generation_id': 273, 'generation_moment': 4073, 'job_id': 10, 'required_epoch': 260}
+2025-03-04 22:01:53,955 - Job introduced: {'generation_id': 274, 'generation_moment': 4073, 'job_id': 7, 'required_epoch': 370}
+2025-03-04 22:02:35,955 - Job introduced: {'generation_id': 275, 'generation_moment': 4115, 'job_id': 13, 'required_epoch': 130}
+2025-03-04 22:03:14,956 - Job introduced: {'generation_id': 276, 'generation_moment': 4154, 'job_id': 1, 'required_epoch': 260}
+2025-03-04 22:03:52,957 - Job introduced: {'generation_id': 277, 'generation_moment': 4192, 'job_id': 4, 'required_epoch': 160}
+2025-03-04 22:03:52,957 - Job introduced: {'generation_id': 278, 'generation_moment': 4192, 'job_id': 11, 'required_epoch': 220}
+2025-03-04 22:03:52,957 - Job introduced: {'generation_id': 279, 'generation_moment': 4192, 'job_id': 2, 'required_epoch': 470}
+2025-03-04 22:04:44,958 - Job introduced: {'generation_id': 280, 'generation_moment': 4244, 'job_id': 8, 'required_epoch': 250}
+2025-03-04 22:04:44,958 - Job introduced: {'generation_id': 281, 'generation_moment': 4244, 'job_id': 2, 'required_epoch': 300}
+2025-03-04 22:04:44,958 - Job introduced: {'generation_id': 282, 'generation_moment': 4244, 'job_id': 10, 'required_epoch': 200}
+2025-03-04 22:04:44,958 - Job introduced: {'generation_id': 283, 'generation_moment': 4244, 'job_id': 6, 'required_epoch': 140}
+2025-03-04 22:05:22,959 - Job introduced: {'generation_id': 284, 'generation_moment': 4282, 'job_id': 11, 'required_epoch': 10}
+2025-03-04 22:05:22,959 - Job introduced: {'generation_id': 285, 'generation_moment': 4282, 'job_id': 1, 'required_epoch': 160}
+2025-03-04 22:05:22,959 - Job introduced: {'generation_id': 286, 'generation_moment': 4282, 'job_id': 3, 'required_epoch': 30}
+2025-03-04 22:05:22,959 - Job introduced: {'generation_id': 287, 'generation_moment': 4282, 'job_id': 4, 'required_epoch': 20}
+2025-03-04 22:05:52,960 - Job introduced: {'generation_id': 288, 'generation_moment': 4312, 'job_id': 12, 'required_epoch': 220}
+2025-03-04 22:05:52,960 - Job introduced: {'generation_id': 289, 'generation_moment': 4312, 'job_id': 7, 'required_epoch': 200}
+2025-03-04 22:05:52,960 - Job introduced: {'generation_id': 290, 'generation_moment': 4312, 'job_id': 3, 'required_epoch': 410}
+2025-03-04 22:06:24,961 - Job introduced: {'generation_id': 291, 'generation_moment': 4344, 'job_id': 16, 'required_epoch': 250}
+2025-03-04 22:06:24,961 - Job introduced: {'generation_id': 292, 'generation_moment': 4344, 'job_id': 7, 'required_epoch': 420}
+2025-03-04 22:06:24,961 - Job introduced: {'generation_id': 293, 'generation_moment': 4344, 'job_id': 1, 'required_epoch': 150}
+2025-03-04 22:06:49,962 - Job introduced: {'generation_id': 294, 'generation_moment': 4369, 'job_id': 12, 'required_epoch': 220}
+2025-03-04 22:06:49,962 - Job introduced: {'generation_id': 295, 'generation_moment': 4369, 'job_id': 1, 'required_epoch': 100}
+2025-03-04 22:06:49,962 - Job introduced: {'generation_id': 296, 'generation_moment': 4369, 'job_id': 13, 'required_epoch': 240}
+2025-03-04 22:06:49,962 - Job introduced: {'generation_id': 297, 'generation_moment': 4369, 'job_id': 10, 'required_epoch': 90}
+2025-03-04 22:07:07,963 - Job introduced: {'generation_id': 298, 'generation_moment': 4387, 'job_id': 3, 'required_epoch': 100}
+2025-03-04 22:07:51,964 - Job introduced: {'generation_id': 299, 'generation_moment': 4431, 'job_id': 2, 'required_epoch': 90}
+2025-03-04 22:08:47,965 - Job introduced: {'generation_id': 300, 'generation_moment': 4487, 'job_id': 16, 'required_epoch': 200}
+2025-03-04 22:08:47,965 - Job introduced: {'generation_id': 301, 'generation_moment': 4487, 'job_id': 4, 'required_epoch': 400}
+2025-03-04 22:08:47,965 - Job introduced: {'generation_id': 302, 'generation_moment': 4487, 'job_id': 7, 'required_epoch': 70}
+2025-03-04 22:08:47,965 - Job introduced: {'generation_id': 303, 'generation_moment': 4487, 'job_id': 12, 'required_epoch': 10}
+2025-03-04 22:09:18,966 - Job introduced: {'generation_id': 304, 'generation_moment': 4518, 'job_id': 1, 'required_epoch': 110}
+2025-03-04 22:09:18,966 - Job introduced: {'generation_id': 305, 'generation_moment': 4518, 'job_id': 10, 'required_epoch': 220}
+2025-03-04 22:09:38,967 - Job introduced: {'generation_id': 306, 'generation_moment': 4538, 'job_id': 16, 'required_epoch': 30}
+2025-03-04 22:09:38,967 - Job introduced: {'generation_id': 307, 'generation_moment': 4538, 'job_id': 13, 'required_epoch': 420}
+2025-03-04 22:09:38,967 - Job introduced: {'generation_id': 308, 'generation_moment': 4538, 'job_id': 5, 'required_epoch': 280}
+2025-03-04 22:09:38,967 - Job introduced: {'generation_id': 309, 'generation_moment': 4538, 'job_id': 12, 'required_epoch': 500}
+2025-03-04 22:10:02,968 - Job introduced: {'generation_id': 310, 'generation_moment': 4562, 'job_id': 8, 'required_epoch': 150}
+2025-03-04 22:10:23,969 - Job introduced: {'generation_id': 311, 'generation_moment': 4583, 'job_id': 16, 'required_epoch': 410}
+2025-03-04 22:10:23,970 - Job introduced: {'generation_id': 312, 'generation_moment': 4583, 'job_id': 7, 'required_epoch': 80}
+2025-03-04 22:10:23,970 - Job introduced: {'generation_id': 313, 'generation_moment': 4583, 'job_id': 15, 'required_epoch': 160}
+2025-03-04 22:10:23,970 - Job introduced: {'generation_id': 314, 'generation_moment': 4583, 'job_id': 14, 'required_epoch': 120}
+2025-03-04 22:10:57,970 - Job introduced: {'generation_id': 315, 'generation_moment': 4617, 'job_id': 10, 'required_epoch': 10}
+2025-03-04 22:10:57,970 - Job introduced: {'generation_id': 316, 'generation_moment': 4617, 'job_id': 15, 'required_epoch': 280}
+2025-03-04 22:10:57,970 - Job introduced: {'generation_id': 317, 'generation_moment': 4617, 'job_id': 12, 'required_epoch': 300}
+2025-03-04 22:10:57,971 - Job introduced: {'generation_id': 318, 'generation_moment': 4617, 'job_id': 14, 'required_epoch': 400}
+2025-03-04 22:11:37,971 - Job introduced: {'generation_id': 319, 'generation_moment': 4657, 'job_id': 10, 'required_epoch': 210}
+2025-03-04 22:11:57,972 - Job introduced: {'generation_id': 320, 'generation_moment': 4677, 'job_id': 10, 'required_epoch': 240}
+2025-03-04 22:11:57,973 - Job introduced: {'generation_id': 321, 'generation_moment': 4677, 'job_id': 7, 'required_epoch': 430}
+2025-03-04 22:11:57,973 - Job introduced: {'generation_id': 322, 'generation_moment': 4677, 'job_id': 8, 'required_epoch': 230}
+2025-03-04 22:11:57,973 - Job introduced: {'generation_id': 323, 'generation_moment': 4677, 'job_id': 12, 'required_epoch': 300}
+2025-03-04 22:12:33,974 - Job introduced: {'generation_id': 324, 'generation_moment': 4713, 'job_id': 11, 'required_epoch': 130}
+2025-03-04 22:12:33,974 - Job introduced: {'generation_id': 325, 'generation_moment': 4713, 'job_id': 5, 'required_epoch': 340}
+2025-03-04 22:13:15,975 - Job introduced: {'generation_id': 326, 'generation_moment': 4755, 'job_id': 14, 'required_epoch': 260}
+2025-03-04 22:13:15,975 - Job introduced: {'generation_id': 327, 'generation_moment': 4755, 'job_id': 11, 'required_epoch': 90}
+2025-03-04 22:13:15,975 - Job introduced: {'generation_id': 328, 'generation_moment': 4755, 'job_id': 1, 'required_epoch': 290}
+2025-03-04 22:13:56,976 - Job introduced: {'generation_id': 329, 'generation_moment': 4796, 'job_id': 6, 'required_epoch': 430}
+2025-03-04 22:13:56,976 - Job introduced: {'generation_id': 330, 'generation_moment': 4796, 'job_id': 10, 'required_epoch': 280}
+2025-03-04 22:13:56,976 - Job introduced: {'generation_id': 331, 'generation_moment': 4796, 'job_id': 7, 'required_epoch': 150}
+2025-03-04 22:13:56,976 - Job introduced: {'generation_id': 332, 'generation_moment': 4796, 'job_id': 1, 'required_epoch': 420}
+2025-03-04 22:14:27,977 - Job introduced: {'generation_id': 333, 'generation_moment': 4827, 'job_id': 7, 'required_epoch': 200}
+2025-03-04 22:14:27,977 - Job introduced: {'generation_id': 334, 'generation_moment': 4827, 'job_id': 15, 'required_epoch': 120}
+2025-03-04 22:14:27,977 - Job introduced: {'generation_id': 335, 'generation_moment': 4827, 'job_id': 3, 'required_epoch': 50}
+2025-03-04 22:14:27,977 - Job introduced: {'generation_id': 336, 'generation_moment': 4827, 'job_id': 5, 'required_epoch': 440}
+2025-03-04 22:15:06,977 - Job introduced: {'generation_id': 337, 'generation_moment': 4866, 'job_id': 11, 'required_epoch': 320}
+2025-03-04 22:15:06,978 - Job introduced: {'generation_id': 338, 'generation_moment': 4866, 'job_id': 15, 'required_epoch': 320}
+2025-03-04 22:15:06,978 - Job introduced: {'generation_id': 339, 'generation_moment': 4866, 'job_id': 3, 'required_epoch': 200}
+2025-03-04 22:15:06,978 - Job introduced: {'generation_id': 340, 'generation_moment': 4866, 'job_id': 5, 'required_epoch': 130}
+2025-03-04 22:15:21,979 - Job introduced: {'generation_id': 341, 'generation_moment': 4881, 'job_id': 10, 'required_epoch': 440}
+2025-03-04 22:15:21,979 - Job introduced: {'generation_id': 342, 'generation_moment': 4881, 'job_id': 15, 'required_epoch': 200}
+2025-03-04 22:15:21,979 - Job introduced: {'generation_id': 343, 'generation_moment': 4881, 'job_id': 6, 'required_epoch': 330}
+2025-03-04 22:15:39,979 - Job introduced: {'generation_id': 344, 'generation_moment': 4899, 'job_id': 10, 'required_epoch': 250}
+2025-03-04 22:16:03,980 - Job introduced: {'generation_id': 345, 'generation_moment': 4923, 'job_id': 12, 'required_epoch': 330}
+2025-03-04 22:16:03,980 - Job introduced: {'generation_id': 346, 'generation_moment': 4923, 'job_id': 15, 'required_epoch': 10}
+2025-03-04 22:16:03,980 - Job introduced: {'generation_id': 347, 'generation_moment': 4923, 'job_id': 4, 'required_epoch': 460}
+2025-03-04 22:16:03,980 - Job introduced: {'generation_id': 348, 'generation_moment': 4923, 'job_id': 16, 'required_epoch': 490}
+2025-03-04 22:16:43,981 - Job introduced: {'generation_id': 349, 'generation_moment': 4963, 'job_id': 1, 'required_epoch': 280}
+2025-03-04 22:16:43,981 - Job introduced: {'generation_id': 350, 'generation_moment': 4963, 'job_id': 5, 'required_epoch': 180}
+2025-03-04 22:17:42,982 - Job introduced: {'generation_id': 351, 'generation_moment': 5022, 'job_id': 14, 'required_epoch': 170}
+2025-03-04 22:17:42,982 - Job introduced: {'generation_id': 352, 'generation_moment': 5022, 'job_id': 16, 'required_epoch': 100}
+2025-03-04 22:17:42,982 - Job introduced: {'generation_id': 353, 'generation_moment': 5022, 'job_id': 1, 'required_epoch': 380}
+2025-03-04 22:18:13,983 - Job introduced: {'generation_id': 354, 'generation_moment': 5053, 'job_id': 4, 'required_epoch': 250}
+2025-03-04 22:18:13,983 - Job introduced: {'generation_id': 355, 'generation_moment': 5053, 'job_id': 15, 'required_epoch': 200}
+2025-03-04 22:18:13,983 - Job introduced: {'generation_id': 356, 'generation_moment': 5053, 'job_id': 14, 'required_epoch': 40}
+2025-03-04 22:18:13,983 - Job introduced: {'generation_id': 357, 'generation_moment': 5053, 'job_id': 16, 'required_epoch': 490}
+2025-03-04 22:18:34,984 - Job introduced: {'generation_id': 358, 'generation_moment': 5074, 'job_id': 4, 'required_epoch': 280}
+2025-03-04 22:18:53,985 - Job introduced: {'generation_id': 359, 'generation_moment': 5093, 'job_id': 1, 'required_epoch': 450}
+2025-03-04 22:19:10,985 - Job introduced: {'generation_id': 360, 'generation_moment': 5110, 'job_id': 5, 'required_epoch': 40}
+2025-03-04 22:19:10,986 - Job introduced: {'generation_id': 361, 'generation_moment': 5110, 'job_id': 3, 'required_epoch': 470}
+2025-03-04 22:19:10,986 - Job introduced: {'generation_id': 362, 'generation_moment': 5110, 'job_id': 15, 'required_epoch': 80}
+2025-03-04 22:19:10,986 - Job introduced: {'generation_id': 363, 'generation_moment': 5110, 'job_id': 10, 'required_epoch': 490}
+2025-03-04 22:19:41,986 - Job introduced: {'generation_id': 364, 'generation_moment': 5141, 'job_id': 9, 'required_epoch': 50}
+2025-03-04 22:19:41,987 - Job introduced: {'generation_id': 365, 'generation_moment': 5141, 'job_id': 15, 'required_epoch': 70}
+2025-03-04 22:19:41,987 - Job introduced: {'generation_id': 366, 'generation_moment': 5141, 'job_id': 2, 'required_epoch': 320}
+2025-03-04 22:19:41,987 - Job introduced: {'generation_id': 367, 'generation_moment': 5141, 'job_id': 8, 'required_epoch': 220}
+2025-03-04 22:20:37,987 - Job introduced: {'generation_id': 368, 'generation_moment': 5197, 'job_id': 15, 'required_epoch': 380}
+2025-03-04 22:21:19,988 - Job introduced: {'generation_id': 369, 'generation_moment': 5239, 'job_id': 13, 'required_epoch': 270}
+2025-03-04 22:21:19,988 - Job introduced: {'generation_id': 370, 'generation_moment': 5239, 'job_id': 5, 'required_epoch': 50}
+2025-03-04 22:21:19,989 - Job introduced: {'generation_id': 371, 'generation_moment': 5239, 'job_id': 6, 'required_epoch': 370}
+2025-03-04 22:21:19,989 - Job introduced: {'generation_id': 372, 'generation_moment': 5239, 'job_id': 4, 'required_epoch': 80}
+2025-03-04 22:21:52,989 - Job introduced: {'generation_id': 373, 'generation_moment': 5272, 'job_id': 16, 'required_epoch': 430}
+2025-03-04 22:21:52,990 - Job introduced: {'generation_id': 374, 'generation_moment': 5272, 'job_id': 12, 'required_epoch': 250}
+2025-03-04 22:21:52,990 - Job introduced: {'generation_id': 375, 'generation_moment': 5272, 'job_id': 10, 'required_epoch': 310}
+2025-03-04 22:21:52,990 - Job introduced: {'generation_id': 376, 'generation_moment': 5272, 'job_id': 13, 'required_epoch': 380}
+2025-03-04 22:22:44,990 - Job introduced: {'generation_id': 377, 'generation_moment': 5324, 'job_id': 11, 'required_epoch': 290}
+2025-03-04 22:23:26,992 - Job introduced: {'generation_id': 378, 'generation_moment': 5366, 'job_id': 11, 'required_epoch': 250}
+2025-03-04 22:24:12,993 - Job introduced: {'generation_id': 379, 'generation_moment': 5412, 'job_id': 3, 'required_epoch': 450}
+2025-03-04 22:24:30,995 - Job introduced: {'generation_id': 380, 'generation_moment': 5430, 'job_id': 15, 'required_epoch': 150}
+2025-03-04 22:24:30,995 - Job introduced: {'generation_id': 381, 'generation_moment': 5430, 'job_id': 7, 'required_epoch': 470}
+2025-03-04 22:25:14,996 - Job introduced: {'generation_id': 382, 'generation_moment': 5474, 'job_id': 7, 'required_epoch': 260}
+2025-03-04 22:25:14,996 - Job introduced: {'generation_id': 383, 'generation_moment': 5474, 'job_id': 14, 'required_epoch': 440}
+2025-03-04 22:25:14,996 - Job introduced: {'generation_id': 384, 'generation_moment': 5474, 'job_id': 1, 'required_epoch': 310}
+2025-03-04 22:25:14,996 - Job introduced: {'generation_id': 385, 'generation_moment': 5474, 'job_id': 4, 'required_epoch': 190}
+2025-03-04 22:25:59,997 - Job introduced: {'generation_id': 386, 'generation_moment': 5519, 'job_id': 6, 'required_epoch': 10}
+2025-03-04 22:26:22,998 - Job introduced: {'generation_id': 387, 'generation_moment': 5542, 'job_id': 2, 'required_epoch': 480}
+2025-03-04 22:26:22,998 - Job introduced: {'generation_id': 388, 'generation_moment': 5542, 'job_id': 7, 'required_epoch': 170}
+2025-03-04 22:26:22,998 - Job introduced: {'generation_id': 389, 'generation_moment': 5542, 'job_id': 13, 'required_epoch': 420}
+2025-03-04 22:26:44,999 - Job introduced: {'generation_id': 390, 'generation_moment': 5564, 'job_id': 14, 'required_epoch': 190}
+2025-03-04 22:27:17,000 - Job introduced: {'generation_id': 391, 'generation_moment': 5596, 'job_id': 12, 'required_epoch': 200}
+2025-03-04 22:27:17,000 - Job introduced: {'generation_id': 392, 'generation_moment': 5596, 'job_id': 16, 'required_epoch': 90}
+2025-03-04 22:27:56,000 - Job introduced: {'generation_id': 393, 'generation_moment': 5635, 'job_id': 14, 'required_epoch': 90}
+2025-03-04 22:28:49,001 - Job introduced: {'generation_id': 394, 'generation_moment': 5688, 'job_id': 11, 'required_epoch': 330}
+2025-03-04 22:29:04,002 - Job introduced: {'generation_id': 395, 'generation_moment': 5703, 'job_id': 4, 'required_epoch': 270}
+2025-03-04 22:29:04,002 - Job introduced: {'generation_id': 396, 'generation_moment': 5703, 'job_id': 10, 'required_epoch': 210}
+2025-03-04 22:29:52,003 - Job introduced: {'generation_id': 397, 'generation_moment': 5751, 'job_id': 8, 'required_epoch': 220}
+2025-03-04 22:30:18,004 - Job introduced: {'generation_id': 398, 'generation_moment': 5777, 'job_id': 12, 'required_epoch': 410}
+2025-03-04 22:30:18,004 - Job introduced: {'generation_id': 399, 'generation_moment': 5777, 'job_id': 1, 'required_epoch': 220}
+2025-03-04 22:30:53,005 - Job introduced: {'generation_id': 400, 'generation_moment': 5812, 'job_id': 16, 'required_epoch': 70}
+2025-03-04 22:30:53,005 - Job introduced: {'generation_id': 401, 'generation_moment': 5812, 'job_id': 15, 'required_epoch': 40}
+2025-03-04 22:30:53,005 - Job introduced: {'generation_id': 402, 'generation_moment': 5812, 'job_id': 14, 'required_epoch': 170}
+2025-03-04 22:31:13,006 - Job introduced: {'generation_id': 403, 'generation_moment': 5832, 'job_id': 10, 'required_epoch': 300}
+2025-03-04 22:31:13,006 - Job introduced: {'generation_id': 404, 'generation_moment': 5832, 'job_id': 7, 'required_epoch': 430}
+2025-03-04 22:31:13,006 - Job introduced: {'generation_id': 405, 'generation_moment': 5832, 'job_id': 16, 'required_epoch': 400}
+2025-03-04 22:31:13,006 - Job introduced: {'generation_id': 406, 'generation_moment': 5832, 'job_id': 14, 'required_epoch': 330}
+2025-03-04 22:32:04,007 - Job introduced: {'generation_id': 407, 'generation_moment': 5883, 'job_id': 8, 'required_epoch': 420}
+2025-03-04 22:32:04,007 - Job introduced: {'generation_id': 408, 'generation_moment': 5883, 'job_id': 4, 'required_epoch': 340}
+2025-03-04 22:32:04,007 - Job introduced: {'generation_id': 409, 'generation_moment': 5883, 'job_id': 6, 'required_epoch': 400}
+2025-03-04 22:32:54,008 - Job introduced: {'generation_id': 410, 'generation_moment': 5933, 'job_id': 7, 'required_epoch': 70}
+2025-03-04 22:32:54,008 - Job introduced: {'generation_id': 411, 'generation_moment': 5933, 'job_id': 12, 'required_epoch': 90}
+2025-03-04 22:32:54,008 - Job introduced: {'generation_id': 412, 'generation_moment': 5933, 'job_id': 11, 'required_epoch': 240}
+2025-03-04 22:33:25,009 - Job introduced: {'generation_id': 413, 'generation_moment': 5964, 'job_id': 2, 'required_epoch': 370}
+2025-03-04 22:33:25,009 - Job introduced: {'generation_id': 414, 'generation_moment': 5964, 'job_id': 14, 'required_epoch': 260}
+2025-03-04 22:33:25,009 - Job introduced: {'generation_id': 415, 'generation_moment': 5964, 'job_id': 1, 'required_epoch': 120}
+2025-03-04 22:34:02,010 - Job introduced: {'generation_id': 416, 'generation_moment': 6001, 'job_id': 15, 'required_epoch': 110}
+2025-03-04 22:34:02,010 - Job introduced: {'generation_id': 417, 'generation_moment': 6001, 'job_id': 12, 'required_epoch': 310}
+2025-03-04 22:34:02,010 - Job introduced: {'generation_id': 418, 'generation_moment': 6001, 'job_id': 8, 'required_epoch': 250}
+2025-03-04 22:34:02,010 - Job introduced: {'generation_id': 419, 'generation_moment': 6001, 'job_id': 7, 'required_epoch': 50}
+2025-03-04 22:34:54,011 - Job introduced: {'generation_id': 420, 'generation_moment': 6053, 'job_id': 12, 'required_epoch': 480}

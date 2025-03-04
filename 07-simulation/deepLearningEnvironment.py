@@ -4,12 +4,11 @@ import requests
 import json
 import time
 from gymnasium import spaces
-
+import random
 
 job_generator_url = 'http://0.0.0.0:9902/jobs'
 job_deploy_url = 'http://0.0.0.0:9901/deploy_job'
 queue_url = 'http://0.0.0.0:9902/queue'
-
 
 class deepLearningEnvironment(gym.Env):
     # STEP 0: MAIN --------------------------------------------------------------------------------------------------------------------------------
@@ -24,46 +23,42 @@ class deepLearningEnvironment(gym.Env):
         self.scheduled_generation_ids = set()
         self.generated_jobs = []
 
-
     def reset(self, seed=None, **kwargs):
         if seed is not None:
             np.random.seed(seed)
-        self.set_state_dimension()
+        self.state = self.fetch_state()
+        self.current_dim = len(self.state)
         padded_state = np.zeros((self.max_dim,), dtype=np.float32)
-        padded_state[:self.current_dim] = self.state
+        padded_state[:self.current_dim] = self.state[:self.max_dim]
         return padded_state, {}
-
 
     def step(self, action):
         time.sleep(15)
         self.state = self.fetch_state()
+        self.current_dim = len(self.state)
         action = np.clip(action, self.action_space.low, self.action_space.high)
         if action.shape != self.state.shape:
             action = np.resize(action, self.state.shape)
         self.schedule_jobs(action)
         self.state += action
-        reward = -np.sum(np.abs(self.state - self.target_position))
+        reward = -np.sum(np.abs(self.state - self.target_position[:self.current_dim]))
         done = False
         padded_state = np.zeros((self.max_dim,), dtype=np.float32)
-        padded_state[:self.current_dim] = self.state
+        padded_state[:self.current_dim] = self.state[:self.max_dim]
         return padded_state, reward, done, False, {}
-
     
     def render(self):
         print(f"Current state (dim {self.current_dim}): {self.state}")
    
-
     # STEP 1: STATE --------------------------------------------------------------------------------------------------------------------------------
     def fetch_state(self):
         response = requests.get("http://0.0.0.0:9907/state")
         return np.array(response.json(), dtype=np.float32)
 
-
     def set_state_dimension(self):
         self.state = self.fetch_state()
         self.current_dim = len(self.state)
         self.target_position = np.zeros((self.current_dim,), dtype=np.float32)
-
 
     # STEP 2: ACTION --------------------------------------------------------------------------------------------------------------------------------
     def fetch_generated_jobs(self):
@@ -87,20 +82,32 @@ class deepLearningEnvironment(gym.Env):
                 print(f"Error accessing job generator service. Retrying in 1 seconds...")
             time.sleep(1)
 
+    def score_nodes(self, state):
+        node_scores = []
+        num_nodes = 39
+        for i in range(num_nodes):
+            cpu_util = state[i]
+            gpu_util = state[i + 13]
+            mem_util = state[i + 26]
+            score = cpu_util + gpu_util + mem_util
+            node_scores.append((i + 1, score))  # node indices are 1-based
+        min_score = min(node_scores, key=lambda x: x[1])[1]
+        best_nodes = [node for node, score in node_scores if score == min_score]
+        return random.choice(best_nodes)
 
     def schedule_jobs(self, action):
         jobs = self.fetch_generated_jobs()
-        node_assignments = np.round((action + 1) * 6.5).astype(int)
-        node_assignments = np.clip(node_assignments, 1, 13)
-        for job, node in zip(jobs, node_assignments):
+        state = self.fetch_state()
+        for job in jobs:
             generation_id = job['generation_id']
             if generation_id in self.scheduled_generation_ids:
                 continue
+            best_node = self.score_nodes(state)
             schedule_moment = job.get('generation_moment')
             job_data = {
                 'generation_id': generation_id,
                 'job_id': job.get('job_id'),
-                'node': f"k8s-worker-{node}",
+                'node': f"k8s-worker-{best_node}",
                 'required_epoch': job.get('required_epoch'),
                 'generation_moment': job.get('generation_moment'),
                 'schedule_moment': schedule_moment
@@ -109,7 +116,7 @@ class deepLearningEnvironment(gym.Env):
                 try:
                     deploy_response = requests.post(job_deploy_url, json=job_data)
                     if deploy_response.status_code == 200:
-                        print(f"Job with generation_id {generation_id} scheduled on node k8s-worker-{node} successfully.")
+                        print(f"Job with generation_id {generation_id} scheduled on node k8s-worker-{best_node} successfully.")
                         self.scheduled_generation_ids.add(generation_id)
                         queue_response = requests.post(queue_url, json={'generation_id': generation_id})
                         if queue_response.status_code != 200:
@@ -120,7 +127,6 @@ class deepLearningEnvironment(gym.Env):
                 except requests.RequestException as e:
                     print(f"Error accessing cluster. Retrying in 1 seconds...")
                 time.sleep(1)
-
 
     # STEP 3: REWARD --------------------------------------------------------------------------------------------------------------------------------
     # Reward is calculated within the step function: -np.sum(np.abs(self.state - self.target_position))

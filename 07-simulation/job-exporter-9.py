@@ -39,6 +39,10 @@ def fetch_static_data(job_id, generation_id, node):
     job = cursor.fetchone()
     if job:
         job_id, job_batch_size, job_learning_rate, job_dataset_complexity, job_model_complexity = job
+        job_batch_size = int(job_batch_size)
+        job_dataset_complexity = int(job_dataset_complexity)
+        job_model_complexity = int(job_model_complexity)
+        job_learning_rate = round(float(job_learning_rate), 2)
         job_model_complexity_gauge.labels(generation_id=generation_id, job_id=job_id, node=node).set(job_model_complexity)
         job_dataset_complexity_gauge.labels(generation_id=generation_id, job_id=job_id, node=node).set(job_dataset_complexity)
         job_batch_size_gauge.labels(generation_id=generation_id, job_id=job_id, node=node).set(job_batch_size)
@@ -51,9 +55,14 @@ def fetch_static_data(job_id, generation_id, node):
 
 
 # Step 1.4: Increment the job_schedule_moment and job_generation_moment every second
-def expose_moments(generation_id, job_id, node, schedule_moment_value, generation_moment_value):
+def init(generation_id, job_id, node, schedule_moment_value, generation_moment_value, required_epoch_value):
     job_schedule_moment.labels(generation_id=generation_id, job_id=job_id, node=node).set(schedule_moment_value)
     job_generation_moment.labels(generation_id=generation_id, job_id=job_id, node=node).set(generation_moment_value)
+    job_required_epoch.labels(generation_id=generation_id, job_id=job_id, node=node).set(required_epoch_value)
+    job_training_loss.labels(generation_id=generation_id, job_id=job_id, node=node).set(0)
+    job_training_accuracy.labels(generation_id=generation_id, job_id=job_id, node=node).set(0)
+    job_training_progress.labels(generation_id=generation_id, job_id=job_id, node=node).set(0)
+    job_passed_epoch.labels(generation_id=generation_id, job_id=job_id, node=node).set(0)
 
 
 # Step 2: Resource usage simulation functions --------------------------------------------------------------------------------------------------
@@ -216,7 +225,7 @@ def start_job_exporter(port):
 def simulate_epoch(passed_epochs, required_epochs, job_id, node, generation_id, schedule_moment, generation_moment):
     progress_percentage = int((passed_epochs / required_epochs) * 100)
     simulate_resource_usage_for_stages(generation_id, job_id, node, passed_epochs)
-    training_loss = get_training_loss(passed_epochs, progress_percentage)
+    training_loss = round(float(get_training_loss(passed_epochs, progress_percentage)), 2)
     training_accuracy = get_training_accuracy(passed_epochs, progress_percentage)
     send_training_metrics(generation_id, job_id, node, training_loss, training_accuracy, progress_percentage)
     job_passed_epoch.labels(generation_id=generation_id, job_id=job_id, node=node).set(passed_epochs)
@@ -250,7 +259,7 @@ def main():
     parser.add_argument('--required_epochs', type=int, required=True, help="Required epochs")
     args = parser.parse_args()
     start_job_exporter(args.port)
-    expose_moments(args.generation_id, args.job_id, args.node, args.schedule_moment, args.generation_moment)
+    init(args.generation_id, args.job_id, args.node, args.schedule_moment, args.generation_moment, args.required_epochs)
     fetch_static_data(args.job_id, args.generation_id, args.node)
     elapsed_time_thread = threading.Thread(target=start_elapsed_time_counter, args=(args.generation_id, args.job_id, args.node, args.schedule_moment))
     elapsed_time_thread.daemon = True

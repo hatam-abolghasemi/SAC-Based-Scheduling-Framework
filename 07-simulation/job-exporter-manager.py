@@ -4,37 +4,33 @@ import requests
 import subprocess
 import threading
 
-
 processed_generation_ids = set()
+lock = threading.Lock()
+
 def get_jobs(worker_id):
     url = f"http://localhost:9901/jobs/k8s-worker-{worker_id}"
     try:
         response = requests.get(url)
         response.raise_for_status()
         jobs = response.json()
-        # print(f"Fetched {len(jobs)} jobs from worker {worker_id}.")
         return jobs
     except requests.RequestException as e:
         print(f"Error fetching jobs from worker {worker_id}: {e}")
         return []
 
-
 def calculate_port(generation_id):
     if generation_id < 10:
-        port = "1100" + str(generation_id)
+        return f"1100{generation_id}"
     elif generation_id < 100:
-        port = "110" + str(generation_id)
+        return f"110{generation_id}"
     else:
-        port = "11" + str(generation_id)
-    return port
-
+        return f"11{generation_id}"
 
 def get_job_info(job_id, generation_id, jobs_data):
     for job in jobs_data:
         if job['job_id'] == job_id and job['generation_id'] == generation_id:
             return job
     return {}
-
 
 def start_container_exporter(port, generation_id, job_info, job_id):
     exporter_script = f'job-exporter-{job_id}.py'
@@ -51,39 +47,29 @@ def start_container_exporter(port, generation_id, job_info, job_id):
         '--schedule_moment', str(job_info.get('schedule_moment', 0)),
         '--required_epochs', str(job_info.get('required_epoch', 0))
     ]
-    print(f"Running command: {' '.join(command)}")
-    result = subprocess.run(command, capture_output=True, text=True)
-    # print("Command output:", result.stdout)
-    if result.stderr:
-        print("Command error:", result.stderr)
-
+    print(f"Launching container exporter for job {job_id} on port {port}...")
+    subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 def process_job(job, jobs):
     job_id = job.get("job_id")
     generation_id = int(job.get("generation_id", 0))
-    if 1 <= job_id <= 16 and generation_id not in processed_generation_ids:
-        port = calculate_port(generation_id)
-        job_info = get_job_info(job_id, generation_id, jobs)
-        if job_info:
-            start_container_exporter(port, generation_id, job_info, job_id)
-            processed_generation_ids.add(generation_id)
-
+    if 1 <= job_id <= 16:
+        with lock:  # Ensure thread-safe checks
+            if generation_id not in processed_generation_ids:
+                processed_generation_ids.add(generation_id)
+                port = calculate_port(generation_id)
+                job_info = get_job_info(job_id, generation_id, jobs)
+                if job_info:
+                    threading.Thread(target=start_container_exporter, args=(port, generation_id, job_info, job_id), daemon=True).start()
 
 def monitor_jobs():
-    print("Starting job monitoring loop...")
+    print("Starting continuous job monitoring...")
     while True:
-        threads = []
         for worker_id in range(1, 14):
             jobs = get_jobs(worker_id)
             for job in jobs:
-                thread = threading.Thread(target=process_job, args=(job, jobs))
-                threads.append(thread)
-                thread.start()
-        for thread in threads:
-            thread.join()
-        # print("Waiting before fetching jobs again...")
+                threading.Thread(target=process_job, args=(job, jobs), daemon=True).start()
         time.sleep(1)
-
 
 if __name__ == '__main__':
     monitor_jobs()

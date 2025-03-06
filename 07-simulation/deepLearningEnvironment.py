@@ -41,7 +41,7 @@ class deepLearningEnvironment(gym.Env):
             action = np.resize(action, self.state.shape)
         self.schedule_jobs(action)
         self.state += action
-        reward = reward_function(self.state)
+        reward = self.reward_function()        
         done = False
         padded_state = np.zeros((self.max_dim,), dtype=np.float32)
         padded_state[:self.current_dim] = self.state[:self.max_dim]
@@ -84,7 +84,7 @@ class deepLearningEnvironment(gym.Env):
 
     def score_nodes(self, state):
         node_scores = []
-        num_nodes = 39
+        num_nodes = 13
         for i in range(num_nodes):
             cpu_util = state[i]
             gpu_util = state[i + 13]
@@ -130,20 +130,21 @@ class deepLearningEnvironment(gym.Env):
 
     # STEP 3: REWARD --------------------------------------------------------------------------------------------------------------------------------
     # Reward is calculated within the step function: -np.sum(np.abs(self.state - self.target_position))
-    def calculate_average(values, start_index, step, count):
+    def calculate_average(self, values, start_index, step, count):
         indices = [start_index + (i * step) for i in range(count) if start_index + (i * step) < len(values)]
         if indices:
             return sum(values[idx - 1] for idx in indices) / len(indices)
         return 0.0
-    
-    def reward_function(state):
-        progress_reward = calculate_average(state, 45, 15, 101)
-        accuracy_reward = calculate_average(state, 44, 15, 101)
-        loss_penalty = calculate_average(state, 43, 15, 101)
-        elapsed_time_penalty = calculate_average(state, 48, 15, 101)
-        cpu_utilization_reward = calculate_average(state, 1, 15, 3)
-        gpu_utilization_reward = calculate_average(state, 2, 15, 3)
-        mem_utilization_reward = calculate_average(state, 3, 15, 3)
+
+    def reward_function(self):
+        state = self.fetch_state()
+        progress_reward = self.calculate_average(state, 45, 15, 101)
+        accuracy_reward = self.calculate_average(state, 44, 15, 101)
+        loss_penalty = self.calculate_average(state, 43, 15, 101)
+        elapsed_time_penalty = self.calculate_average(state, 48, 15, 101)
+        cpu_utilization_reward = self.calculate_average(state, 1, 15, 3)
+        gpu_utilization_reward = self.calculate_average(state, 2, 15, 3)
+        mem_utilization_reward = self.calculate_average(state, 3, 15, 3)
         reward = (progress_reward + accuracy_reward +
                    cpu_utilization_reward + gpu_utilization_reward + mem_utilization_reward -
                    loss_penalty - elapsed_time_penalty)

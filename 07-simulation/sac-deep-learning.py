@@ -3,6 +3,8 @@ from stable_baselines3 import SAC
 import os
 import logging
 from deepLearningEnvironment import deepLearningEnvironment
+from stable_baselines3.common.vec_env import DummyVecEnv
+from stable_baselines3.common.monitor import Monitor
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 
@@ -13,6 +15,7 @@ def log_rewards(episode, reward, log_file='training_rewards.log'):
 
 def train_and_track(env, total_episodes=100, max_steps=200):
     model = SAC("MlpPolicy", env, verbose=1)
+    model.learn(total_timesteps=10000)
     episode_rewards = []
     logging.info("Starting training...")
     for episode in range(total_episodes):
@@ -38,5 +41,7 @@ def train_and_track(env, total_episodes=100, max_steps=200):
 
 if __name__ == '__main__':
     env = deepLearningEnvironment()
+    env = Monitor(env)  # Monitor wrapper
+    env = DummyVecEnv([lambda: env])
     train_and_track(env)
 

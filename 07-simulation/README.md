@@ -1,5 +1,9 @@
 job-generator --> cluster --> scheduler --> node-exporter --> job-exporter-manager --> state-updater
 
+Episode: A time period (e.g., 15 seconds) during which jobs are scheduled, their actions are taken, and rewards are calculated. The episode ends when the time period is over or when a set condition is met (like all jobs in the queue are processed or a specific number of jobs are scheduled).
+
+Step: A single decision point within an episode where the system selects a node for a job, fetches the state, takes action, and calculates the reward. Each step represents one scheduling decision made for a job.
+
 k8s-worker:
 
 GPU Cores: 5120

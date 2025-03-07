@@ -13,15 +13,15 @@ TOTAL_JOB_SAMPLES = 16
 FLASK_PORT = 9902
 MIN_REQUIRED_EPOCH = 10
 MAX_REQUIRED_EPOCH = 500
+JOB_EXPIRATION_TIME = 15
 app = Flask(__name__)
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 logging.basicConfig(filename='generated_jobs.log', level=logging.INFO, format='%(asctime)s - %(message)s')
 generated_jobs = []
-job_queue = []  # Queue to store jobs that need to be scheduled
+job_queue = []
 generation_counter = 1
 start_time = time.time()
-
 
 def generate_jobs():
     global generation_counter
@@ -45,7 +45,6 @@ def generate_jobs():
     conn.close()
     return jobs
 
-
 def introduce_jobs():
     global generated_jobs
     while True:
@@ -55,11 +54,16 @@ def introduce_jobs():
             logging.info(f"Job introduced: {job}")
         time.sleep(random.randint(JOB_INTRO_MIN_SECONDS, JOB_INTRO_MAX_SECONDS))
 
+def clean_generated_jobs():
+    global generated_jobs
+    while True:
+        current_time = int(time.time() - start_time)
+        generated_jobs = [job for job in generated_jobs if current_time - job['generation_moment'] <= JOB_EXPIRATION_TIME]
+        time.sleep(1)  # Check every second
 
 @app.route('/jobs', methods=['GET'])
 def get_jobs():
     return Response("".join([f"{str(job)}\n" for job in generated_jobs]), mimetype='text/plain')
-
 
 @app.route('/queue', methods=['POST'])
 def queue_job():
@@ -73,11 +77,12 @@ def queue_job():
     else:
         return jsonify({"error": "Job not found."}), 404
 
-
-thread = threading.Thread(target=introduce_jobs)
-thread.daemon = True
-thread.start()
-
+thread_job_generation = threading.Thread(target=introduce_jobs)
+thread_job_generation.daemon = True
+thread_job_generation.start()
+thread_generated_job_cleaning = threading.Thread(target=clean_generated_jobs)
+thread_generated_job_cleaning.daemon = True
+thread_generated_job_cleaning.start()
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=FLASK_PORT)
 

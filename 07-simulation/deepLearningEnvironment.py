@@ -10,98 +10,51 @@ import logging
 job_generator_url = 'http://0.0.0.0:9902/jobs'
 job_deploy_url = 'http://0.0.0.0:9901/deploy_job'
 queue_url = 'http://0.0.0.0:9902/queue'
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 
 class deepLearningEnvironment(gym.Env):
     def __init__(self):
         super(deepLearningEnvironment, self).__init__()
-        self.state = np.zeros((1,), dtype=np.float32)
-        self.target_position = np.zeros((1,), dtype=np.float32)
+        self.state_size = 714
+        self.action_space = spaces.Box(low=-1, high=1, shape=(1,), dtype=np.float32)
+        self.observation_space = spaces.Box(low=-10, high=10, shape=(self.state_size,), dtype=np.float32)
+        self.state = np.zeros((self.state_size,), dtype=np.float32)
+        self.target_position = np.zeros((self.state_size,), dtype=np.float32)
         self.scheduled_generation_ids = set()
         self.generated_jobs = []
-        self.current_step = 0
-        self.max_steps = 200
-        self.episode_start_time = time.time()
-        self.state_dimension = None
-        self.set_state_dimension()
-        self.observation_space = gym.spaces.Box(low=-np.inf, high=np.inf, shape=(self.current_dim,), dtype=np.float32)
-        self.action_space = gym.spaces.Box(low=-1, high=1, shape=(self.current_dim,), dtype=np.float32)
+        self.episode_step_count = 0
 
     def reset(self, seed=None, **kwargs):
         if seed is not None:
             np.random.seed(seed)
-        self.scheduled_generation_ids.clear()
         self.state = self.fetch_state()
-        self.current_dim = len(self.state)
-        self.current_step = 0
-        padded_state = np.zeros((self.current_dim,), dtype=np.float32)
-        padded_state[:self.current_dim] = self.state[:self.current_dim]
-        self.episode_start_time = time.time()
-        logging.info("Step reset. Initial state fetched.")
+        padded_state = np.zeros((self.state_size,), dtype=np.float32)
+        self.episode_step_count = 0
         return padded_state, {}
 
     def step(self, action):
-        max_retries = 5
-        base_delay = 1.0
-        self.state = self.fetch_state()
-        for attempt in range(max_retries):
-            self.current_dim = len(self.state)
-            if self.current_dim == self.observation_space.shape[0]:
-                break
-            else:
-                print(f"[Retry {attempt + 1}/{max_retries}] State size mismatch detected. "
-                      f"Expected {self.observation_space.shape[0]}, got {self.current_dim}. Updating observation space.")
-                self.update_observation_space(self.state)
-                time.sleep(base_delay * (2 ** attempt))
-        if self.current_dim != self.observation_space.shape[0]:
-            print("Max retries reached. Proceeding with mismatched dimensions.")
-        self.observation_space = gym.spaces.Box(low=-np.inf, high=np.inf, shape=(self.current_dim,), dtype=np.float32)
-        self.action_space = gym.spaces.Box(low=-1, high=1, shape=(self.current_dim,), dtype=np.float32)
-        logging.debug(f"Step {self.current_step}: Received action: {action}")
-        logging.debug("Fetching current state...")
-        logging.debug(f"State before scheduling: {self.state}")
-        logging.debug(f"Action applied: {action}")
-        self.schedule_jobs(action)
-        action = action[:self.state_dimension]
-        self.state += action
-        reward = self.reward_function()
-        logging.debug(f"Reward calculated: {reward}")
-        time.sleep(1)
-        padded_state = np.zeros((self.current_dim,), dtype=np.float32)
-        padded_state[:self.current_dim] = self.state[:self.current_dim]
-        self.current_step += 1
-        terminated = self.current_step >= self.max_steps
-        truncated = False
-        if terminated:
-            duration = time.time() - self.episode_start_time
-            logging.info(f"Step finished after {self.current_step} steps. Duration: {duration:.2f} seconds.")
-        return padded_state, reward, terminated, truncated, {}
-    
+        state = self.fetch_state()
+        action = np.clip(action, self.action_space.low, self.action_space.high)
+        if action.shape != state.shape:
+            action = np.resize(action, state.shape)
+        self.schedule_jobs(action, state)
+        reward = self.reward_function(state)
+        # logging.info(f"State: {state}, Reward: {reward}")
+        self.episode_step_count += 1
+        done = self.episode_step_count >= 10
+        if done:
+            self.episode_step_count = 0
+        padded_state = np.zeros((self.state_size,), dtype=np.float32)
+        return padded_state, reward, done, False, {}
+
     def render(self):
-        print(f"Step: {self.current_step}, State: {self.state}")
-
-    def update_observation_space(self, state):
-        obs_shape = (len(state),)
-        self.observation_space = gym.spaces.Box(low=-np.inf, high=np.inf, shape=obs_shape, dtype=np.float32)
-
-    def set_state_dimension(self):
-        self.state_dimension = len(self.state)
-
-    # STEP 1: STATE --------------------------------------------------------------------------------------------------------------------------------
+        print(f"Current state (dim {self.state_size}): {self.state}")
+   
     def fetch_state(self):
         response = requests.get("http://0.0.0.0:9907/state")
         return np.array(response.json(), dtype=np.float32)
 
-    def set_state_dimension(self):
-        self.state = self.fetch_state()
-        self.current_dim = len(self.state)
-        self.target_position = np.zeros((self.current_dim,), dtype=np.float32)
-
-    # STEP 2: ACTION --------------------------------------------------------------------------------------------------------------------------------
     def fetch_generated_jobs(self):
-        max_retries = 5
-        base_delay = 1.0
-        for attempt in range(max_retries):
+        while True:
             try:
                 response = requests.get(job_generator_url)
                 if response.status_code == 200:
@@ -112,16 +65,14 @@ class deepLearningEnvironment(gym.Env):
                             job = json.loads(line.replace("'", '"'))
                             jobs.append(job)
                         except json.JSONDecodeError as e:
-                            logging.error(f"Failed to decode line: {line}")
-                            logging.error(f"Error: {e}")
+                            print(f"Failed to decode line: {line}")
+                            print(f"Error: {e}")
                     return jobs
                 else:
-                    logging.warning(f"Failed to fetch jobs, status code: {response.status_code}")
+                    print(f"Failed to fetch jobs, status code: {response.status_code}")
             except requests.RequestException as e:
-                logging.warning(f"Error accessing job generator service. Retrying in {base_delay * (2 ** attempt)} seconds...")
-                time.sleep(base_delay * (2 ** attempt))
-        logging.error("Failed to fetch jobs after multiple retries.")
-        return []
+                print(f"Error accessing job generator service. Retrying in 1 seconds...")
+            # time.sleep(1)
 
     def score_nodes(self, state):
         node_scores = []
@@ -134,12 +85,10 @@ class deepLearningEnvironment(gym.Env):
             node_scores.append((i + 1, score))
         min_score = min(node_scores, key=lambda x: x[1])[1]
         best_nodes = [node for node, score in node_scores if score == min_score]
-        logging.info(f"Scored nodes: {node_scores}. Best nodes: {best_nodes}")
         return random.choice(best_nodes)
 
-    def schedule_jobs(self, action):
+    def schedule_jobs(self, action, state):
         jobs = self.fetch_generated_jobs()
-        state = self.fetch_state()
         for job in jobs:
             generation_id = job['generation_id']
             if generation_id in self.scheduled_generation_ids:
@@ -168,17 +117,15 @@ class deepLearningEnvironment(gym.Env):
                         print(f"Failed to deploy job with generation_id {generation_id}. Response: {deploy_response.text}")
                 except requests.RequestException as e:
                     print(f"Error accessing cluster. Retrying in 1 seconds...")
-                time.sleep(1)
+                # time.sleep(1)
 
-    # STEP 3: REWARD --------------------------------------------------------------------------------------------------------------------------------
     def calculate_average(self, values, start_index, step, count):
         indices = [start_index + (i * step) for i in range(count) if start_index + (i * step) < len(values)]
         if indices:
             return sum(values[idx - 1] for idx in indices) / len(indices)
         return 0.0
 
-    def reward_function(self):
-        state = self.fetch_state()
+    def reward_function(self, state):
         progress_reward = self.calculate_average(state, 45, 15, 101)
         accuracy_reward = self.calculate_average(state, 44, 15, 101)
         loss_penalty = self.calculate_average(state, 43, 15, 101)

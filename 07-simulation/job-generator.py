@@ -4,6 +4,7 @@ import time
 import logging
 from flask import Flask, Response, request, jsonify
 import threading
+import subprocess
 
 JOB_INTRO_MIN_SECONDS = 15
 JOB_INTRO_MAX_SECONDS = 60
@@ -48,10 +49,20 @@ def generate_jobs():
 def introduce_jobs():
     global generated_jobs
     while True:
-        jobs = generate_jobs()
-        for job in jobs:
-            generated_jobs.append(job)
-            logging.info(f"Job introduced: {job}")
+        result = subprocess.run(
+            "ss -nlpt | grep 0.0.0.0:11 | grep python3 | wc -l", 
+            shell=True, 
+            capture_output=True, 
+            text=True
+        )
+        result_value = int(result.stdout.strip())  # Get the result as an integer
+        if result_value < 41:
+            jobs = generate_jobs()
+            for job in jobs:
+                generated_jobs.append(job)
+                logging.info(f"Job introduced: {job}")
+        else:
+            logging.info(f"Command result {result_value} is greater than or equal to 41. Skipping job generation.")
         time.sleep(random.randint(JOB_INTRO_MIN_SECONDS, JOB_INTRO_MAX_SECONDS))
 
 def clean_generated_jobs():

@@ -7,41 +7,47 @@ from stable_baselines3.common.vec_env import DummyVecEnv
 from stable_baselines3.common.monitor import Monitor
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
+log_dir = "logs"
+os.makedirs(log_dir, exist_ok=True)
 
-def log_rewards(episode, reward, log_file='training_rewards.log'):
+def log_rewards(step, reward, log_file='logs/training_rewards.log'):
     with open(log_file, 'a') as file:
-        file.write(f"Episode {episode}, Reward: {reward}\n")
-    logging.info(f"Episode {episode} - Reward logged: {reward}")
+        file.write(f"Step {step}, Reward: {reward}\n")
+    logging.info(f"Step {step} - Reward logged: {reward}")
 
-def train_and_track(env, total_episodes=100, max_steps=200):
+def train_and_track(env, total_steps=10, max_steps=10):
     model = SAC("MlpPolicy", env, verbose=1)
-    model.learn(total_timesteps=10000)
-    episode_rewards = []
+    model.learn(total_timesteps=10)
+    step_rewards = []
     logging.info("Starting training...")
-    for episode in range(total_episodes):
-        logging.info(f"Episode {episode + 1} starting...")
-        obs, info = env.reset()
+    for step in range(total_steps):
+        # logging.info(f"Step {step + 1} starting...")
         current_rewards = 0
-        for step in range(max_steps):
-            logging.info(f"Step {step + 1} for Episode {episode + 1}...")
-            action, _ = model.predict(obs, deterministic=False)
-            obs, reward, terminated, truncated, info = env.step(action)
-            current_rewards += reward
-            model.learn(total_timesteps=1, log_interval=0, reset_num_timesteps=False, progress_bar=False)
-            if terminated or truncated:
-                logging.info(f"Episode {episode + 1} terminated at Step {step + 1}.")
-                break
-        episode_rewards.append(current_rewards)
-        log_rewards(episode + 1, current_rewards)
-        logging.info(f"Episode {episode + 1} completed with total reward: {current_rewards}")
+        for episode in range(10):
+            obs = env.reset()
+            episode_rewards = 0
+            for _ in range(max_steps):
+                action, _ = model.predict(obs, deterministic=False)
+                obs, reward, done, info = env.step(action)
+                episode_rewards += reward
+                model.learn(total_timesteps=1, reset_num_timesteps=False, progress_bar=False)
+                if done:
+                    logging.info(f"Episode {episode + 1} terminated at step {_ + 1}.")
+                    break
+            current_rewards += episode_rewards
+            # logging.info(f"Episode {episode + 1} finished with reward: {episode_rewards}")
+        step_rewards.append(current_rewards)
+        log_rewards(step + 1, current_rewards)
+        logging.info(f"Step {step + 1} completed with total reward: {current_rewards}")
     model.save("sac_scheduler_model")
     logging.info("Training completed. Model saved as 'sac_scheduler_model'.")
-    logging.info(f"Total Episodes: {total_episodes}")
-    logging.info("Rewards logged in 'training_rewards.log'.")
+    logging.info(f"Total Steps: {total_steps}")
+    logging.info(f"Rewards logged in 'training_rewards.log'.")
+
 
 if __name__ == '__main__':
     env = deepLearningEnvironment()
-    env = Monitor(env)  # Monitor wrapper
+    env = Monitor(env, "logs")
     env = DummyVecEnv([lambda: env])
     train_and_track(env)
 

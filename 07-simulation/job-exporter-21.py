@@ -168,34 +168,32 @@ def simulate_resource_usage_for_stages(generation_id, job_id, node, passed_epoch
 # Step 3.1: Calculate training loss based on passed_epoch and progress_percentage
 def get_training_loss(passed_epochs, progress_percentage):
     loss_matrix = {
-        10: [1.85, 1.85, 1.85, 1.85, 1.85],
-        50: [1.40, 1.35, 1.30, 1.20, 1.30],
-        100: [1.10, 1.05, 1.00, 0.90, 1.05],
-        300: [0.85, 0.80, 0.75, 0.70, 0.72],
-        500: [0.75, 0.72, 0.70, 0.65, 0.72],
+        10: [2.90, 2.90, 2.90, 2.90, 2.90],
+        50: [2.60, 2.55, 2.50, 2.45, 2.50],
+        100: [2.30, 2.25, 2.20, 2.15, 2.20],
+        300: [2.00, 1.95, 1.90, 1.85, 1.90],
+        500: [1.70, 1.65, 1.60, 1.55, 1.60],
     }
     for threshold in sorted(loss_matrix.keys(), reverse=True):
         if passed_epochs >= threshold:
             progress_index = min(int(progress_percentage // 20), 4)
             return loss_matrix[threshold][progress_index]
-    return 1.85
+    return 2.90
 
 
-# Step 3.2: Calculate training accuracy based on passed_epoch and progress_percentage
 def get_training_accuracy(passed_epochs, progress_percentage):
     accuracy_matrix = {
-        10: [65.0, 65.5, 66.0, 66.5, 65.0],
-        50: [75.0, 75.5, 77.0, 78.0, 75.5],
-        100: [80.5, 81.0, 81.5, 82.0, 82.0],
-        300: [85.5, 86.5, 87.0, 88.5, 89.5],
-        500: [89.0, 89.5, 90.0, 91.0, 92.0],
+        10: [50.0, 50.5, 51.0, 51.5, 51.0],
+        50: [60.0, 61.0, 62.0, 63.0, 62.5],
+        100: [68.0, 69.0, 70.0, 71.0, 71.5],
+        300: [73.0, 74.0, 75.0, 76.0, 77.0],
+        500: [75.0, 76.0, 77.0, 78.0, 79.0],
     }
     for threshold in sorted(accuracy_matrix.keys(), reverse=True):
         if passed_epochs >= threshold:
             progress_index = min(int(progress_percentage // 20), 4)
             return accuracy_matrix[threshold][progress_index]
-    return 65.0
-
+    return 50.0
 
 # Step 3.3: Send calculated training metrics to Prometheus
 def send_training_metrics(generation_id, job_id, node, training_loss, training_accuracy, progress_percentage):

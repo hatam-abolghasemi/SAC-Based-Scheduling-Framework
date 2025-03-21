@@ -5,7 +5,6 @@ import time
 import re
 import sys
 
-
 def fetch_node_data():
     connection_restored = False
     while True:
@@ -21,7 +20,6 @@ def fetch_node_data():
             connection_restored = True
         time.sleep(3)
 
-
 def fetch_container_metrics(port):
     usage = {'cpu': {}, 'gpu': {}, 'mem': {}}
     try:
@@ -35,7 +33,6 @@ def fetch_container_metrics(port):
     except Exception as e:
         sys.stderr.write(f"Error accessing metrics on port {port}: {e}\n")
     return usage
-
 
 def update_metrics():
     nodes = fetch_node_data()
@@ -94,7 +91,6 @@ def update_metrics():
             sys.stderr.write(f"Error during metric update: {e}\n")
             time.sleep(3)
 
-
 def deregister_unwanted_metrics():
     unwanted_metrics = [
         'python_gc_objects_uncollectable_total',
@@ -111,10 +107,13 @@ def deregister_unwanted_metrics():
         if metric_name in REGISTRY._names_to_collectors:
             REGISTRY.unregister(REGISTRY._names_to_collectors[metric_name])
 
-
 if __name__ == '__main__':
-    deregister_unwanted_metrics()
-    start_http_server(9904)
-    sys.stderr.write("Node exporter is running on port 9904...\n")
-    update_metrics()
+    try:
+        deregister_unwanted_metrics()
+        start_http_server(9904)
+        sys.stderr.write("Node exporter is running on port 9904...\n")
+        update_metrics()
+    except KeyboardInterrupt:
+        sys.stderr.write("Process interrupted. Exiting...\n")
+        sys.exit(0)
 

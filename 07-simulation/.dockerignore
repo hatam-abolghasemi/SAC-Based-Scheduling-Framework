@@ -1,0 +1,8 @@
+# Ignore the virtual environment directory
+venv/
+
+# Optionally, you can add other files or directories you want to exclude
+*.pyc
+__pycache__/
+*.log
+

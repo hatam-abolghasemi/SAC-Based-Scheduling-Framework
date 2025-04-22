@@ -15,7 +15,7 @@ def log_rewards(step, reward, log_file='logs/training_rewards.log'):
         file.write(f"Step {step}, Reward: {reward}\n")
     logging.info(f"Step {step} - Reward logged: {reward}")
 
-def train_and_track(env, total_steps=10, max_steps=10):
+def train_and_track(env, total_steps=10000, max_steps=10000):
     model = SAC("MlpPolicy", env, verbose=1)
     model.learn(total_timesteps=10)
     step_rewards = []

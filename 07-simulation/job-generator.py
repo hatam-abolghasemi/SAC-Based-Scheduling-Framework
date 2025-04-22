@@ -5,12 +5,11 @@ import logging
 from flask import Flask, Response, request, jsonify
 import threading
 import subprocess
+from datetime import datetime, timedelta
 
-JOB_INTRO_MIN_SECONDS = 15
-JOB_INTRO_MAX_SECONDS = 60
 MIN_JOBS = 1
-MAX_JOBS = 4
-TOTAL_JOB_SAMPLES = 16
+MAX_JOBS = 2
+TOTAL_JOB_SAMPLES = 31
 FLASK_PORT = 9902
 MIN_REQUIRED_EPOCH = 10
 MAX_REQUIRED_EPOCH = 500
@@ -22,7 +21,8 @@ logging.basicConfig(filename='generated_jobs.log', level=logging.INFO, format='%
 generated_jobs = []
 job_queue = []
 generation_counter = 1
-start_time = time.time()
+daily_job_count = 0
+last_reset_date = datetime.now().date()
 
 def generate_jobs():
     global generation_counter
@@ -34,7 +34,7 @@ def generate_jobs():
     for job_id in job_ids:
         cursor.execute('SELECT job_id FROM jobs WHERE job_id = ?', (job_id,))
         job = cursor.fetchone()
-        generation_moment = max(int(time.time() - start_time), 1)
+        generation_moment = int(time.time())
         required_epoch = random.choice(range(MIN_REQUIRED_EPOCH, MAX_REQUIRED_EPOCH + 1, 10))
         jobs.append({
             'generation_id': generation_counter,
@@ -47,30 +47,55 @@ def generate_jobs():
     return jobs
 
 def introduce_jobs():
-    global generated_jobs
+    global generated_jobs, daily_job_count, last_reset_date
     while True:
-        result = subprocess.run(
-            "ss -nlpt | grep 0.0.0.0:11 | grep python3 | wc -l", 
-            shell=True, 
-            capture_output=True, 
-            text=True
-        )
-        result_value = int(result.stdout.strip())  # Get the result as an integer
-        if result_value < 41:
-            jobs = generate_jobs()
-            for job in jobs:
-                generated_jobs.append(job)
-                logging.info(f"Job introduced: {job}")
+        now = datetime.now()
+
+        # Reset counter at midnight
+        if now.date() != last_reset_date:
+            daily_job_count = 0
+            last_reset_date = now.date()
+            logging.info("Daily job count reset.")
+
+        hour = now.hour
+        minute = now.minute
+        activity_profile = [
+            0.02, 0.02, 0.02, 0.02, 0.02,   # 00:00 - 04:59
+            0.05, 0.07, 0.12, 0.18, 0.22,   # 05:00 - 09:59
+            0.25, 0.30, 0.30, 0.25, 0.20,   # 10:00 - 14:59
+            0.18, 0.15, 0.12, 0.10, 0.08,   # 15:00 - 19:00 ← fixed
+            0.05, 0.03, 0.02, 0.01          # 20:00 - 23:59
+        ]
+        activity_level = activity_profile[hour]
+
+        if daily_job_count < 40 and random.random() < activity_level:
+            result = subprocess.run(
+                "ss -nlpt | grep 0.0.0.0:11 | grep python3 | wc -l",
+                shell=True,
+                capture_output=True,
+                text=True
+            )
+            result_value = int(result.stdout.strip())
+            if result_value < 41:
+                jobs = generate_jobs()
+                for job in jobs:
+                    if daily_job_count >= 40:
+                        break
+                    generated_jobs.append(job)
+                    daily_job_count += 1
+                    logging.info(f"RealTime {hour:02d}:{minute:02d} - Job introduced: {job}")
+            else:
+                logging.info(f"RealTime {hour:02d}:{minute:02d} - Too many processes ({result_value}). Skipping.")
         else:
-            logging.info(f"Command result {result_value} is greater than or equal to 41. Skipping job generation.")
-        time.sleep(random.randint(JOB_INTRO_MIN_SECONDS, JOB_INTRO_MAX_SECONDS))
+            logging.info(f"RealTime {hour:02d}:{minute:02d} - Low activity or job cap reached. No job generated.")
+        time.sleep(60)  # Sleep one real minute
 
 def clean_generated_jobs():
     global generated_jobs
     while True:
-        current_time = int(time.time() - start_time)
+        current_time = int(time.time())
         generated_jobs = [job for job in generated_jobs if current_time - job['generation_moment'] <= JOB_EXPIRATION_TIME]
-        time.sleep(1)  # Check every second
+        time.sleep(1)
 
 @app.route('/jobs', methods=['GET'])
 def get_jobs():
@@ -91,9 +116,11 @@ def queue_job():
 thread_job_generation = threading.Thread(target=introduce_jobs)
 thread_job_generation.daemon = True
 thread_job_generation.start()
+
 thread_generated_job_cleaning = threading.Thread(target=clean_generated_jobs)
 thread_generated_job_cleaning.daemon = True
 thread_generated_job_cleaning.start()
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=FLASK_PORT)
 

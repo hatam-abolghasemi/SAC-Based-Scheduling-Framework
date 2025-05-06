@@ -49,8 +49,8 @@ def generate_jobs():
 def introduce_jobs():
     global generated_jobs, daily_job_count, last_reset_date
     while True:
-        now = datetime.now()
-
+        seconds_since_start = int(time.time() - start_time)
+        now = start_datetime + timedelta(minutes=seconds_since_start)
         # Reset counter at midnight
         if now.date() != last_reset_date:
             daily_job_count = 0
@@ -59,12 +59,13 @@ def introduce_jobs():
 
         hour = now.hour
         minute = now.minute
+
         activity_profile = [
-            0.02, 0.02, 0.02, 0.02, 0.02,   # 00:00 - 04:59
-            0.05, 0.07, 0.12, 0.18, 0.22,   # 05:00 - 09:59
-            0.25, 0.30, 0.30, 0.25, 0.20,   # 10:00 - 14:59
-            0.18, 0.15, 0.12, 0.10, 0.08,   # 15:00 - 19:00 ← fixed
-            0.05, 0.03, 0.02, 0.01          # 20:00 - 23:59
+            0.005, 0.005, 0.005, 0.005, 0.005,
+            0.01, 0.015, 0.02, 0.025, 0.03,
+            0.03, 0.04, 0.04, 0.03, 0.025,
+            0.02, 0.015, 0.01, 0.01, 0.01,
+            0.005, 0.003, 0.002, 0.001
         ]
         activity_level = activity_profile[hour]
 
@@ -88,7 +89,7 @@ def introduce_jobs():
                 logging.info(f"RealTime {hour:02d}:{minute:02d} - Too many processes ({result_value}). Skipping.")
         else:
             logging.info(f"RealTime {hour:02d}:{minute:02d} - Low activity or job cap reached. No job generated.")
-        time.sleep(60)  # Sleep one real minute
+        time.sleep(1)  # Sleep one real minute
 
 def clean_generated_jobs():
     global generated_jobs
@@ -112,7 +113,8 @@ def queue_job():
         return jsonify({"message": f"Job with generation_id {generation_id} added to the queue."}), 200
     else:
         return jsonify({"error": "Job not found."}), 404
-
+start_datetime = datetime.now()
+start_time = time.time()
 thread_job_generation = threading.Thread(target=introduce_jobs)
 thread_job_generation.daemon = True
 thread_job_generation.start()

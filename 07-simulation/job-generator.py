@@ -8,7 +8,7 @@ import subprocess
 from datetime import datetime, timedelta
 
 MIN_JOBS = 1
-MAX_JOBS = 2
+MAX_JOBS = 4
 TOTAL_JOB_SAMPLES = 31
 FLASK_PORT = 9902
 MIN_REQUIRED_EPOCH = 10
@@ -59,17 +59,17 @@ def introduce_jobs():
 
         hour = now.hour
         minute = now.minute
-
         activity_profile = [
-            0.005, 0.005, 0.005, 0.005, 0.005,
-            0.01, 0.015, 0.02, 0.025, 0.03,
-            0.03, 0.04, 0.04, 0.03, 0.025,
-            0.02, 0.015, 0.01, 0.01, 0.01,
-            0.005, 0.003, 0.002, 0.001
+            0.012, 0.012, 0.012, 0.012, 0.012,   # early morning
+            0.025, 0.04, 0.05, 0.065, 0.075,     # working hours
+            0.075, 0.1, 0.1, 0.075, 0.065,
+            0.05, 0.04, 0.03, 0.03, 0.03,
+            0.015, 0.008, 0.006, 0.004           # late night
         ]
+
         activity_level = activity_profile[hour]
 
-        if daily_job_count < 40 and random.random() < activity_level:
+        if daily_job_count < 80 and random.random() < activity_level:
             result = subprocess.run(
                 "ss -nlpt | grep 0.0.0.0:11 | grep python3 | wc -l",
                 shell=True,
@@ -77,10 +77,10 @@ def introduce_jobs():
                 text=True
             )
             result_value = int(result.stdout.strip())
-            if result_value < 41:
+            if result_value < 81:
                 jobs = generate_jobs()
                 for job in jobs:
-                    if daily_job_count >= 40:
+                    if daily_job_count >= 80:
                         break
                     generated_jobs.append(job)
                     daily_job_count += 1

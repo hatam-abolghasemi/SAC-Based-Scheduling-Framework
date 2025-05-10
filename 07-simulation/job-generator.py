@@ -8,7 +8,7 @@ import subprocess
 from datetime import datetime, timedelta
 
 MIN_JOBS = 1
-MAX_JOBS = 4
+MAX_JOBS = 2
 TOTAL_JOB_SAMPLES = 31
 FLASK_PORT = 9902
 MIN_REQUIRED_EPOCH = 10

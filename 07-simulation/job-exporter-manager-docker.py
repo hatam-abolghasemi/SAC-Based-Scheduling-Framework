@@ -34,7 +34,7 @@ def get_job_info(job_id, generation_id, jobs_data):
 
 def start_container_exporter(port, generation_id, job_info, job_id):
     image_name = f"job-exporter-{job_id}"
-    container_name = f"job-exporter-{job_id}-{generation_id}"
+    container_name = f"job-{generation_id}"
 
     if not image_exists(image_name):
         print(f"Docker image {image_name} not found. Skipping...")
@@ -51,7 +51,7 @@ def start_container_exporter(port, generation_id, job_info, job_id):
         '--schedule_moment', str(job_info.get('schedule_moment', 0)),
         '--required_epochs', str(job_info.get('required_epoch', 0))
     ]
-    print(f"Launching container for job {job_id} (gen_id={generation_id}) on port {port}...")
+    print(f"Launching container for job {generation_id} scheduled at {job_info.get('schedule_moment', 'N/A')} on port {port}...")
     subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 def image_exists(image_name):
@@ -64,7 +64,7 @@ def image_exists(image_name):
 def process_job(job, jobs):
     job_id = job.get("job_id")
     generation_id = int(job.get("generation_id", 0))
-    if 1 <= job_id <= 16:
+    if 1 <= job_id <= 33:
         with lock:  # Ensure thread-safe checks
             if generation_id not in processed_generation_ids:
                 processed_generation_ids.add(generation_id)

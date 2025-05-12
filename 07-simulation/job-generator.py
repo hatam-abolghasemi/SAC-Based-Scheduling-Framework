@@ -61,10 +61,10 @@ def introduce_jobs():
         minute = now.minute
         activity_profile = [
             0.012, 0.012, 0.012, 0.012, 0.012,   # early morning
-            0.025, 0.04, 0.05, 0.065, 0.075,     # working hours
+            0.025, 0.4, 0.05, 0.075, 0.075,     # working hours
             0.075, 0.1, 0.1, 0.075, 0.065,
             0.05, 0.04, 0.03, 0.03, 0.03,
-            0.015, 0.008, 0.006, 0.004           # late night
+            0.015, 0.08, 0.006, 0.004           # late night
         ]
 
         activity_level = activity_profile[hour]

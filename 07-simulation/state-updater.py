@@ -42,23 +42,20 @@ def get_metrics():
     except requests.RequestException:
         return {}
 
-
 def find_ports():
     try:
         result = subprocess.run(["ss", "-nlpt"], capture_output=True, text=True, check=True)
         lines = result.stdout.split("\n")
-        ports = []
+        ports = set()
         for line in lines:
-            if "0.0.0.0:11" in line:
-                parts = line.split()
-                for part in parts:
-                    if part.startswith("0.0.0.0:11"):
-                        port = part.split(":")[-1]
-                        ports.append(port)
-        return list(set(ports))
+            match = re.search(r":(\d+)", line)
+            if match:
+                port = int(match.group(1))
+                if port > 11000:
+                    ports.add(str(port))
+        return sorted(ports)
     except subprocess.CalledProcessError:
         return []
-
 
 def get_port_metrics(port):
     try:

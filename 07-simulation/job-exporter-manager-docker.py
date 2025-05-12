@@ -3,9 +3,11 @@ import time
 import requests
 import subprocess
 import threading
+from datetime import datetime
 
 processed_generation_ids = set()
 lock = threading.Lock()
+timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 def get_jobs(worker_id):
     url = f"http://localhost:9901/jobs/k8s-worker-{worker_id}"
@@ -23,8 +25,21 @@ def calculate_port(generation_id):
         return f"1100{generation_id}"
     elif generation_id < 100:
         return f"110{generation_id}"
-    else:
+    elif generation_id < 1000:
         return f"11{generation_id}"
+    elif generation_id < 2000:
+        return f"2{generation_id}"
+    elif generation_id < 3000:
+        return f"3{generation_id}"
+    elif generation_id < 4000:
+        return f"4{generation_id}"
+    elif generation_id < 5000:
+        return f"5{generation_id}"
+    elif generation_id < 5500:
+        return f"6{generation_id}"
+    else:
+        raise ValueError(f"Generation ID {generation_id} too high for safe port assignment.")
+
 
 def get_job_info(job_id, generation_id, jobs_data):
     for job in jobs_data:
@@ -51,7 +66,7 @@ def start_container_exporter(port, generation_id, job_info, job_id):
         '--schedule_moment', str(job_info.get('schedule_moment', 0)),
         '--required_epochs', str(job_info.get('required_epoch', 0))
     ]
-    print(f"Launching container for job {generation_id} scheduled at {job_info.get('schedule_moment', 'N/A')} on port {port}...")
+    print(f"[{timestamp}] [JobStart] job_id={job_id} gen_id={generation_id} port={port} node={job_info.get('node', 'default-node')} gen_moment={job_info.get('generation_moment', 0)} sched_moment={job_info.get('schedule_moment', 0)} epochs={job_info.get('required_epoch', 0)} image={image_name} container={container_name}", flush=True)
     subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 def image_exists(image_name):

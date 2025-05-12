@@ -14,7 +14,7 @@ queue_url = 'http://0.0.0.0:9902/queue'
 class deepLearningEnvironment(gym.Env):
     def __init__(self):
         super(deepLearningEnvironment, self).__init__()
-        self.state_size = 714
+        self.state_size = 1539  # 100 jobs * 15D + 13 nodes * 3D
         self.action_space = spaces.Box(low=-1, high=1, shape=(1,), dtype=np.float32)
         self.observation_space = spaces.Box(low=-10, high=10, shape=(self.state_size,), dtype=np.float32)
         self.state = np.zeros((self.state_size,), dtype=np.float32)
@@ -27,31 +27,31 @@ class deepLearningEnvironment(gym.Env):
         if seed is not None:
             np.random.seed(seed)
         self.state = self.fetch_state()
-        padded_state = np.zeros((self.state_size,), dtype=np.float32)
         self.episode_step_count = 0
-        return padded_state, {}
+        return self.state, {}
 
     def step(self, action):
-        state = self.fetch_state()
+        self.state = self.fetch_state()
         action = np.clip(action, self.action_space.low, self.action_space.high)
-        if action.shape != state.shape:
-            action = np.resize(action, state.shape)
-        self.schedule_jobs(action, state)
-        reward = self.reward_function(state)
-        # logging.info(f"State: {state}, Reward: {reward}")
+        if action.shape != self.state.shape:
+            action = np.resize(action, self.state.shape)
+        self.schedule_jobs(action, self.state)
+        reward = self.reward_function(self.state)
         self.episode_step_count += 1
         done = self.episode_step_count >= 10
         if done:
             self.episode_step_count = 0
-        padded_state = np.zeros((self.state_size,), dtype=np.float32)
-        return padded_state, reward, done, False, {}
+        return self.state, reward, done, False, {}
 
     def render(self):
         print(f"Current state (dim {self.state_size}): {self.state}")
-   
+
     def fetch_state(self):
         response = requests.get("http://0.0.0.0:9907/state")
-        return np.array(response.json(), dtype=np.float32)
+        raw_state = np.array(response.json(), dtype=np.float32)
+        padded_state = np.zeros((self.state_size,), dtype=np.float32)
+        padded_state[:min(len(raw_state), self.state_size)] = raw_state[:self.state_size]
+        return padded_state
 
     def fetch_generated_jobs(self):
         while True:

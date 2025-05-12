@@ -13,8 +13,8 @@ def is_port_open(port):
         s.settimeout(0.2)
         return s.connect_ex(('localhost', port)) == 0
 
-def find_open_11xxx_ports():
-    return sorted([port for port in range(11000, 12000) if is_port_open(port)])
+def find_open_ports_above_11000(max_port=30000):
+    return sorted([port for port in range(11001, max_port + 1) if is_port_open(port)])
 
 def generate_prometheus_config(open_ports, output_file=OUTPUT_TMP):
     config = {
@@ -61,7 +61,7 @@ def main_loop():
     last_ports = []
     print("👀 Monitoring for changes in open ports (11XXX)...")
     while True:
-        current_ports = find_open_11xxx_ports()
+        current_ports = find_open_ports_above_11000()
         if current_ports != last_ports:
             timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             print(f"\n🔄 [{timestamp}] Change detected.")

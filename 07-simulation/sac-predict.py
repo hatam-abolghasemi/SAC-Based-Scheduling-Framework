@@ -1,40 +1,30 @@
-import gymnasium as gym
+import logging
 from stable_baselines3 import SAC
 from stable_baselines3.common.vec_env import DummyVecEnv
 from deepLearningEnvironment import deepLearningEnvironment
-import logging
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 
 def perform_inference(env):
-    # Load the trained model
     model = SAC.load("sac_scheduler_model")
-    
-    # Set the model's environment
     model.set_env(env)
-    
-    # Perform inference (in an infinite loop)
-    obs = env.reset()  # Reset environment to get the initial observation
+
+    obs = env.reset()
     total_reward = 0
 
-    while True:  # Infinite loop for continuous inference
-        action, _states = model.predict(obs, deterministic=False)  # Predict action based on the state
-        obs, reward, done, info = env.step(action)  # Take action in the environment
-        total_reward += reward  # Accumulate reward
-        
-        # Optionally print details of the action, reward, etc.
-        logging.info(f"Action taken: {action}, Reward: {reward}, Total reward: {total_reward}")
+    while True:
+        action, _ = model.predict(obs, deterministic=False)
+        obs, reward, done, info = env.step(action)
 
-        # Reset the environment when done, to keep it running indefinitely
-        if done:
+        total_reward += reward[0]  # reward is a list/array
+        logging.info(f"Action taken: {action}, Reward: {reward[0]}, Total reward: {total_reward}")
+
+        if done[0]:  # done is also a list/array
             logging.info(f"Episode finished with total reward: {total_reward}")
-            obs = env.reset()  # Reset environment for the next "episode"
+            obs = env.reset()
+            total_reward = 0  # Reset reward counter for the new episode
 
 if __name__ == '__main__':
-    # Create the environment
-    env = deepLearningEnvironment()
-    env = DummyVecEnv([lambda: env])
-
-    # Perform infinite inference
+    env = DummyVecEnv([lambda: deepLearningEnvironment()])
     perform_inference(env)
 

@@ -53,7 +53,7 @@ def update_metrics():
     while True:
         try:
             result = subprocess.run(['ss', '-nlpt'], capture_output=True, text=True)
-            ports = re.findall(r'0\.0\.0\.0:(11[0-9]+)', result.stdout)
+            ports = [match for match in re.findall(r'0\.0\.0\.0:(\d+)', result.stdout) if int(match) > 11000]
             usage = {'cpu': {}, 'gpu': {}, 'mem': {}}
             for port in ports:
                 container_usage = fetch_container_metrics(port)

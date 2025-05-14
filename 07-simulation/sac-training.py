@@ -15,7 +15,7 @@ def log_rewards(step, reward, log_file='logs/training_rewards.log'):
         file.write(f"Step {step}, Reward: {reward}\n")
     logging.info(f"Step {step} - Reward logged: {reward}")
 
-def train_and_track(env, total_steps=500_000, log_interval=10_000, eval_episodes=5, max_steps=100):
+def train_and_track(env, total_steps=200_000, log_interval=10_000, eval_episodes=5, max_steps=100):
     model = SAC("MlpPolicy", env, verbose=1, tensorboard_log="./sac_tensorboard")
     logging.info("Starting SAC training...")
     steps_done = 0

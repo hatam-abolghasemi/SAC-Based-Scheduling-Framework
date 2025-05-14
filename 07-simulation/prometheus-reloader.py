@@ -13,7 +13,7 @@ def is_port_open(port):
         s.settimeout(0.2)
         return s.connect_ex(('localhost', port)) == 0
 
-def find_open_ports_above_11000(max_port=30000):
+def find_open_ports_above_11000(max_port=65000):
     return sorted([port for port in range(11001, max_port + 1) if is_port_open(port)])
 
 def generate_prometheus_config(open_ports, output_file=OUTPUT_TMP):

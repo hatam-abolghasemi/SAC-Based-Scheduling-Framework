@@ -31,10 +31,10 @@ def generate_prometheus_config(open_ports, output_file=OUTPUT_TMP):
                 ]
             },
             {
-                'job_name': 'static_9904',
+                'job_name': 'statics',
                 'static_configs': [
                     {
-                        'targets': ['localhost:9904']
+                        'targets': ['localhost:9904', 'localhost:9909']
                     }
                 ]
             }

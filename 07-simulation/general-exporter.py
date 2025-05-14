@@ -5,11 +5,14 @@ import threading
 
 # Metrics
 elapsed_time = Gauge('total_elapsed_time', 'Total elapsed time since port 11001 started listening')
-finished_jobs = Gauge('total_finished_jobs', 'Number of finished jobs based on smallest open port > 11000')
+finished_jobs = Gauge('total_finished_jobs', 'Number of finished jobs based on missing ports > 11000')
 
-# Track whether port 11001 has started listening
+# Timer state
 timer_started = False
 start_time = None
+
+# Set of all ports that were ever seen open
+seen_ports = set()
 
 def is_port_open(port):
     for conn in psutil.net_connections(kind='inet'):
@@ -18,32 +21,31 @@ def is_port_open(port):
     return False
 
 def get_open_ports_above_11000():
-    ports = set()
-    for conn in psutil.net_connections(kind='inet'):
-        if conn.status == psutil.CONN_LISTEN and conn.laddr.port > 11000:
-            ports.add(conn.laddr.port)
-    return ports
+    return {conn.laddr.port for conn in psutil.net_connections(kind='inet')
+            if conn.status == psutil.CONN_LISTEN and conn.laddr.port > 11000}
 
 def update_metrics():
-    global timer_started, start_time
+    global timer_started, start_time, seen_ports
+
     while True:
-        # Start timer when port 11001 starts listening
+        # Start the timer once 11001 is open
         if not timer_started and is_port_open(11001):
             timer_started = True
             start_time = time.time()
 
-        # Update elapsed_time if the timer has started
+        # Update elapsed time
         if timer_started:
-            seconds_elapsed = int(time.time() - start_time)
-            elapsed_time.set(seconds_elapsed)
+            elapsed_time.set(int(time.time() - start_time))
 
-        # Update finished_jobs based on smallest open port > 11000
-        open_ports = get_open_ports_above_11000()
-        smallest = min(open_ports) if open_ports else None
-        if smallest and smallest > 11001:
-            finished_jobs.set(smallest - 11001)
-        else:
-            finished_jobs.set(0)
+        # Get current open ports >11000
+        current_ports = get_open_ports_above_11000()
+
+        # Update the set of all seen ports
+        seen_ports.update(current_ports)
+
+        # Calculate finished jobs = ports we've seen that are no longer open
+        finished = seen_ports - current_ports
+        finished_jobs.set(len(finished))
 
         time.sleep(1)
 
@@ -64,8 +66,7 @@ def deregister_unwanted_metrics():
             REGISTRY.unregister(REGISTRY._names_to_collectors[metric_name])
 
 if __name__ == '__main__':
-    # Expose metrics at http://localhost:65500/metrics
     deregister_unwanted_metrics()
-    start_http_server(65500)
+    start_http_server(9909)
     threading.Thread(target=update_metrics).start()
 

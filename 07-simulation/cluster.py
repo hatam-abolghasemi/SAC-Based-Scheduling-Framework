@@ -30,7 +30,7 @@ class Node:
 
 
 nodes = [
-    Node('worker', f'k8s-worker-{i+1}', '32', '96', '25600') for i in range(13)
+    Node('worker', f'k8s-worker-{i+1}', '20', '64', '16800') for i in range(13)
 ]
 node_dict = {node.name: node for node in nodes}
 all_jobs = []

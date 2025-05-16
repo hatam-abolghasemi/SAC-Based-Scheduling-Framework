@@ -27,16 +27,8 @@ def calculate_port(generation_id):
         return f"110{generation_id}"
     elif generation_id < 1000:
         return f"11{generation_id}"
-    elif generation_id < 2000:
-        return f"12{generation_id}"
-    elif generation_id < 3000:
-        return f"13{generation_id}"
-    elif generation_id < 4000:
-        return f"14{generation_id}"
-    elif generation_id < 5000:
-        return f"15{generation_id}"
-    elif generation_id < 6000:
-        return f"16{generation_id}"
+    elif generation_id < 10000:
+        return f"1{generation_id}"
     else:
         raise ValueError(f"Generation ID {generation_id} too high for safe port assignment.")
 

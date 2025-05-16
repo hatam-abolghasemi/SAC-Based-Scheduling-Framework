@@ -1,3 +1,0 @@
-nohup: ignoring input
-Starting continuous job monitoring...
-[2025-05-14 22:55:58] [JobStart] job_id=2 gen_id=1 port=11001 node=k8s-worker-13 gen_moment=1747250817 sched_moment=1747250817 epochs=320 image=job-exporter-2 container=job-1

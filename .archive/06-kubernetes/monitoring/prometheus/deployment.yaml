@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+  namespace: monitoring
+  labels:
+    app: prometheus
+    role: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus
+  template:
+    metadata:
+      labels:
+        app: prometheus
+        role: monitoring
+    spec:
+      securityContext:
+        fsGroup: 472
+        supplementalGroups:
+          - 0
+      restartPolicy: Always
+      containers:
+        - name: prometheus
+          image: prom/prometheus:v2.54.0
+          imagePullPolicy: IfNotPresent
+          args:
+          - "--config.file=/etc/prometheus/prometheus.yml"
+          - "--storage.tsdb.path=/prometheus"
+          - "--storage.tsdb.retention.time=15d"
+          - "--web.console.libraries=/etc/prometheus/console_libraries"
+          - "--web.console.templates=/etc/prometheus/consoles"
+          ports:
+          - containerPort: 9090
+            hostPort: 9090
+            name: http
+            protocol: TCP
+          volumeMounts:
+          - name: config
+            mountPath: /etc/prometheus/
+          resources:
+            requests:
+              memory: "3.5Gi"
+              cpu: "750m"
+            limits:
+              memory: "7Gi"
+              cpu: "900m"
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+      volumes:
+      - name: config
+        configMap:
+          name: prometheus-config

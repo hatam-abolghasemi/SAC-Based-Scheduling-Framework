@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monitoring
+  labels:
+    role: monitoring
+  annotations:
+    description: "Namespace for monitoring and alerting systems including Prometheus, Grafana, and custom exporters."
+spec:
+  finalizers:
+    - kubernetes
+

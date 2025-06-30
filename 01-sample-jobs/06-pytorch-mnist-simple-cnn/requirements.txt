@@ -1,5 +1,0 @@
-torch
-torchvision
-configparser
-numpy
-matplotlib

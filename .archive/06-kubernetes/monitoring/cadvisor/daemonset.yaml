@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: k8s-cadvisor-tuned
+  namespace: monitoring
+  labels:
+    app: k8s-cadvisor-tuned
+    role: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: k8s-cadvisor-tuned
+      role: monitoring
+  template:
+    metadata:
+      labels:
+        app: k8s-cadvisor-tuned
+        role: monitoring
+      annotations:
+        prometheus.io/scrape: "true" # Enable Prometheus scraping
+        prometheus.io/port: "10100"  # Specify the port for scraping
+        prometheus.io/path: "/metrics" # Specify the metrics path
+    spec:
+      serviceAccountName: k8s-cadvisor-tuned
+      containers:
+      - name: cadvisor-tuned
+        image: sleepmaps/scripts:k8s-cadvisor-tuned-1.0.26
+        ports:
+        - containerPort: 10100
+          hostPort: 10100
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        resources:
+          limits:
+            cpu: 10m
+            memory: 100Mi
+          requests:
+            cpu: 1m
+            memory: 30Mi
+

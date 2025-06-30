@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sac
+  labels:
+    role: sac
+  annotations:
+    description: "Namespace for SAC"
+spec:
+  finalizers:
+    - kubernetes
+

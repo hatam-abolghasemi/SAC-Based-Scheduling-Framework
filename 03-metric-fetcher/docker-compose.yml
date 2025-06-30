@@ -1,7 +1,0 @@
-services:
-  metric-fetcher:
-    image: metric-fetcher:1.0.4
-    restart: always
-    ports:
-      - "4223:4223"
-
